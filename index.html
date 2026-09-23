@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Cabinet des Trois Lunes · Arts divinatoires</title>
+<meta name="description" content="Cabinet d'arts divinatoires : tarot de Marseille avec Hélène Belmont, thème astral avec Gaïa Sorel, interprétation des rêves avec Léon Savignac.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0a0f'/%3E%3Ccircle cx='8' cy='16' r='5' fill='%23c9a15f'/%3E%3Ccircle cx='10.5' cy='16' r='4.3' fill='%230c0a0f'/%3E%3Ccircle cx='16' cy='16' r='4.4' fill='none' stroke='%23c9a15f' stroke-width='1.4'/%3E%3Ccircle cx='24' cy='16' r='5' fill='%23c9a15f'/%3E%3Ccircle cx='21.5' cy='16' r='4.3' fill='%230c0a0f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<!--
+  ════════════════════════════════════════════════════════════
+  À PERSONNALISER PLUS TARD, DEUX CHOSES UNIQUEMENT :
+
+  1. LES PORTRAITS — cherchez « PORTRAIT » dans le fichier
+     (3 emplacements, un par praticien). Remplacez le contenu
+     du médaillon par votre image :
+     <img src="helene-belmont.jpg" alt="Portrait d'Hélène Belmont">
+
+  2. LES LIENS — cherchez « LIEN À REMPLACER » (3 cartes).
+     Remplacez le href fictif par l'URL de chaque page de
+     consultation. Tant que le lien est fictif, un message
+     discret s'affiche à la place de la navigation.
+  ════════════════════════════════════════════════════════════
+-->
+<style>
+  :root{
+    --night:#0c0a0f;
+    --ivory:#e8e0cd;
+    --muted:#9d8f7c;
+    --gold:#c9a15f;
+    --gold-hi:#e6c98c;
+    --gold-ink:#8a6f3c;      /* or gravé, lisible sur crème */
+    --cream:#ece1cb;         /* visage des cartes */
+    --ink:#241b20;           /* encre des cartes */
+    --line:rgba(201,161,95,.35);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:radial-gradient(120% 90% at 50% 6%, #151019 0%, #0d0a10 48%, #070509 100%) fixed;
+    color:var(--ivory);
+    font-family:"Cormorant Garamond",Georgia,serif;
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold);color:var(--night)}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#0a080d}
+  ::-webkit-scrollbar-thumb{background:#2b2431;border-radius:5px;border:2px solid #0a080d}
+
+  /* ——— Ciel étoilé & grain ——— */
+  #sky{position:fixed;inset:0;z-index:0;display:block}
+  .grain{
+    position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+  }
+
+  main{position:relative;z-index:2}
+
+  /* ——— Héro ——— */
+  .hero{
+    min-height:100svh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:9vh 24px 7vh;
+  }
+  .eyebrow{
+    font-family:Cinzel,serif;font-size:11px;font-weight:600;
+    letter-spacing:.42em;text-transform:uppercase;color:var(--gold);
+    text-indent:.42em; /* compense le dernier espacement */
+  }
+  .emblem{width:112px;height:auto;margin:26px 0 20px;opacity:.95}
+  h1{
+    font-family:Cinzel,serif;font-weight:600;
+    font-size:clamp(2rem,5.4vw,3.4rem);
+    letter-spacing:.12em;line-height:1.3;text-indent:.12em;
+    color:var(--ivory);
+  }
+  .tagline{
+    margin-top:30px;max-width:640px;
+    font-style:italic;font-weight:500;
+    font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.75;color:#cfc4ad;
+  }
+  .sep{width:min(260px,60vw);height:14px;color:var(--gold);opacity:.85;margin-top:34px}
+  .to-cards{
+    margin-top:52px;display:inline-flex;flex-direction:column;align-items:center;gap:12px;
+    font-family:Cinzel,serif;font-size:11px;font-weight:600;letter-spacing:.32em;text-indent:.32em;
+    text-transform:uppercase;color:var(--gold);text-decoration:none;
+    transition:color .35s;
+  }
+  .to-cards:hover{color:var(--gold-hi)}
+  .to-cards svg{animation:dip 2.4s ease-in-out infinite}
+  @keyframes dip{0%,100%{transform:translateY(0);opacity:.9}50%{transform:translateY(6px);opacity:.5}}
+
+  /* ——— L'éventail de cartes ——— */
+  .spread{
+    display:flex;justify-content:center;align-items:flex-start;
+    gap:44px;padding:30px 24px 130px;
+    scroll-margin-top:30px;
+  }
+  .slot{
+    width:330px;position:relative;perspective:1500px;
+    transform:translate(var(--tx,0px),var(--ty,0px)) rotate(var(--rz,0deg)) scale(var(--sc,1));
+    transition:transform .65s cubic-bezier(.2,.75,.3,1);
+  }
+  .slot--left {--rz:-6.5deg;--ty:30px}
+  .slot--mid  {--rz:0deg;  --ty:0px;  --sc:1.03;z-index:2}
+  .slot--right{--rz:6.5deg;--ty:30px}
+  .slot::after{ /* ombre portée sur la « table » */
+    content:"";position:absolute;left:9%;right:9%;bottom:-18px;height:32px;z-index:-1;
+    background:radial-gradient(50% 50% at 50% 50%, rgba(0,0,0,.62), rgba(0,0,0,0) 72%);
+    transition:opacity .5s,transform .5s;
+  }
+  @media (hover:hover){
+    .slot:hover,.slot:focus-within{--rz:0deg;--tx:0px;--ty:-18px;z-index:6}
+    .slot:hover::after,.slot:focus-within::after{opacity:.55;transform:scale(.9) translateY(-6px)}
+  }
+  @media (min-width:1151px) and (hover:hover){
+    /* le tirage : la carte effleurée se redresse, les autres s'écartent */
+    .spread:hover .slot--left :not(.slot:hover):not(:focus-within){--tx:-16px;--ty:42px}
+    .spread:hover .slot--right:not(:hover,:focus-within){--tx:16px;--ty:42px}
+    .spread:hover .slot--mid  :not(:hover):not(:focus-within){--ty:18px}
+  }
+
+  .card{position:relative;width:100%;height:606px;border-radius:10px}
+  .js .card{transform-style:preserve-3d;transition:transform 1.1s cubic-bezier(.72,.02,.28,1)}
+  .js .card.revealed{transform:rotateY(180deg)}
+
+  .back,.face{
+    position:absolute;inset:0;border-radius:10px;
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  }
+  .back{display:none;overflow:hidden;background:#121016;
+    box-shadow:0 0 0 1px rgba(201,161,95,.18), 0 34px 60px -18px rgba(0,0,0,.7)}
+  .js .back{display:block}
+  .back svg{width:100%;height:100%;display:block}
+
+  .js .face{transform:rotateY(180deg)}
+  .face{
+    background:var(--cream);color:var(--ink);
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    padding:30px 26px 24px;overflow:hidden;
+    box-shadow:0 0 0 1px rgba(201,161,95,.22), 0 40px 70px -20px rgba(0,0,0,.78);
+  }
+  .face::before{
+    content:"";position:absolute;inset:11px;border:1px solid rgba(138,111,60,.55);
+    border-radius:5px;pointer-events:none;
+  }
+  .coin{position:absolute;width:22px;height:22px;color:var(--gold-ink);pointer-events:none}
+  .coin.tl{top:16px;left:16px}
+  .coin.tr{top:16px;right:16px;transform:scaleX(-1)}
+  .coin.bl{bottom:16px;left:16px;transform:scaleY(-1)}
+  .coin.br{bottom:16px;right:16px;transform:scale(-1,-1)}
+
+  .arcana{
+    display:flex;align-items:center;gap:12px;
+    font-family:Cinzel,serif;font-size:10px;font-weight:700;
+    letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--gold-ink);
+  }
+  .arcana::before,.arcana::after{content:"";width:26px;height:1px;background:currentColor;opacity:.55}
+
+  /* Médaillon photo — l'emplacement réservé au portrait */
+  .photo{
+    position:relative;width:152px;height:178px;margin-top:16px;
+    border-radius:50%;overflow:hidden;background:#d9caa9;
+    border:1px solid var(--gold-ink);
+    box-shadow:inset 0 0 0 5px var(--cream), inset 0 0 0 6px rgba(138,111,60,.65),
+               inset 0 16px 34px rgba(60,40,20,.18);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  }
+  .photo img{ /* prêt pour le vrai portrait : il remplira l'ovale */
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;
+  }
+  .photo .spark{width:13px;height:13px;color:var(--gold-ink);opacity:.4}
+  .photo .mono{
+    font-family:Cinzel,serif;font-weight:600;font-size:33px;letter-spacing:.06em;
+    color:rgba(42,32,38,.4);
+  }
+  .photo .soon{font-style:italic;font-size:11px;color:rgba(42,32,38,.5)}
+
+  /* Sceau : le logo du praticien, posé sur le médaillon */
+  .seal{
+    margin-top:-27px;z-index:2;width:56px;height:56px;border-radius:50%;
+    background:var(--cream);border:1px solid var(--gold-ink);
+    display:grid;place-items:center;
+    box-shadow:0 6px 14px rgba(42,32,38,.28), inset 0 0 0 3px var(--cream),
+               inset 0 0 0 4px rgba(138,111,60,.5);
+  }
+  .seal svg{width:42px;height:42px;display:block}
+
+  .face h2{
+    margin-top:13px;font-family:Cinzel,serif;font-weight:600;
+    font-size:1.32rem;letter-spacing:.08em;text-indent:.08em;color:var(--ink);
+  }
+  .role{margin-top:4px;font-style:italic;font-weight:500;font-size:15.5px;color:var(--gold-ink)}
+  .mini-sep{width:120px;height:10px;color:var(--gold-ink);opacity:.8;margin:12px 0 0}
+  .bio{margin-top:12px;font-size:15.5px;font-weight:500;line-height:1.62;color:#3b3036;max-width:262px}
+  .tags{
+    margin-top:13px;font-family:Cinzel,serif;font-size:10px;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;line-height:2;color:rgba(42,32,38,.6);
+    max-width:250px;
+  }
+
+  .cta{
+    margin-top:auto;padding:6px 2px 7px;
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:Cinzel,serif;font-size:11.5px;font-weight:600;
+    letter-spacing:.22em;text-indent:.05em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;
+    border-bottom:1px solid rgba(138,111,60,.55);
+    transition:color .35s,border-color .35s;
+  }
+  .cta svg{transition:transform .35s}
+  .cta:hover,.cta:focus-visible{color:#7a5f2e;border-color:#7a5f2e}
+  .cta:hover svg,.cta:focus-visible svg{transform:translateX(5px)}
+  a:focus-visible{outline:1px dashed var(--gold-ink);outline-offset:5px;border-radius:2px}
+
+  /* ——— Vies propres aux trois emblèmes ——— */
+  .art-sun .flames{animation:breathe 4.5s ease-in-out infinite}
+  @keyframes breathe{0%,100%{opacity:.4}50%{opacity:1}}
+  .art-wheel .wheel-rot{transform-box:view-box;transform-origin:50% 50%;animation:spin 52s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .art-moth{animation:bob 5.5s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+
+  /* ——— Pied de page ——— */
+  footer{
+    position:relative;z-index:2;text-align:center;
+    max-width:660px;margin:0 auto;padding:0 24px 70px;
+  }
+  .ethic{margin-top:30px;font-style:italic;color:var(--muted);font-size:15.5px;line-height:1.85}
+  .names{
+    margin:30px 0 10px;font-family:Cinzel,serif;font-size:10.5px;font-weight:600;
+    letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--gold-ink);
+  }
+  .copy{font-size:13.5px;letter-spacing:.06em;color:#6d6355}
+
+  /* ——— Message discret pour les liens en attente ——— */
+  .toast{
+    position:fixed;left:50%;bottom:30px;z-index:50;
+    transform:translate(-50%,14px);opacity:0;pointer-events:none;
+    display:flex;align-items:center;gap:11px;
+    background:#171219;border:1px solid rgba(201,161,95,.4);border-radius:2px;
+    padding:13px 24px;box-shadow:0 14px 34px rgba(0,0,0,.55);
+    font-style:italic;font-size:16px;color:var(--ivory);
+    transition:opacity .45s,transform .45s;max-width:min(88vw,520px);
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  .toast svg{flex:none;width:13px;height:13px;color:var(--gold)}
+
+  /* ——— Écrans étroits : les cartes s'alignent en colonne ——— */
+  @media (max-width:1150px){
+    .spread{flex-direction:column;align-items:center;gap:66px;padding-top:14px}
+    .slot{--sc:1}
+    .slot--left{--rz:-2deg;--ty:0}
+    .slot--mid{--rz:0deg}
+    .slot--right{--rz:2deg;--ty:0}
+  }
+  @media (max-width:390px){
+    .slot{width:min(330px,93vw)}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ——— Bibliothèque de motifs (dos de carte, ornements) ——— -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="patDia" width="22" height="22" patternUnits="userSpaceOnUse">
+      <path d="M11 2 L20 11 L11 20 L2 11 Z" fill="none" stroke="rgba(201,161,95,.10)" stroke-width="1"/>
+      <circle cx="11" cy="11" r=".8" fill="rgba(201,161,95,.13)"/>
+    </pattern>
+
+    <symbol id="spark" viewBox="-8 -8 16 16">
+      <path d="M0 -7 L1.7 -1.7 L7 0 L1.7 1.7 L0 7 L-1.7 1.7 L-7 0 L-1.7 -1.7 Z" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="sep" viewBox="0 0 260 14">
+      <g stroke="currentColor" fill="none" stroke-width="1">
+        <line x1="0" y1="7" x2="98" y2="7"/>
+        <line x1="162" y1="7" x2="260" y2="7"/>
+        <path d="M130 1.5 L136.5 7 L130 12.5 L123.5 7 Z"/>
+      </g>
+      <circle cx="111" cy="7" r="1.4" fill="currentColor"/>
+      <circle cx="149" cy="7" r="1.4" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="miniSep" viewBox="0 0 120 10">
+      <g stroke="currentColor" fill="none" stroke-width="1">
+        <line x1="6" y1="5" x2="48" y2="5"/>
+        <line x1="72" y1="5" x2="114" y2="5"/>
+        <path d="M60 1.4 L63.6 5 L60 8.6 L56.4 5 Z"/>
+      </g>
+    </symbol>
+
+    <symbol id="corner" viewBox="0 0 26 26">
+      <g stroke="currentColor" fill="none" stroke-width="1">
+        <path d="M2 24 L2 10 Q2 2 10 2 L24 2"/>
+        <path d="M6.5 24 L6.5 12.5 Q6.5 6.5 12.5 6.5 L24 6.5" stroke-width=".7" opacity=".8"/>
+      </g>
+    </symbol>
+
+    <!-- Dos de carte ornementé -->
+    <symbol id="cardBack" viewBox="0 0 330 606">
+      <rect width="330" height="606" rx="10" fill="#121016"/>
+      <rect x="11" y="11" width="308" height="584" rx="7" fill="url(#patDia)"/>
+      <rect x="11.5" y="11.5" width="307" height="583" rx="7" fill="none" stroke="#8a6f3c" stroke-width="1.1"/>
+      <rect x="17" y="17" width="296" height="572" rx="4" fill="none" stroke="rgba(201,161,95,.4)" stroke-width=".7"/>
+      <g fill="#c9a15f" color="#c9a15f">
+        <use href="#spark" x="24" y="24" width="13" height="13"/>
+        <use href="#spark" x="293" y="24" width="13" height="13"/>
+        <use href="#spark" x="24" y="569" width="13" height="13"/>
+        <use href="#spark" x="293" y="569" width="13" height="13"/>
+        <use href="#spark" x="158" y="196" width="14" height="14" opacity=".85"/>
+        <use href="#spark" x="108" y="352" width="10" height="10" opacity=".55"/>
+        <use href="#spark" x="208" y="352" width="10" height="10" opacity=".55"/>
+      </g>
+      <g stroke="#8a6f3c" fill="none" stroke-width=".9">
+        <path d="M165 64 L171 70 L165 76 L159 70 Z"/>
+        <line x1="120" y1="70" x2="153" y2="70"/><line x1="177" y1="70" x2="210" y2="70"/>
+        <path d="M165 530 L171 536 L165 542 L159 536 Z"/>
+        <line x1="120" y1="536" x2="153" y2="536"/><line x1="177" y1="536" x2="210" y2="536"/>
+      </g>
+      <ellipse cx="165" cy="303" rx="90" ry="152" fill="#121016" stroke="#8a6f3c" stroke-width="1.2"/>
+      <ellipse cx="165" cy="303" rx="82" ry="144" fill="none" stroke="rgba(201,161,95,.4)" stroke-width=".7"/>
+      <circle cx="133" cy="297" r="16" fill="#c9a15f"/>
+      <circle cx="139" cy="297" r="14.5" fill="#121016"/>
+      <circle cx="197" cy="297" r="16" fill="#c9a15f"/>
+      <circle cx="191" cy="297" r="14.5" fill="#121016"/>
+      <circle cx="165" cy="297" r="13" fill="none" stroke="#c9a15f" stroke-width="1.4"/>
+      <circle cx="165" cy="297" r="2.4" fill="#c9a15f"/>
+      <g fill="rgba(201,161,95,.55)">
+        <circle cx="80" cy="120" r="1.1"/><circle cx="250" cy="140" r="1.3"/>
+        <circle cx="66" cy="420" r="1.2"/><circle cx="262" cy="440" r="1.1"/>
+        <circle cx="90" cy="508" r="1"/><circle cx="240" cy="498" r="1.2"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<main>
+
+  <!-- ══════════ HÉRO ══════════ -->
+  <header class="hero">
+    <p class="eyebrow">Cabinet d'arts divinatoires</p>
+
+    <!-- Emblème : triple lune -->
+    <svg class="emblem" viewBox="0 0 120 44" aria-hidden="true">
+      <path d="M26 4 A18 18 0 1 0 26 40 A24 24 0 0 1 26 4 Z" fill="#c9a15f"/>
+      <circle cx="60" cy="22" r="13" fill="none" stroke="#c9a15f" stroke-width="1.6"/>
+      <circle cx="60" cy="22" r="2.4" fill="#c9a15f"/>
+      <path d="M94 4 A18 18 0 1 1 94 40 A24 24 0 0 0 94 4 Z" fill="#c9a15f"/>
+    </svg>
+
+    <h1>Le Cabinet<br>des Trois Lunes</h1>
+
+    <p class="tagline">« Ce que les cartes scellent, ce que les astres murmurent,
+    ce que vos rêves recèlent&nbsp;— nous vous aidons à l'entendre. »</p>
+
+    <svg class="sep" aria-hidden="true"><use href="#sep"/></svg>
+
+    <a class="to-cards" href="#voies">
+      Tirer les trois voies
+      <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M2 2 L10 10 L18 2"/>
+      </svg>
+    </a>
+  </header>
+
+  <!-- ══════════ LES TROIS CARTES ══════════ -->
+  <section id="voies" class="spread" aria-label="Les trois praticiens du cabinet">
+
+    <!-- ─── CARTE I · HÉLÈNE BELMONT ─── -->
+    <article class="slot slot--left">
+      <div class="card">
+        <div class="back" aria-hidden="true">
+          <svg viewBox="0 0 330 606" preserveAspectRatio="xMidYMid meet"><use href="#cardBack"/></svg>
+        </div>
+        <div class="face">
+          <svg class="coin tl" aria-hidden="true"><use href="#corner"/></svg>
+          <svg class="coin tr" aria-hidden="true"><use href="#corner"/></svg>
+          <svg class="coin bl" aria-hidden="true"><use href="#corner"/></svg>
+          <svg class="coin br" aria-hidden="true"><use href="#corner"/></svg>
+
+          <p class="arcana">Arcane XIX · Le Soleil</p>
+
+          <div class="photo">
+            <!-- ═══ PORTRAIT : remplacez le contenu ci-dessous par
+                 <img src="helene-belmont.jpg" alt="Portrait d'Hélène Belmont"> ═══ -->
+            <svg class="spark" aria-hidden="true"><use href="#spark"/></svg>
+            <span class="mono">HB</span>
+            <span class="soon">Portrait à venir</span>
+          </div>
+
+          <div class="seal" aria-hidden="true">
+            <!-- Logo : le soleil de Marseille, à double couronne de rayons -->
+            <svg class="art-sun" viewBox="0 0 64 64">
+              <defs>
+                <line id="hb-ray" x1="32" y1="10.5" x2="32" y2="16.5"/>
+                <path id="hb-petal" d="M32 18.5 Q34.4 12.5 32 8.5 Q29.6 12.5 32 18.5 Z"/>
+              </defs>
+              <g class="flames" fill="#a8854a">
+                <use href="#hb-petal" transform="rotate(22.5 32 32)"/>
+                <use href="#hb-petal" transform="rotate(67.5 32 32)"/>
+                <use href="#hb-petal" transform="rotate(112.5 32 32)"/>
+                <use href="#hb-petal" transform="rotate(157.5 32 32)"/>
+                <use href="#hb-petal" transform="rotate(202.5 32 32)"/>
+                <use href="#hb-petal" transform="rotate(247.5 32 32)"/>
+                <use href="#hb-petal" transform="rotate(292.5 32 32)"/>
+                <use href="#hb-petal" transform="rotate(337.5 32 32)"/>
+              </g>
+              <g stroke="#8a6f3c" stroke-width="1.6" stroke-linecap="round">
+                <use href="#hb-ray"/>
+                <use href="#hb-ray" transform="rotate(45 32 32)"/>
+                <use href="#hb-ray" transform="rotate(90 32 32)"/>
+                <use href="#hb-ray" transform="rotate(135 32 32)"/>
+                <use href="#hb-ray" transform="rotate(180 32 32)"/>
+                <use href="#hb-ray" transform="rotate(225 32 32)"/>
+                <use href="#hb-ray" transform="rotate(270 32 32)"/>
+                <use href="#hb-ray" transform="rotate(315 32 32)"/>
+              </g>
+              <circle cx="32" cy="32" r="11.5" fill="none" stroke="#8a6f3c" stroke-width="1.6"/>
+              <circle cx="32" cy="32" r="8" fill="none" stroke="#8a6f3c" stroke-width=".9" opacity=".8"/>
+              <circle cx="28.9" cy="30.4" r="1" fill="#8a6f3c"/>
+              <circle cx="35.1" cy="30.4" r="1" fill="#8a6f3c"/>
+              <path d="M28.6 34.3 Q32 37 35.4 34.3" fill="none" stroke="#8a6f3c" stroke-width="1.1" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <h2>Hélène Belmont</h2>
+          <p class="role">Tarologue — Tarot de Marseille</p>
+          <svg class="mini-sep" aria-hidden="true"><use href="#miniSep"/></svg>
+          <p class="bio">Petite-fille de cartomancienne marseillaise, Hélène tire les arcanes
+          depuis vingt-cinq ans. Fidèle à l'ancienne école, elle étale le jeu sans détour
+          et laisse les enluminures parler&nbsp;: chaque lame est une scène, chaque couleur
+          un verdict. Une parole droite, posée — qui ne flatte pas, et qui éclaire.</p>
+          <p class="tags">Croix de cinq lames · École de Marseille · Arcanes majeurs</p>
+
+          <!-- LIEN À REMPLACER : page de consultation d'Hélène -->
+          <a class="cta" href="https://exemple.fr/helene-belmont" data-pending data-name="la consultation d'Hélène">
+            Consulter Hélène
+            <svg width="14" height="12" viewBox="0 0 14 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 6 H12 M8 2 L12 6 L8 10"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─── CARTE II · GAÏA SOREL ─── -->
+    <article class="slot slot--mid">
+      <div class="card">
+        <div class="back" aria-hidden="true">
+          <svg viewBox="0 0 330 606" preserveAspectRatio="xMidYMid meet"><use href="#cardBack"/></svg>
+        </div>
+        <div class="face">
+          <svg class="coin tl" aria-hidden="true"><use href="#corner"/></svg>
+          <svg class="coin tr" aria-hidden="true"><use href="#corner"/></svg>
+          <svg class="coin bl" aria-hidden="true"><use href="#corner"/></svg>
+          <svg class="coin br" aria-hidden="true"><use href="#corner"/></svg>
+
+          <p class="arcana">Arcane XVII · L'Étoile</p>
+
+          <div class="photo">
+            <!-- ═══ PORTRAIT : remplacez le contenu ci-dessous par
+                 <img src="gaia-sorel.jpg" alt="Portrait de Gaïa Sorel"> ═══ -->
+            <svg class="spark" aria-hidden="true"><use href="#spark"/></svg>
+            <span class="mono">GS</span>
+            <span class="soon">Portrait à venir</span>
+          </div>
+
+          <div class="seal" aria-hidden="true">
+            <!-- Logo : la roue du ciel, douze demeures, sceau de la Terre -->
+            <svg class="art-wheel" viewBox="0 0 64 64">
+              <g class="wheel-rot" stroke="#8a6f3c" fill="none">
+                <circle cx="32" cy="32" r="26" stroke-width="1.5"/>
+                <circle cx="32" cy="32" r="19" stroke-width=".9" opacity=".85"/>
+                <g stroke-width="1.1">
+                  <line x1="51" y1="32" x2="58" y2="32"/>
+                  <line x1="48.45" y1="41.5" x2="54.52" y2="45"/>
+                  <line x1="41.5" y1="48.45" x2="45" y2="54.52"/>
+                  <line x1="32" y1="51" x2="32" y2="58"/>
+                  <line x1="22.5" y1="48.45" x2="19" y2="54.52"/>
+                  <line x1="15.55" y1="41.5" x2="9.48" y2="45"/>
+                  <line x1="13" y1="32" x2="6" y2="32"/>
+                  <line x1="15.55" y1="22.5" x2="9.48" y2="19"/>
+                  <line x1="22.5" y1="15.55" x2="19" y2="9.48"/>
+                  <line x1="32" y1="13" x2="32" y2="6"/>
+                  <line x1="41.5" y1="15.55" x2="45" y2="9.48"/>
+                  <line x1="48.45" y1="22.5" x2="54.52" y2="19"/>
+                </g>
+                <g fill="#8a6f3c" stroke="none">
+                  <circle cx="58" cy="32" r="1.2"/><circle cx="54.52" cy="45" r="1.2"/>
+                  <circle cx="45" cy="54.52" r="1.2"/><circle cx="32" cy="58" r="1.2"/>
+                  <circle cx="19" cy="54.52" r="1.2"/><circle cx="9.48" cy="45" r="1.2"/>
+                  <circle cx="6" cy="32" r="1.2"/><circle cx="9.48" cy="19" r="1.2"/>
+                  <circle cx="19" cy="9.48" r="1.2"/><circle cx="32" cy="6" r="1.2"/>
+                  <circle cx="45" cy="9.48" r="1.2"/><circle cx="54.52" cy="19" r="1.2"/>
+                </g>
+              </g>
+              <circle cx="32" cy="32" r="12.5" fill="none" stroke="#8a6f3c" stroke-width=".9" opacity=".85"/>
+              <g stroke="#8a6f3c" stroke-width="1.3" fill="none">
+                <circle cx="32" cy="32" r="6"/>
+                <line x1="32" y1="22.5" x2="32" y2="41.5"/>
+                <line x1="22.5" y1="32" x2="41.5" y2="32"/>
+              </g>
+            </svg>
+          </div>
+
+          <h2>Gaïa Sorel</h2>
+          <p class="role">Astrologue — Thème astral</p>
+          <svg class="mini-sep" aria-hidden="true"><use href="#miniSep"/></svg>
+          <p class="bio">Mathématicienne céleste de formation, Gaïa dresse chaque thème au
+          degré près. Elle lit le ciel comme une partition — maisons, aspects, transits —
+          et ne promet rien que les astres n'aient écrit. Lente, rigoureuse, profondément
+          humaine&nbsp;: sa lecture prend le temps que mérite une vie.</p>
+          <p class="tags">Thème natal · Transits &amp; révolutions · Synastries</p>
+
+          <!-- LIEN À REMPLACER : page de consultation de Gaïa -->
+          <a class="cta" href="https://exemple.fr/gaia-sorel" data-pending data-name="la consultation de Gaïa">
+            Consulter Gaïa
+            <svg width="14" height="12" viewBox="0 0 14 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 6 H12 M8 2 L12 6 L8 10"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─── CARTE III · LÉON SAVIGNAC ─── -->
+    <article class="slot slot--right">
+      <div class="card">
+        <div class="back" aria-hidden="true">
+          <svg viewBox="0 0 330 606" preserveAspectRatio="xMidYMid meet"><use href="#cardBack"/></svg>
+        </div>
+        <div class="face">
+          <svg class="coin tl" aria-hidden="true"><use href="#corner"/></svg>
+          <svg class="coin tr" aria-hidden="true"><use href="#corner"/></svg>
+          <svg class="coin bl" aria-hidden="true"><use href="#corner"/></svg>
+          <svg class="coin br" aria-hidden="true"><use href="#corner"/></svg>
+
+          <p class="arcana">Arcane XVIII · La Lune</p>
+
+          <div class="photo">
+            <!-- ═══ PORTRAIT : remplacez le contenu ci-dessous par
+                 <img src="leon-savignac.jpg" alt="Portrait de Léon Savignac"> ═══ -->
+            <svg class="spark" aria-hidden="true"><use href="#spark"/></svg>
+            <span class="mono">LS</span>
+            <span class="soon">Portrait à venir</span>
+          </div>
+
+          <div class="seal" aria-hidden="true">
+            <!-- Logo : le papillon de lune, messager des songes -->
+            <svg class="art-moth" viewBox="0 0 64 64">
+              <g stroke="#8a6f3c" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <g id="ls-wings">
+                  <path d="M31.5 28 C23 16.5 9.5 14.5 8.7 21.5 C8 28 19.5 34 31 34.3 Z"/>
+                  <path d="M30.8 35.3 C23 34.8 13.8 38.2 13.2 44.6 C12.8 50 19.6 51.4 24 48.3 C27.8 45.6 30.2 40.6 31.2 37.2 Z"/>
+                  <path d="M15 49.6 C14.2 53.4 15.6 56.6 18.4 58.2" stroke-width="1"/>
+                  <path d="M18.6 22.6 A4.4 4.4 0 1 0 18.6 27.6 A5.6 5.6 0 0 1 18.6 22.6 Z"
+                        fill="#a8854a" stroke="none" transform="rotate(-20 18.6 25.1)"/>
+                </g>
+                <use href="#ls-wings" transform="translate(64 0) scale(-1 1)"/>
+                <line x1="32" y1="22" x2="32" y2="45" stroke-width="1.7"/>
+                <circle cx="32" cy="19.8" r="2.3" fill="#8a6f3c" stroke="none"/>
+                <path d="M30.6 17.9 C28.6 14.6 26.6 13.2 24.8 13.4" stroke-width="1"/>
+                <path d="M33.4 17.9 C35.4 14.6 37.4 13.2 39.2 13.4" stroke-width="1"/>
+                <circle cx="24.8" cy="13.4" r=".9" fill="#8a6f3c" stroke="none"/>
+                <circle cx="39.2" cy="13.4" r=".9" fill="#8a6f3c" stroke="none"/>
+              </g>
+            </svg>
+          </div>
+
+          <h2>Léon Savignac</h2>
+          <p class="role">Oniromancien — Interprétation des rêves</p>
+          <svg class="mini-sep" aria-hidden="true"><use href="#miniSep"/></svg>
+          <p class="bio">Ancien praticien des sciences de l'esprit, Léon déchiffre le langage
+          des songes. Il recueille vos rêves au mot près, relève les symboles qui reviennent
+          et les met en regard de votre vie éveillée. Le sens émerge à l'écoute —
+          on ne le force jamais.</p>
+          <p class="tags">Onirocritique · Journal des songes · Symboles récurrents</p>
+
+          <!-- LIEN À REMPLACER : page de consultation de Léon -->
+          <a class="cta" href="https://exemple.fr/leon-savignac" data-pending data-name="la consultation de Léon">
+            Consulter Léon
+            <svg width="14" height="12" viewBox="0 0 14 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 6 H12 M8 2 L12 6 L8 10"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ══════════ PIED DE PAGE ══════════ -->
+  <footer>
+    <svg class="sep" aria-hidden="true"><use href="#sep"/></svg>
+    <p class="ethic">L'art divinatoire est une boussole, non une chaîne&nbsp;: il éclaire
+    les chemins, il ne les impose pas. Les consultations proposées ne se substituent
+    à aucun avis médical, juridique ou financier.</p>
+    <p class="names">Hélène Belmont — Gaïa Sorel — Léon Savignac</p>
+    <p class="copy">© MMXXV · Le Cabinet des Trois Lunes — Tous droits réservés</p>
+  </footer>
+
+</main>
+
+<!-- Message discret quand un lien n'est pas encore branché -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg aria-hidden="true"><use href="#spark"/></svg>
+  <span id="toast-msg"></span>
+</div>
+
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ——— Le ciel : étoiles qui scintillent, trois plans de profondeur ——— */
+  const cv = document.getElementById('sky'), ctx = cv.getContext('2d');
+  let W, H, stars = [], mx = .5, my = .5, tx = .5, ty = .5;
+
+  function seed(){
+    stars = [];
+    const n = Math.min(240, Math.round(W * H / 8000));
+    for(let i = 0; i < n; i++){
+      stars.push({
+        x: Math.random()*W, y: Math.random()*H,
+        r: .4 + Math.random()*1.15,
+        ph: Math.random()*Math.PI*2,
+        sp: .35 + Math.random()*.85,
+        a: .22 + Math.random()*.5,
+        l: [.3,.6,1][Math.floor(Math.random()*3)],
+        g: Math.random() < .2,        // étoiles dorées
+        cross: Math.random() < .045   // rares étoiles en croix
+      });
+    }
+  }
+  function resize(){
+    const d = Math.min(devicePixelRatio || 1, 2);
+    W = innerWidth; H = innerHeight;
+    cv.width = W*d; cv.height = H*d;
+    cv.style.width = W+'px'; cv.style.height = H+'px';
+    ctx.setTransform(d,0,0,d,0,0);
+    seed();
+  }
+  function frame(t){
+    ctx.clearRect(0,0,W,H);
+    tx += (mx-tx)*.04; ty += (my-ty)*.04;
+    for(const s of stars){
+      const tw = reduce ? 1 : .55 + .45*Math.sin(t*.001*s.sp + s.ph);
+      const a = Math.max(0, Math.min(1, s.a*tw));
+      const x = s.x + (tx-.5)*30*s.l, y = s.y + (ty-.5)*22*s.l;
+      ctx.fillStyle = s.g ? `rgba(212,178,116,${a})` : `rgba(230,222,203,${a})`;
+      ctx.beginPath(); ctx.arc(x, y, s.r, 0, 6.2832); ctx.fill();
+      if(s.cross){
+        ctx.strokeStyle = `rgba(230,222,203,${a*.55})`; ctx.lineWidth = .6;
+        const L = 4.5*s.r;
+        ctx.beginPath();
+        ctx.moveTo(x-L,y); ctx.lineTo(x+L,y);
+        ctx.moveTo(x,y-L); ctx.lineTo(x,y+L);
+        ctx.stroke();
+      }
+    }
+    if(!reduce) requestAnimationFrame(frame);
+  }
+  addEventListener('resize', resize);
+  addEventListener('pointermove', e => { mx = e.clientX/W; my = e.clientY/H; }, {passive:true});
+  resize();
+  reduce ? frame(0) : requestAnimationFrame(frame);
+
+  /* ——— Le tirage : chaque carte se retourne quand elle entre en scène ——— */
+  const slots = [...document.querySelectorAll('.slot')];
+  if(reduce){
+    slots.forEach(s => s.querySelector('.card').classList.add('revealed'));
+  } else {
+    let q = 0;
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if(en.isIntersecting){
+          const s = en.target, i = q++;
+          io.unobserve(s);
+          setTimeout(() => s.querySelector('.card').classList.add('revealed'), 350 + i*320);
+        }
+      });
+    }, {threshold:.3});
+    setTimeout(() => slots.forEach(s => io.observe(s)), 200);
+  }
+
+  /* ——— Liens en attente : un message remplace la navigation ——— */
+  const toast = document.getElementById('toast'), msg = document.getElementById('toast-msg');
+  let tt;
+  function show(text){
+    msg.textContent = text;
+    toast.classList.add('show');
+    clearTimeout(tt);
+    tt = setTimeout(() => toast.classList.remove('show'), 3400);
+  }
+  document.querySelectorAll('a[data-pending]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      show(`Le chemin vers ${a.dataset.name} est encore dans l'ombre — ce lien sera révélé prochainement.`);
+    });
+  });
+})();
+</script>
+</body>
+</html>
