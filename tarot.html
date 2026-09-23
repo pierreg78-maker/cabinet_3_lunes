@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La voie des cartes · Hélène Belmont · Cabinet des Trois Lunes</title>
+<meta name="description" content="Tirage en croix du Tarot de Marseille avec Hélène Belmont, au Cabinet des Trois Lunes.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0a0f'/%3E%3Ccircle cx='8' cy='16' r='5' fill='%23c9a15f'/%3E%3Ccircle cx='10.5' cy='16' r='4.3' fill='%230c0a0f'/%3E%3Ccircle cx='16' cy='16' r='4.4' fill='none' stroke='%23c9a15f' stroke-width='1.4'/%3E%3Ccircle cx='24' cy='16' r='5' fill='%23c9a15f'/%3E%3Ccircle cx='21.5' cy='16' r='4.3' fill='%230c0a0f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0c0a0f; --ivory:#e8e0cd; --muted:#9d8f7c; --gold:#c9a15f;
+    --gold-hi:#e6c98c; --gold-ink:#8a6f3c; --cream:#ece1cb; --ink:#241b20;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:radial-gradient(120% 90% at 50% 6%, #151019 0%, #0d0a10 48%, #070509 100%) fixed;
+    color:var(--ivory); font-family:"Cormorant Garamond",Georgia,serif;
+    font-size:18px; line-height:1.65; min-height:100svh;
+  }
+  #sky{position:fixed;inset:0;z-index:0}
+  .grain{
+    position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+  }
+  main{position:relative;z-index:2;max-width:980px;margin:0 auto;padding:28px 22px 80px}
+  .top{
+    display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px;
+  }
+  .brand{font-family:Cinzel,serif;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);text-decoration:none}
+  .eyebrow{font-family:Cinzel,serif;font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);text-align:center}
+  h1{font-family:Cinzel,serif;font-weight:600;text-align:center;letter-spacing:.1em;font-size:clamp(1.6rem,4vw,2.4rem);margin:12px 0 8px}
+  .lead{text-align:center;font-style:italic;color:#cfc4ad;max-width:640px;margin:0 auto 28px;font-size:1.15rem}
+  .panel{
+    background:rgba(18,16,22,.72); border:1px solid rgba(201,161,95,.28);
+    border-radius:4px; padding:28px 26px 26px; margin:0 auto 22px; max-width:720px;
+  }
+  label{display:block;font-family:Cinzel,serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:16px 0 8px}
+  input[type=text], textarea, select{
+    width:100%; background:#171219; color:var(--ivory); border:1px solid rgba(201,161,95,.35);
+    border-radius:2px; padding:10px 12px; font-family:inherit; font-size:1.05rem;
+  }
+  textarea{min-height:90px;resize:vertical}
+  .choices{display:flex;flex-wrap:wrap;gap:8px}
+  .choices button, .chip{
+    background:transparent;color:var(--ivory);border:1px solid rgba(201,161,95,.4);
+    padding:7px 12px;font-family:Cinzel,serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
+  }
+  .choices button.on, .chip.on{background:rgba(201,161,95,.18);border-color:var(--gold);color:var(--gold-hi)}
+  .hint{font-size:15px;color:var(--muted);margin-top:8px;font-style:italic}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    margin-top:22px; padding:12px 22px; cursor:pointer;
+    font-family:Cinzel,serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--night); background:var(--gold); border:0;
+  }
+  .btn.ghost{background:transparent;color:var(--gold);border:1px solid rgba(201,161,95,.45)}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+  .center{text-align:center}
+  .hidden{display:none !important}
+  .voice{font-size:1.12rem;color:#d7ccb6}
+  .voice p+p{margin-top:12px}
+
+  .deck{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(72px,1fr));
+    gap:10px; margin:24px 0 8px;
+  }
+  .mini{
+    aspect-ratio:2/3; border-radius:6px; cursor:pointer; position:relative;
+    background:#121016;
+    box-shadow:0 0 0 1px rgba(201,161,95,.28), 0 10px 18px -10px #000;
+    transition:transform .25s, opacity .25s;
+  }
+  .mini::after{
+    content:""; position:absolute; inset:6px; border:1px solid rgba(201,161,95,.35); border-radius:3px;
+    background:radial-gradient(circle at 50% 45%, rgba(201,161,95,.16), transparent 55%);
+  }
+  .mini:hover{transform:translateY(-4px)}
+  .mini.gone{opacity:.22; pointer-events:none; transform:scale(.92)}
+  .status{text-align:center;color:var(--gold);font-family:Cinzel,serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-top:8px}
+
+  .cross-wrap{display:flex;justify-content:center;margin:28px 0}
+  .cross{
+    display:grid; grid-template-columns:90px 90px 90px; grid-template-rows:auto auto auto;
+    gap:12px 16px; justify-items:center; align-items:center;
+  }
+  .slot{width:90px; text-align:center}
+  .slot .lab{font-family:Cinzel,serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+  .place{
+    width:84px;height:126px;border-radius:6px;border:1px dashed rgba(201,161,95,.35);
+    background:rgba(18,16,22,.5); display:grid;place-items:center; color:var(--muted); font-size:12px;
+  }
+  .face-card{
+    width:84px;height:126px;border-radius:6px; background:var(--cream); color:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:8px 6px; text-align:center; box-shadow:0 8px 20px -12px #000;
+  }
+  .face-card.rev{transform:rotate(180deg)}
+  .face-card .num{font-family:Cinzel,serif;font-size:11px;letter-spacing:.12em;color:var(--gold-ink)}
+  .face-card .nm{font-family:Cinzel,serif;font-size:9px;letter-spacing:.06em;margin-top:6px;line-height:1.25}
+  .s1{grid-column:1;grid-row:2} .s2{grid-column:3;grid-row:2}
+  .s3{grid-column:2;grid-row:1} .s5{grid-column:2;grid-row:2} .s4{grid-column:2;grid-row:3}
+
+  #lecture{max-width:760px;margin:10px auto 0}
+  #lecture h2{font-family:Cinzel,serif;font-size:1.15rem;letter-spacing:.08em;color:var(--gold-hi);margin:28px 0 10px}
+  #lecture h3{font-family:Cinzel,serif;font-size:.95rem;letter-spacing:.06em;margin:18px 0 8px}
+  #lecture p{margin:0 0 12px}
+  .qbox{font-style:italic;color:#cfc4ad;border-left:1px solid var(--gold);padding-left:14px;margin:16px 0}
+  .key{background:rgba(201,161,95,.1);border:1px solid rgba(201,161,95,.28);padding:16px 18px;margin:16px 0}
+  footer{text-align:center;margin-top:40px;color:#6d6355;font-size:14px}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="grain"></div>
+<main>
+  <div class="top">
+    <a class="brand" href="./index.html">← Cabinet des Trois Lunes</a>
+    <span class="brand">Hélène Belmont</span>
+  </div>
+
+  <section id="step0">
+    <p class="eyebrow">La voie des cartes</p>
+    <h1>Tirage en croix</h1>
+    <p class="lead">Vingt-deux arcanes majeurs. Vous tirez. Hélène dispose. Le centre, le jeu le calcule.</p>
+    <div class="panel voice">
+      <p>Ici, seulement le Tarot de Marseille, dans sa langue claire. Le tirage n’enferme pas un destin. Il éclaire ce qui soutient, ce qui freine, l’attitude à tenir, la pente actuelle, et le fil qui relie le tout.</p>
+      <p>Quatre cartes pour les quatre pôles. La cinquième n’est pas un choix : on additionne les numéros — Le Mat compte pour zéro — et l’on réduit si besoin.</p>
+      <div class="center"><button class="btn" id="go1">S’asseoir à la table</button></div>
+    </div>
+  </section>
+
+  <section id="step1" class="hidden">
+    <p class="eyebrow">Intention</p>
+    <h1>Avant les cartes</h1>
+    <div class="panel">
+      <label for="prenom">Comment puis-je vous appeler ?</label>
+      <input id="prenom" type="text" autocomplete="name" placeholder="Votre prénom">
+
+      <label>Vous préférez que je vous parle…</label>
+      <div class="choices" id="genre">
+        <button type="button" data-v="m">au masculin</button>
+        <button type="button" data-v="f">au féminin</button>
+        <button type="button" data-v="n" class="on">de façon neutre</button>
+      </div>
+
+      <label>Âge approximatif</label>
+      <div class="choices" id="age">
+        <button type="button" data-v="—">ne pas dire</button>
+        <button type="button" data-v="moins de 25 ans">−25</button>
+        <button type="button" data-v="la vingtaine ou la trentaine">25–35</button>
+        <button type="button" data-v="autour de la quarantaine">35–50</button>
+        <button type="button" data-v="la cinquantaine ou plus">50–65</button>
+        <button type="button" data-v="au-delà de 65 ans">65+</button>
+      </div>
+
+      <label for="sit">Situation, en une phrase</label>
+      <input id="sit" type="text" placeholder="métier, études, pause, création…">
+
+      <label>Motif de la consultation</label>
+      <div class="choices" id="motif">
+        <button type="button" data-v="une relation">relation</button>
+        <button type="button" data-v="un choix professionnel">choix professionnel</button>
+        <button type="button" data-v="une décision à clarifier">décision</button>
+        <button type="button" data-v="un climat intérieur">climat intérieur</button>
+        <button type="button" data-v="une autre question">autre</button>
+      </div>
+
+      <label for="question">Votre question</label>
+      <textarea id="question" placeholder="Une question ouverte, ancrée dans le présent ou le proche avenir."></textarea>
+      <p class="hint">Évitez le oui/non sec, les questions sur un tiers absent, et « dites-moi tout sur ma vie ».</p>
+      <div class="choices" style="margin-top:10px">
+        <button type="button" class="chip" data-q="Qu’est-ce qui m’aiderait à avancer dans cette situation professionnelle ?">exemple pro</button>
+        <button type="button" class="chip" data-q="Quelle dynamique traverse actuellement cette relation ?">exemple relation</button>
+        <button type="button" class="chip" data-q="Que dois-je clarifier avant de prendre cette décision ?">exemple décision</button>
+      </div>
+      <div class="center"><button class="btn" id="go2">Tenir cette question</button></div>
+    </div>
+  </section>
+
+  <section id="step2" class="hidden">
+    <p class="eyebrow">Souffle</p>
+    <h1>Quatre cartes, puis le centre</h1>
+    <div class="panel voice">
+      <p id="qEcho" class="qbox"></p>
+      <p>Respirez. Gardez la question, sans la serrer. Vous allez toucher quatre cartes, une pour chaque pôle de la croix.</p>
+      <p>Une carte peut se poser à l’envers. Ce n’est pas un mauvais présage. L’énergie est là ; elle demande un autre accès — plus intérieur, plus patient, plus conscient.</p>
+      <div class="center"><button class="btn" id="go3">Mélanger le jeu</button></div>
+    </div>
+  </section>
+
+  <section id="step3" class="hidden">
+    <p class="eyebrow">Le tapis</p>
+    <h1>Touchez une carte</h1>
+    <p class="lead" id="promptPose">Celle-ci, c’est ce qui travaille avec vous. Les forces, les appuis.</p>
+    <div class="cross-wrap"><div class="cross" id="cross"></div></div>
+    <div class="deck" id="deck"></div>
+    <p class="status" id="counter">Carte 1 sur 4 — Le Pour</p>
+  </section>
+
+  <section id="step4" class="hidden">
+    <p class="eyebrow">Le centre</p>
+    <h1>La synthèse se calcule</h1>
+    <div class="panel voice center">
+      <p id="calcLine"></p>
+      <div class="cross-wrap"><div class="cross" id="cross2"></div></div>
+      <p>Le centre est posé. On lit d’abord la structure, ensuite chaque image, ensuite leurs rencontres.</p>
+      <button class="btn" id="go5">Écouter la lecture</button>
+    </div>
+  </section>
+
+  <section id="step5" class="hidden">
+    <p class="eyebrow">Lecture</p>
+    <h1>Ce que les cartes disent</h1>
+    <div class="cross-wrap"><div class="cross" id="cross3"></div></div>
+    <article id="lecture"></article>
+    <div class="center" style="margin-top:28px">
+      <button class="btn ghost" id="restart">Recommencer un tirage</button>
+    </div>
+  </section>
+
+  <footer>Cabinet des Trois Lunes · Hélène Belmont · éclairage, jamais verdict</footer>
+</main>
+
+<script>
+const ARCANA = [
+  {n:0, r:"0", name:"Le Mat",
+    gen:"Le voyage, la liberté, l’élan vers l’inconnu. On avance avec son baluchon, sans carte toute faite.",
+    up:"Vous osez le pas suivant. La route s’ouvre, même imparfaite.",
+    rv:"L’élan est là mais il s’égare, fuit ou ne sait plus où aller.",
+    pour:"Une liberté disponible, le droit de partir ou de recommencer.",
+    contre:"Dispersion, fuite en avant, peur de s’engager sur une voie.",
+    conseil:"Garder le mouvement, sans jeter le sac trop tôt.",
+    issue:"Si rien ne change : un voyage intérieur — ou une errance."},
+  {n:1, r:"I", name:"Le Bateleur",
+    gen:"Le commencement. Les outils sont sur la table : il s’agit de commencer, pas de tout maîtriser.",
+    up:"Un début réel, de l’initiative, le plaisir d’essayer.",
+    rv:"Hésitation, dispersion, peur de se montrer.",
+    pour:"Des ressources déjà là, prêtes à servir dès le premier geste.",
+    contre:"On touche à tout, on ne tranche pas, on diffère le premier pas.",
+    conseil:"Choisir un outil, un geste, et le faire aujourd’hui.",
+    issue:"Sans décision, les débuts s’empilent et rien ne prend."},
+  {n:2, r:"II", name:"La Papesse",
+    gen:"Le savoir silencieux, la patience, ce qui mûrit derrière le voile.",
+    up:"Préparer, écouter, laisser mûrir avant d’agir.",
+    rv:"Repli, secret trop lourd, attente qui étouffe.",
+    pour:"Une sagesse intérieure, des acquis, un lieu sûr.",
+    contre:"On garde tout en soi. Le projet ne passe pas le seuil.",
+    conseil:"Lire ce que l’on sait déjà — puis en parler à quelqu’un de sûr.",
+    issue:"Le risque est de rester dans la chambre close."},
+  {n:3, r:"III", name:"L'Impératrice",
+    gen:"La mise en forme : idées, parole, création, croissance.",
+    up:"S’exprimer, féconder un projet, relier les êtres.",
+    rv:"Parole trop vive, idées sans terre, place prise à l’autre.",
+    pour:"Créativité et aisance pour donner forme à ce qui demande à naître.",
+    contre:"On parle trop ou trop tôt ; la forme précède le fond.",
+    conseil:"Écrire, dire, donner une forme — avec mesure.",
+    issue:"Soit une belle croissance, soit une parole qui blesse faute d’écoute."},
+  {n:4, r:"IV", name:"L'Empereur",
+    gen:"Le cadre, l’autorité, le concret qui tient debout.",
+    up:"Structurer, décider, bâtir une base stable.",
+    rv:"Rigidité, pouvoir trop serré, ou cadre qui manque.",
+    pour:"Une capacité réelle à organiser et à tenir.",
+    contre:"Un mur : trop d’autorité, ou pas assez de structure.",
+    conseil:"Poser trois règles simples, pas un empire.",
+    issue:"La situation se fige — ou s’écroule faute de piliers."},
+  {n:5, r:"V", name:"Le Pape",
+    gen:"Le guide, la transmission, les valeurs qui portent.",
+    up:"Conseil juste, apprentissage, cadre moral vivant.",
+    rv:"Dogme, mauvais conseil, légitimité contestée.",
+    pour:"Un enseignement, un aîné, une éthique sur laquelle s’appuyer.",
+    contre:"Règles trop étroites, ou refus d’écouter quiconque.",
+    conseil:"Chercher un conseil vivant, pas une doctrine.",
+    issue:"Soit une transmission féconde, soit un conflit d’autorité."},
+  {n:6, r:"VI", name:"L'Amoureux",
+    gen:"Le choix du cœur, le lien, le dilemme affectif.",
+    up:"Choisir vraiment, aimer à découvert, se lier.",
+    rv:"Hésitation, peur de s’engager, cœur tiraillé.",
+    pour:"Un élan vrai, des alliés, un désir qui oriente.",
+    contre:"Deux voies se disputent ; le cœur ne tranche pas.",
+    conseil:"Nommer ce que l’on désire, sans habiller l’hésitation.",
+    issue:"Sans choix, le lien s’use dans l’entre-deux."},
+  {n:7, r:"VII", name:"Le Chariot",
+    gen:"La conduite. Avancer en tenant les deux rênes.",
+    up:"Autonomie, direction, victoire par la maîtrise.",
+    rv:"Précipitation, rênes lâchées, peur d’y aller seul.",
+    pour:"Une volonté de mouvement, le goût de conduire sa vie.",
+    contre:"On accélère trop, ou l’on n’ose pas tenir le gouvernail.",
+    conseil:"Choisir une direction et avancer pas à pas.",
+    issue:"Soit une avancée nette, soit un écart de trajectoire."},
+  {n:8, r:"VIII", name:"La Justice",
+    gen:"Peser, trancher, remettre de l’ordre avec équité.",
+    up:"Décision juste, contrat clair, équilibre retrouvé.",
+    rv:"Jugement trop sévère, indécision, rigidité.",
+    pour:"Le sens du vrai, la capacité à mettre les choses à plat.",
+    contre:"On se juge, on se bloque, on attend un verdict extérieur.",
+    conseil:"Poser les faits, puis trancher une seule chose.",
+    issue:"Un ajustement — ou un contentieux intérieur qui dure."},
+  {n:9, r:"IX", name:"L'Hermite",
+    gen:"La lanterne. Prendre le temps de comprendre.",
+    up:"Recul lucide, patience, guidance intérieure.",
+    rv:"Isolement subi, lenteur craintive, passé qui retient.",
+    pour:"Une maturité, le droit de réfléchir avant d’agir.",
+    contre:"On s’isole, on rumine, on n’en finit plus de chercher.",
+    conseil:"Un temps de retrait choisi — avec une date de retour.",
+    issue:"Soit une clarté profonde, soit une grotte trop longtemps."},
+  {n:10, r:"X", name:"La Roue de Fortune",
+    gen:"Le cycle. Ce qui tourne, et la main sur la manivelle.",
+    up:"Une occasion, un retournement favorable si l’on s’en saisit.",
+    rv:"Tourner en rond, subir les hauts et les bas.",
+    pour:"Le moment bouge : une porte peut s’ouvrir.",
+    contre:"Le sentiment d’être emporté sans levier.",
+    conseil:"Saisir une occasion concrète cette semaine, une seule.",
+    issue:"Le cycle continue : mieux vaut en être l’axe que le jouet."},
+  {n:11, r:"XI", name:"La Force",
+    gen:"La douceur qui ouvre la gueule du lion. Maîtrise sans violence.",
+    up:"Courage calme, alliance des contraires, tenue.",
+    rv:"On force trop, ou l’on se sent sans ressort.",
+    pour:"Une vraie réserve de courage, déjà là.",
+    contre:"Conflit interne, exigence trop haute, épuisement.",
+    conseil:"Tenir — sans serrer. La constance suffit.",
+    issue:"Victoire intérieure, ou lutte qui use."},
+  {n:12, r:"XII", name:"Le Pendu",
+    gen:"L’envers volontaire. Attendre, voir autrement, lâcher.",
+    up:"Pause féconde, autre point de vue, sacrifice lucide.",
+    rv:"Blocage subi, dépendance, sentiment d’impuissance.",
+    pour:"La capacité de suspendre l’action pour mieux voir.",
+    contre:"On est retenu, ou l’on se retient par peur.",
+    conseil:"Changer d’angle avant de forcer la porte.",
+    issue:"Un temps suspendu — utile s’il est choisi, lourd s’il est subi."},
+  {n:13, r:"XIII", name:"La Mort",
+    gen:"La fin de cycle. Ce qui doit partir pour que ça vive.",
+    up:"Ménage radical, page tournée, terreau neuf.",
+    rv:"On n’arrive pas à laisser partir ; le deuil s’éternise.",
+    pour:"Une force de rupture saine : on peut couper net.",
+    contre:"Un attachement à ce qui est déjà fini.",
+    conseil:"Nommer une seule chose à laisser derrière soi.",
+    issue:"Soit un vrai passage, soit un entre-deux qui pourrit."},
+  {n:14, r:"XIV", name:"Tempérance",
+    gen:"Le versement. Allier, doser, faire circuler.",
+    up:"Diplomatie, guérison, juste milieu vivant.",
+    rv:"Indécision, dilution, trop d’influence des autres.",
+    pour:"Un art de relier les parties, de calmer le jeu.",
+    contre:"On tempère trop : plus aucune position.",
+    conseil:"Mélanger deux exigences au lieu d’en sacrifier une.",
+    issue:"Apaisement — ou tiédeur qui n’avance plus."},
+  {n:15, r:"XV", name:"Le Diable",
+    gen:"Le désir, le lien qui captive, ce qui est caché et demande jour.",
+    up:"Vitalité, vérité du désir, délivrance d’un tabou.",
+    rv:"Attachement, manipulation, peur ou excès.",
+    pour:"Une flamme, une lucidité sur ce qui lie vraiment.",
+    contre:"Un nœud : habitude, emprise, ou désir non nommé.",
+    conseil:"Dire le désir sans lui livrer les clés.",
+    issue:"Soit une libération, soit une chaîne plus familière."},
+  {n:16, r:"XVI", name:"La Maison Dieu",
+    gen:"La foudre. Ce qui s’écroule révèle ce qui était faux.",
+    up:"Vérité brutale, idée neuve, sortie d’une tour trop étroite.",
+    rv:"Peur de l’effondrement, crise contenue, déni.",
+    pour:"Un souffle d’air : on peut cesser de soutenir l’insoutenable.",
+    contre:"Un choc, ou la terreur qu’il arrive.",
+    conseil:"Laisser tomber ce qui craque — reconstruire plus juste.",
+    issue:"Rupture utile, ou tension qui n’éclate pas encore."},
+  {n:17, r:"XVII", name:"L'Étoile",
+    gen:"L’eau versée sous le ciel. Espoir lucide, réparation, inspiration.",
+    up:"Se rattacher à l’essentiel, soigner, croire juste assez.",
+    rv:"Naïveté, don sans limite, attente magique.",
+    pour:"Une vision douce qui oriente encore.",
+    contre:"On espère sans agir, ou l’on se vide pour les autres.",
+    conseil:"Un petit geste fidèle à ce qui compte, chaque jour.",
+    issue:"Consolation vraie — ou rêve qui dispense d’avancer."},
+  {n:18, r:"XVIII", name:"La Lune",
+    gen:"Le clair-obscur. Intuition, rêves, peurs, non-dits.",
+    up:"Imaginaire fertile, écoute fine, cocon.",
+    rv:"Flou, anxiété, confusion entre intuition et peur.",
+    pour:"Une sensibilité qui informe, des images utiles.",
+    contre:"Le brouillard : scénarios nocturnes, doute de tout.",
+    conseil:"Noter ce que l’on sent — puis le vérifier au jour.",
+    issue:"Soit une intuition juste, soit une brume qui retient."},
+  {n:19, r:"XIX", name:"Le Soleil",
+    gen:"La clarté chaude. Joie, reconnaissance, évidence partagée.",
+    up:"Confiance, place juste, chaleur des liens.",
+    rv:"Joie voilée, relations sèches, besoin de se reconnecter.",
+    pour:"Une lumière déjà là : talent, élan, droit d’être vu.",
+    contre:"On se brûle à trop briller, ou l’on n’ose plus.",
+    conseil:"Se montrer simplement, sans performer.",
+    issue:"Rayonnement — ou fatigue à force de tenir le rôle."},
+  {n:20, r:"XX", name:"Le Jugement",
+    gen:"L’appel. Se réveiller à ce qui demande une vie nouvelle.",
+    up:"Bonne nouvelle, pardon, reconnaissance, relèvement.",
+    rv:"Culpabilité, jugement dur, sentiment de n’être pas vu.",
+    pour:"Quelque chose en vous est déjà prêt à se lever.",
+    contre:"On se juge, ou l’on attend d’être absous.",
+    conseil:"Répondre à l’appel par un acte visible, même petit.",
+    issue:"Renaissance — ou vieux dossier qui n’en finit pas."},
+  {n:21, r:"XXI", name:"Le Monde",
+    gen:"L’accomplissement. La danse au centre, le cycle qui se clôt bien.",
+    up:"Aboutissement, place juste, vision d’ensemble.",
+    rv:"On n’arrive pas à conclure, ou l’on reste dans sa bulle.",
+    pour:"Un aboutissement possible, des fruits déjà mûrs.",
+    contre:"Le sentiment de n’être pas à sa place, ou trop exposé.",
+    conseil:"Fermer une boucle. Célébrer. Puis seulement ouvrir la suivante.",
+    issue:"Une réussite ronde — ou un seuil qu’on ne franchit pas."}
+];
+
+const POS = [
+  {id:1, key:"pour", title:"Le Pour", hint:"Celle-ci, c’est ce qui travaille avec vous. Les forces, les appuis — même sous-estimés."},
+  {id:2, key:"contre", title:"Le Contre", hint:"Celle-ci nomme ce qui freine ou demande attention. Ce n’est pas le mal. C’est l’information utile."},
+  {id:3, key:"conseil", title:"Le Conseil", hint:"Celle-ci dit comment vous tenir. Moins le « quoi » que l’attitude."},
+  {id:4, key:"issue", title:"L’Issue", hint:"Celle-ci montre la pente si le cours actuel continue. Une tendance. Jamais une sentence."}
+];
+
+const S = {
+  step:0, genre:"n", age:"", motif:"",
+  prenom:"", sit:"", question:"",
+  order:[], drawn:[], synth:null
+};
+
+function $(id){return document.getElementById(id)}
+function show(n){
+  for(let i=0;i<=5;i++) $("step"+i).classList.toggle("hidden", i!==n);
+  S.step=n; window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll("#genre button, #age button, #motif button").forEach(b=>{
+  b.addEventListener("click",()=>{
+    b.parentElement.querySelectorAll("button").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");
+    const id=b.parentElement.id;
+    if(id==="genre") S.genre=b.dataset.v;
+    if(id==="age") S.age=b.dataset.v;
+    if(id==="motif") S.motif=b.dataset.v;
+  });
+});
+document.querySelectorAll(".chip[data-q]").forEach(b=>{
+  b.addEventListener("click",()=> $("question").value=b.dataset.q);
+});
+$("go1").onclick=()=>show(1);
+$("go2").onclick=()=>{
+  S.prenom=($("prenom").value||"vous").trim();
+  S.sit=$("sit").value.trim();
+  S.question=$("question").value.trim();
+  if(!S.question){ $("question").focus(); return; }
+  $("qEcho").textContent="« "+S.question+" »";
+  show(2);
+};
+$("go3").onclick=()=>{ buildDeck(); renderCross("cross"); show(3); };
+$("go5").onclick=()=>{ renderCross("cross3"); $("lecture").innerHTML=reading(); show(5); };
+$("restart").onclick=()=>{ S.drawn=[]; S.synth=null; show(0); };
+
+function shuffle(a){const b=a.slice(); for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [b[i],b[j]]=[b[j],b[i]];} return b;}
+function buildDeck(){
+  S.order=shuffle(ARCANA.map(c=>c.n));
+  const deck=$("deck"); deck.innerHTML="";
+  S.order.forEach(n=>{
+    const d=document.createElement("button");
+    d.className="mini"; d.type="button"; d.dataset.n=n; d.setAttribute("aria-label","Carte face cachée");
+    d.onclick=()=>pick(n,d);
+    deck.appendChild(d);
+  });
+  updatePrompt();
+}
+function pick(n,el){
+  if(S.drawn.length>=4) return;
+  if(S.drawn.some(c=>c.n===n)) return;
+  const pos=POS[S.drawn.length];
+  const rev=Math.random()<0.5;
+  S.drawn.push({n, rev, pos:pos.id});
+  el.classList.add("gone");
+  renderCross("cross");
+  if(S.drawn.length===4) finish();
+  else updatePrompt();
+}
+function updatePrompt(){
+  const p=POS[S.drawn.length];
+  $("promptPose").textContent=p.hint;
+  $("counter").textContent=`Carte ${S.drawn.length+1} sur 4 — ${p.title}`;
+}
+function reduce(sum){
+  const steps=[sum];
+  while(sum>22){ sum=String(sum).split("").reduce((a,b)=>a+Number(b),0); steps.push(sum); }
+  if(sum===22) sum=21;
+  return {num:sum, steps};
+}
+function finish(){
+  const sum=S.drawn.reduce((a,c)=>a+c.n,0);
+  const r=reduce(sum);
+  S.synth={n:r.num, rev:false, pos:5, steps:r.steps};
+  const names=S.drawn.map(c=>c.n).join(" + ");
+  const red=r.steps.length>1 ? " → "+r.steps.slice(1).join(" → ") : "";
+  $("calcLine").innerHTML=`${names} = ${r.steps[0]}${red}<br><strong>${ARCANA[r.num].name}</strong> au centre` +
+    (S.drawn.some(c=>c.n===r.num) ? " — ce thème insiste, il est déjà sur la table." : ".");
+  renderCross("cross2");
+  show(4);
+}
+function cardEl(c){
+  const a=ARCANA[c.n];
+  return `<div class="face-card${c.rev?" rev":""}"><div class="num">${a.r}</div><div class="nm">${a.name}</div></div>`;
+}
+function renderCross(id){
+  const find=p=> p===5 ? S.synth : S.drawn.find(c=>c.pos===p);
+  const cell=(p,title)=>{
+    const c=find(p);
+    return `<div class="slot s${p}"><div class="lab">${title}</div>${c?cardEl(c):`<div class="place">·</div>`}</div>`;
+  };
+  $(id).innerHTML=cell(3,"Conseil")+cell(1,"Pour")+cell(5,"Synthèse")+cell(2,"Contre")+cell(4,"Issue");
+}
+function orient(c){return c.rev?"à l’envers":"à l’endroit";}
+function you(){return S.prenom && S.prenom.toLowerCase()!=="vous" ? S.prenom : "vous";}
+function reading(){
+  const P=S.drawn[0], C=S.drawn[1], D=S.drawn[2], I=S.drawn[3], Y=S.synth;
+  const p=ARCANA[P.n], c=ARCANA[C.n], d=ARCANA[D.n], i=ARCANA[I.n], y=ARCANA[Y.n];
+  const nom=you();
+  const who = S.genre==="f" ? "consultante" : S.genre==="m" ? "consultant" : "personne qui consulte";
+  const cadre=[
+    S.motif?`Motif : ${S.motif}.`:"",
+    S.sit?`Situation : ${S.sit}.`:"",
+    S.age && S.age!=="—" ? `Cadre d’âge : ${S.age}.`:""
+  ].filter(Boolean).join(" ");
+  const nuance=x=> x.rev? x.rv : x.up;
+  return `
+    <p>Je m’adresse à ${nom}, ${who}. ${cadre}</p>
+    <p class="qbox">Question tenue : « ${S.question} »</p>
+    <h2>Ce que je fais</h2>
+    <p>Je regarde d’abord le terrain : gauche et droite — ce qui aide, ce qui freine. Puis la verticale : l’attitude et la pente. Enfin le centre, qui donne le titre du chapitre.</p>
+
+    <h2>Le Pour — ${p.name} (${orient(P)})</h2>
+    <p>${p.gen}</p>
+    <p>Dans cette position, c’est l’appui. ${p.pour} ${nuance(P)}</p>
+
+    <h2>Le Contre — ${c.name} (${orient(C)})</h2>
+    <p>${c.gen}</p>
+    <p>Ici, le frein. ${c.contre} ${nuance(C)}</p>
+    <h3>Pour ↔ Contre</h3>
+    <p>D’un côté ${p.name} ouvre ${P.rev?"en sourdine":"franchement"} ; de l’autre ${c.name} ${C.rev?"retient de l’intérieur":"fait obstacle au grand jour"}. Ce n’est pas à choisir l’un contre l’autre : c’est le terrain même de votre question.</p>
+
+    <h2>Le Conseil — ${d.name} (${orient(D)})</h2>
+    <p>${d.gen}</p>
+    <p>L’attitude à tenir : ${d.conseil} ${nuance(D)}</p>
+
+    <h2>L’Issue — ${i.name} (${orient(I)})</h2>
+    <p>${i.gen}</p>
+    <p>${i.issue} ${nuance(I)}</p>
+    <p><em>L’Issue n’est pas une porte fermée : c’est le chemin si l’on n’écoute pas le Conseil.</em></p>
+    <h3>Conseil ↔ Issue</h3>
+    <p>Si vous adoptez ${d.name}, vous corrigez la pente de ${i.name}. Si vous n’en faites rien, ${i.name} décrit ce vers quoi ça penche déjà.</p>
+
+    <h2>La Synthèse — ${y.name}</h2>
+    <p>Calcul : ${Y.steps.join(" → ")} → ${y.name}${S.drawn.some(z=>z.n===Y.n)?" (déjà présent dans la croix : le thème insiste)":""}.</p>
+    <p>${y.gen}</p>
+    <div class="key"><strong>Phrase-clé.</strong> Le chapitre s’intitule ${y.name} : ni seulement l’appui de ${p.name}, ni seulement le frein de ${c.name} — le vrai sujet est là, au centre, et il colore chaque pôle.</div>
+
+    <h2>Restitution</h2>
+    <p>Vous avez ${p.name} pour vous soutenir${P.rev?" — encore un peu en retrait":""}. ${c.name} nomme ce qui complique${C.rev?", davantage à l’intérieur qu’au-dehors":""}. ${d.name} vous conseille une attitude. Sans elle, ${i.name} indique la tendance. Au milieu, ${y.name} relie le tout à votre question : « ${S.question} ».</p>
+
+    <h2>Trois points à emporter</h2>
+    <p>1. Ce qui soutient : ${p.name} — ${p.pour}</p>
+    <p>2. Ce qu’il faut regarder : ${c.name} — ${c.contre}</p>
+    <p>3. L’attitude de cette semaine : ${d.conseil}</p>
+  `;
+}
+
+(function sky(){
+  const c=$("sky"), x=c.getContext("2d");
+  let w,h,stars;
+  function resize(){w=c.width=innerWidth;h=c.height=innerHeight;
+    stars=Array.from({length:120},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2,a:Math.random()}));
+  }
+  function tick(){
+    x.clearRect(0,0,w,h);
+    stars.forEach(s=>{s.a+=0.01; x.fillStyle=`rgba(232,224,205,${0.25+0.5*Math.abs(Math.sin(s.a))})`; x.beginPath(); x.arc(s.x,s.y,s.r,0,7); x.fill();});
+    requestAnimationFrame(tick);
+  }
+  addEventListener("resize",resize); resize(); tick();
+})();
+</script>
+</body>
+</html>
