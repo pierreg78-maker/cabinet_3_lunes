@@ -105,9 +105,12 @@
   .s3{grid-column:2;grid-row:1} .s5{grid-column:2;grid-row:2} .s4{grid-column:2;grid-row:3}
 
   #lecture{max-width:760px;margin:10px auto 0}
-  #lecture h2{font-family:Cinzel,serif;font-size:1.15rem;letter-spacing:.08em;color:var(--gold-hi);margin:28px 0 10px}
+  #lecture h2{font-family:Cinzel,serif;font-size:1.15rem;letter-spacing:.08em;color:var(--gold-hi);margin:32px 0 6px}
   #lecture h3{font-family:Cinzel,serif;font-size:.95rem;letter-spacing:.06em;margin:18px 0 8px}
-  #lecture p{margin:0 0 12px}
+  #lecture p{margin:0 0 14px}
+  #lecture .byline{font-size:15px;color:var(--muted);font-style:italic;text-align:center;margin:0 0 8px}
+  #lecture .spread-title{font-family:Cinzel,serif;text-align:center;letter-spacing:.12em;text-transform:uppercase;font-size:1.05rem;color:var(--gold-hi);margin:4px 0 18px}
+  #lecture .sstitle{font-style:italic;color:#cfc4ad;margin:0 0 16px}
   .qbox{font-style:italic;color:#cfc4ad;border-left:1px solid var(--gold);padding-left:14px;margin:16px 0}
   .key{background:rgba(201,161,95,.1);border:1px solid rgba(201,161,95,.28);padding:16px 18px;margin:16px 0}
   footer{text-align:center;margin-top:40px;color:#6d6355;font-size:14px}
@@ -228,189 +231,189 @@
 
 <script>
 const ARCANA = [
-  {n:0, r:"0", name:"Le Mat",
-    gen:"Le voyage, la liberté, l’élan vers l’inconnu. On avance avec son baluchon, sans carte toute faite.",
-    up:"Vous osez le pas suivant. La route s’ouvre, même imparfaite.",
-    rv:"L’élan est là mais il s’égare, fuit ou ne sait plus où aller.",
-    pour:"Une liberté disponible, le droit de partir ou de recommencer.",
-    contre:"Dispersion, fuite en avant, peur de s’engager sur une voie.",
-    conseil:"Garder le mouvement, sans jeter le sac trop tôt.",
-    issue:"Si rien ne change : un voyage intérieur — ou une errance."},
-  {n:1, r:"I", name:"Le Bateleur",
-    gen:"Le commencement. Les outils sont sur la table : il s’agit de commencer, pas de tout maîtriser.",
-    up:"Un début réel, de l’initiative, le plaisir d’essayer.",
-    rv:"Hésitation, dispersion, peur de se montrer.",
-    pour:"Des ressources déjà là, prêtes à servir dès le premier geste.",
-    contre:"On touche à tout, on ne tranche pas, on diffère le premier pas.",
-    conseil:"Choisir un outil, un geste, et le faire aujourd’hui.",
-    issue:"Sans décision, les débuts s’empilent et rien ne prend."},
-  {n:2, r:"II", name:"La Papesse",
-    gen:"Le savoir silencieux, la patience, ce qui mûrit derrière le voile.",
-    up:"Préparer, écouter, laisser mûrir avant d’agir.",
-    rv:"Repli, secret trop lourd, attente qui étouffe.",
-    pour:"Une sagesse intérieure, des acquis, un lieu sûr.",
-    contre:"On garde tout en soi. Le projet ne passe pas le seuil.",
-    conseil:"Lire ce que l’on sait déjà — puis en parler à quelqu’un de sûr.",
-    issue:"Le risque est de rester dans la chambre close."},
-  {n:3, r:"III", name:"L'Impératrice",
-    gen:"La mise en forme : idées, parole, création, croissance.",
-    up:"S’exprimer, féconder un projet, relier les êtres.",
-    rv:"Parole trop vive, idées sans terre, place prise à l’autre.",
-    pour:"Créativité et aisance pour donner forme à ce qui demande à naître.",
-    contre:"On parle trop ou trop tôt ; la forme précède le fond.",
-    conseil:"Écrire, dire, donner une forme — avec mesure.",
-    issue:"Soit une belle croissance, soit une parole qui blesse faute d’écoute."},
-  {n:4, r:"IV", name:"L'Empereur",
-    gen:"Le cadre, l’autorité, le concret qui tient debout.",
-    up:"Structurer, décider, bâtir une base stable.",
-    rv:"Rigidité, pouvoir trop serré, ou cadre qui manque.",
-    pour:"Une capacité réelle à organiser et à tenir.",
-    contre:"Un mur : trop d’autorité, ou pas assez de structure.",
-    conseil:"Poser trois règles simples, pas un empire.",
-    issue:"La situation se fige — ou s’écroule faute de piliers."},
-  {n:5, r:"V", name:"Le Pape",
-    gen:"Le guide, la transmission, les valeurs qui portent.",
-    up:"Conseil juste, apprentissage, cadre moral vivant.",
-    rv:"Dogme, mauvais conseil, légitimité contestée.",
-    pour:"Un enseignement, un aîné, une éthique sur laquelle s’appuyer.",
-    contre:"Règles trop étroites, ou refus d’écouter quiconque.",
-    conseil:"Chercher un conseil vivant, pas une doctrine.",
-    issue:"Soit une transmission féconde, soit un conflit d’autorité."},
-  {n:6, r:"VI", name:"L'Amoureux",
-    gen:"Le choix du cœur, le lien, le dilemme affectif.",
-    up:"Choisir vraiment, aimer à découvert, se lier.",
-    rv:"Hésitation, peur de s’engager, cœur tiraillé.",
-    pour:"Un élan vrai, des alliés, un désir qui oriente.",
-    contre:"Deux voies se disputent ; le cœur ne tranche pas.",
-    conseil:"Nommer ce que l’on désire, sans habiller l’hésitation.",
-    issue:"Sans choix, le lien s’use dans l’entre-deux."},
-  {n:7, r:"VII", name:"Le Chariot",
-    gen:"La conduite. Avancer en tenant les deux rênes.",
-    up:"Autonomie, direction, victoire par la maîtrise.",
-    rv:"Précipitation, rênes lâchées, peur d’y aller seul.",
-    pour:"Une volonté de mouvement, le goût de conduire sa vie.",
-    contre:"On accélère trop, ou l’on n’ose pas tenir le gouvernail.",
-    conseil:"Choisir une direction et avancer pas à pas.",
-    issue:"Soit une avancée nette, soit un écart de trajectoire."},
-  {n:8, r:"VIII", name:"La Justice",
-    gen:"Peser, trancher, remettre de l’ordre avec équité.",
-    up:"Décision juste, contrat clair, équilibre retrouvé.",
-    rv:"Jugement trop sévère, indécision, rigidité.",
-    pour:"Le sens du vrai, la capacité à mettre les choses à plat.",
-    contre:"On se juge, on se bloque, on attend un verdict extérieur.",
-    conseil:"Poser les faits, puis trancher une seule chose.",
-    issue:"Un ajustement — ou un contentieux intérieur qui dure."},
-  {n:9, r:"IX", name:"L'Hermite",
-    gen:"La lanterne. Prendre le temps de comprendre.",
-    up:"Recul lucide, patience, guidance intérieure.",
-    rv:"Isolement subi, lenteur craintive, passé qui retient.",
-    pour:"Une maturité, le droit de réfléchir avant d’agir.",
-    contre:"On s’isole, on rumine, on n’en finit plus de chercher.",
-    conseil:"Un temps de retrait choisi — avec une date de retour.",
-    issue:"Soit une clarté profonde, soit une grotte trop longtemps."},
-  {n:10, r:"X", name:"La Roue de Fortune",
-    gen:"Le cycle. Ce qui tourne, et la main sur la manivelle.",
-    up:"Une occasion, un retournement favorable si l’on s’en saisit.",
-    rv:"Tourner en rond, subir les hauts et les bas.",
-    pour:"Le moment bouge : une porte peut s’ouvrir.",
-    contre:"Le sentiment d’être emporté sans levier.",
-    conseil:"Saisir une occasion concrète cette semaine, une seule.",
-    issue:"Le cycle continue : mieux vaut en être l’axe que le jouet."},
-  {n:11, r:"XI", name:"La Force",
-    gen:"La douceur qui ouvre la gueule du lion. Maîtrise sans violence.",
-    up:"Courage calme, alliance des contraires, tenue.",
-    rv:"On force trop, ou l’on se sent sans ressort.",
-    pour:"Une vraie réserve de courage, déjà là.",
-    contre:"Conflit interne, exigence trop haute, épuisement.",
-    conseil:"Tenir — sans serrer. La constance suffit.",
-    issue:"Victoire intérieure, ou lutte qui use."},
-  {n:12, r:"XII", name:"Le Pendu",
-    gen:"L’envers volontaire. Attendre, voir autrement, lâcher.",
-    up:"Pause féconde, autre point de vue, sacrifice lucide.",
-    rv:"Blocage subi, dépendance, sentiment d’impuissance.",
-    pour:"La capacité de suspendre l’action pour mieux voir.",
-    contre:"On est retenu, ou l’on se retient par peur.",
-    conseil:"Changer d’angle avant de forcer la porte.",
-    issue:"Un temps suspendu — utile s’il est choisi, lourd s’il est subi."},
-  {n:13, r:"XIII", name:"La Mort",
-    gen:"La fin de cycle. Ce qui doit partir pour que ça vive.",
-    up:"Ménage radical, page tournée, terreau neuf.",
-    rv:"On n’arrive pas à laisser partir ; le deuil s’éternise.",
-    pour:"Une force de rupture saine : on peut couper net.",
-    contre:"Un attachement à ce qui est déjà fini.",
-    conseil:"Nommer une seule chose à laisser derrière soi.",
-    issue:"Soit un vrai passage, soit un entre-deux qui pourrit."},
-  {n:14, r:"XIV", name:"Tempérance",
-    gen:"Le versement. Allier, doser, faire circuler.",
-    up:"Diplomatie, guérison, juste milieu vivant.",
-    rv:"Indécision, dilution, trop d’influence des autres.",
-    pour:"Un art de relier les parties, de calmer le jeu.",
-    contre:"On tempère trop : plus aucune position.",
-    conseil:"Mélanger deux exigences au lieu d’en sacrifier une.",
-    issue:"Apaisement — ou tiédeur qui n’avance plus."},
-  {n:15, r:"XV", name:"Le Diable",
-    gen:"Le désir, le lien qui captive, ce qui est caché et demande jour.",
-    up:"Vitalité, vérité du désir, délivrance d’un tabou.",
-    rv:"Attachement, manipulation, peur ou excès.",
-    pour:"Une flamme, une lucidité sur ce qui lie vraiment.",
-    contre:"Un nœud : habitude, emprise, ou désir non nommé.",
-    conseil:"Dire le désir sans lui livrer les clés.",
-    issue:"Soit une libération, soit une chaîne plus familière."},
-  {n:16, r:"XVI", name:"La Maison Dieu",
-    gen:"La foudre. Ce qui s’écroule révèle ce qui était faux.",
-    up:"Vérité brutale, idée neuve, sortie d’une tour trop étroite.",
-    rv:"Peur de l’effondrement, crise contenue, déni.",
-    pour:"Un souffle d’air : on peut cesser de soutenir l’insoutenable.",
-    contre:"Un choc, ou la terreur qu’il arrive.",
-    conseil:"Laisser tomber ce qui craque — reconstruire plus juste.",
-    issue:"Rupture utile, ou tension qui n’éclate pas encore."},
-  {n:17, r:"XVII", name:"L'Étoile",
-    gen:"L’eau versée sous le ciel. Espoir lucide, réparation, inspiration.",
-    up:"Se rattacher à l’essentiel, soigner, croire juste assez.",
-    rv:"Naïveté, don sans limite, attente magique.",
-    pour:"Une vision douce qui oriente encore.",
-    contre:"On espère sans agir, ou l’on se vide pour les autres.",
-    conseil:"Un petit geste fidèle à ce qui compte, chaque jour.",
-    issue:"Consolation vraie — ou rêve qui dispense d’avancer."},
-  {n:18, r:"XVIII", name:"La Lune",
-    gen:"Le clair-obscur. Intuition, rêves, peurs, non-dits.",
-    up:"Imaginaire fertile, écoute fine, cocon.",
-    rv:"Flou, anxiété, confusion entre intuition et peur.",
-    pour:"Une sensibilité qui informe, des images utiles.",
-    contre:"Le brouillard : scénarios nocturnes, doute de tout.",
-    conseil:"Noter ce que l’on sent — puis le vérifier au jour.",
-    issue:"Soit une intuition juste, soit une brume qui retient."},
-  {n:19, r:"XIX", name:"Le Soleil",
-    gen:"La clarté chaude. Joie, reconnaissance, évidence partagée.",
-    up:"Confiance, place juste, chaleur des liens.",
-    rv:"Joie voilée, relations sèches, besoin de se reconnecter.",
-    pour:"Une lumière déjà là : talent, élan, droit d’être vu.",
-    contre:"On se brûle à trop briller, ou l’on n’ose plus.",
-    conseil:"Se montrer simplement, sans performer.",
-    issue:"Rayonnement — ou fatigue à force de tenir le rôle."},
-  {n:20, r:"XX", name:"Le Jugement",
-    gen:"L’appel. Se réveiller à ce qui demande une vie nouvelle.",
-    up:"Bonne nouvelle, pardon, reconnaissance, relèvement.",
-    rv:"Culpabilité, jugement dur, sentiment de n’être pas vu.",
-    pour:"Quelque chose en vous est déjà prêt à se lever.",
-    contre:"On se juge, ou l’on attend d’être absous.",
-    conseil:"Répondre à l’appel par un acte visible, même petit.",
-    issue:"Renaissance — ou vieux dossier qui n’en finit pas."},
-  {n:21, r:"XXI", name:"Le Monde",
-    gen:"L’accomplissement. La danse au centre, le cycle qui se clôt bien.",
-    up:"Aboutissement, place juste, vision d’ensemble.",
-    rv:"On n’arrive pas à conclure, ou l’on reste dans sa bulle.",
-    pour:"Un aboutissement possible, des fruits déjà mûrs.",
-    contre:"Le sentiment de n’être pas à sa place, ou trop exposé.",
-    conseil:"Fermer une boucle. Célébrer. Puis seulement ouvrir la suivante.",
-    issue:"Une réussite ronde — ou un seuil qu’on ne franchit pas."}
+  {n:0,r:"0",name:"Le Mat",see:"Un voyageur pieds nus, baluchon sur l'épaule, un chien à ses talons, le vide juste devant.",
+    mean:"C'est l'élan de partir sans avoir toutes les cartes en main. La liberté, et le risque d'errer.",
+    up:"Le pas se fait. On accepte de ne pas tout savoir.",
+    rv:"On avance trop vite, ou on tourne autour du départ sans oser le seuil.",
+    pour:"Quelque chose en vous a déjà lâché la rampe. Cette liberté est un vrai appui.",
+    contre:"Le danger, ici, c'est de fuir plutôt que de choisir. Le mouvement devient évitement.",
+    conseil:"Gardez le sac, mais regardez où le pied se pose. Un pas, pas une fuite.",
+    issue:"Sans cap, la route s'allonge. On voyage, on n'arrive pas."},
+  {n:1,r:"I",name:"Le Bateleur",see:"Un jeune magicien derrière sa table : denier, coupe, épée, bâton. Tout est là, rien n'est encore joué.",
+    mean:"C'est le commencement. Les outils sont posés. Il s'agit de commencer, pas de tout réussir d'un coup.",
+    up:"L'initiative est vivante. On a envie d'essayer.",
+    rv:"On touche à tout, on ne tranche pas. La nouveauté fait peur.",
+    pour:"Vous n'êtes pas démuni. Les moyens sont déjà sur la table.",
+    contre:"La dispersion tient lieu de projet. On recommence pour ne pas finir.",
+    conseil:"Choisissez un seul geste, aujourd'hui, et faites-le jusqu'au bout.",
+    issue:"Les débuts s'empilent. Rien ne prend racine."},
+  {n:2,r:"II",name:"La Papesse",see:"Une femme assise entre deux colonnes, un livre ouvert sur les genoux, le voile derrière elle.",
+    mean:"C'est le savoir qui ne s'affiche pas. Ce qui mûrit à l'abri, la patience, le secret fertile.",
+    up:"On prépare. On écoute. On laisse venir.",
+    rv:"On se tait trop longtemps. L'attente devient une pièce sans fenêtre.",
+    pour:"Vous savez déjà plus que vous ne le dites. Cette réserve est une force.",
+    contre:"Le silence ferme la porte. Ce qui devrait naître reste derrière le voile.",
+    conseil:"Lisez ce que vous savez — puis dites-le à une personne sûre. Pas à tout le monde : à quelqu'un.",
+    issue:"On reste dans la chambre close. Le projet ne passe pas le seuil."},
+  {n:3,r:"III",name:"L'Impératrice",see:"Une souveraine au sceptre, le bouclier à l'aigle, autour d'elle le blé et la croissance.",
+    mean:"C'est l'idée qui prend corps : parole, création, lien. Mettre en forme ce qui n'était qu'un souffle.",
+    up:"On s'exprime, on féconde, on relie.",
+    rv:"On parle trop tôt, ou trop fort. La forme précède le fond.",
+    pour:"Vous avez le don de donner une figure à ce qui demande à naître.",
+    contre:"Les mots prennent trop de place. On écrase l'autre, ou on s'écoute parler.",
+    conseil:"Écrivez. Dites. Mais laissez un silence après la phrase.",
+    issue:"Soit une belle croissance, soit une parole qui blesse faute d'avoir écouté."},
+  {n:4,r:"IV",name:"L'Empereur",see:"Un homme de pierre et d'autorité, trône, sceptre, montagnes nues derrière lui.",
+    mean:"C'est le cadre. Ce qui tient debout quand on cesse de rêver. La décision qui a des pieds.",
+    up:"On structure, on tranche, on bâtit une base.",
+    rv:"Le cadre étouffe, ou il manque. Trop de pouvoir — ou pas assez de piliers.",
+    pour:"Vous savez organiser. Cette fermeté peut porter la question.",
+    contre:"On se heurte à un mur : le sien, ou celui d'un autre.",
+    conseil:"Posez trois règles simples. Pas un empire. Trois.",
+    issue:"La situation se fige. Ou elle s'écroule, faute de piliers."},
+  {n:5,r:"V",name:"Le Pape",see:"Un guide bénit deux figures à ses pieds. Transmission, seuils, paroles qui engagent.",
+    mean:"C'est l'enseignement vivant, les valeurs qui portent, le conseil qu'on ose demander.",
+    up:"Une parole juste circule. On apprend, on transmet.",
+    rv:"Le dogme serre trop. Ou personne n'est écouté.",
+    pour:"Il y a un appui moral, un aîné, une éthique sur laquelle s'adosser.",
+    contre:"On obéit à une règle morte, ou on refuse toute voix extérieure.",
+    conseil:"Cherchez un conseil vivant. Pas une doctrine. Quelqu'un qui vous parle vrai.",
+    issue:"Soit une transmission qui nourrit, soit un conflit d'autorité qui use."},
+  {n:6,r:"VI",name:"L'Amoureux",see:"Un jeune être entre deux voies, le cœur visé. Choisir, c'est quitter l'autre rive.",
+    mean:"C'est le choix du cœur, et le dilemme. On ne peut plus faire semblant de ne pas préférer.",
+    up:"On se lie, on dit oui, on assume le désir.",
+    rv:"On reste entre deux chaises. Le cœur sait ; la voix ne suit pas.",
+    pour:"Un élan vrai vous oriente. Quelqu'un, ou quelque chose, vous appelle clairement.",
+    contre:"Deux appels se disputent. L'hésitation devient le lieu où l'on habite.",
+    conseil:"Nommez ce que vous désirez, sans habiller l'hésitation d'une vertu.",
+    issue:"Sans choix, le lien s'use dans l'entre-deux."},
+  {n:7,r:"VII",name:"Le Chariot",see:"Un conducteur tient deux forces qui ne tirent pas du même côté. Pourtant le char avance.",
+    mean:"C'est la conduite de sa vie. Allier ce qui tire à gauche et ce qui tire à droite, et partir.",
+    up:"On sait où l'on va. L'autonomie porte.",
+    rv:"On précipite, ou on lâche les rênes. Peur d'y aller seul.",
+    pour:"La volonté de mouvement est là. Vous n'êtes pas condamné à l'attente.",
+    contre:"Soit trop vite, soit pas du tout. Les deux chevaux se disputent.",
+    conseil:"Une direction. Pas dix. Puis des pas, pas une charge de cavalerie.",
+    issue:"Soit une avancée nette, soit un écart de trajectoire qu'il faudra rattraper."},
+  {n:8,r:"VIII",name:"La Justice",see:"Une femme tient la balance et l'épée. Peser, puis trancher. Pas l'un sans l'autre.",
+    mean:"C'est remettre les choses à leur juste poids. Les faits, l'équité, la décision qui ferme une discussion trop longue.",
+    up:"On tranche proprement. On remet de l'ordre.",
+    rv:"On se juge trop fort, ou on n'arrive plus à décider.",
+    pour:"Vous avez le sens du vrai. Cette lucidité peut éclaircir la question.",
+    contre:"Le tribunal intérieur ne lève plus la séance. On attend un verdict qui ne vient pas.",
+    conseil:"Posez les faits sur la table. Puis tranchez une seule chose. Une.",
+    issue:"Soit un ajustement qui soulage, soit un procès intérieur qui n'en finit plus."},
+  {n:9,r:"IX",name:"L'Hermite",see:"Un vieil homme marche la nuit, une lanterne à bout de bras. Il n'éclaire que le prochain pas.",
+    mean:"C'est le temps de comprendre. La solitude choisie, pas l'abandon. La lumière est petite, et elle suffit.",
+    up:"On prend du recul. On devient un peu son propre guide.",
+    rv:"On s'isole pour ne plus être atteint. La prudence devient peur.",
+    pour:"Vous avez le droit de réfléchir avant d'agir. Cette maturité est un allié.",
+    contre:"On rumine. On cherche dans le passé une clé qui n'y est plus.",
+    conseil:"Un retrait, oui — avec une date de retour. La grotte n'est pas une maison.",
+    issue:"Soit une clarté profonde, soit une solitude qui s'installe pour de bon."},
+  {n:10,r:"X",name:"La Roue de Fortune",see:"Une roue tourne, des figures montent et descendent. Le centre, lui, ne bouge pas.",
+    mean:"C'est le cycle. Ce qui bascule. La chance n'est pas un cadeau : c'est un passage qu'on saisit ou qu'on rate.",
+    up:"Une occasion est là. Le vent a tourné.",
+    rv:"On subit les hauts et les bas. On tourne sans tenir l'axe.",
+    pour:"Le moment bouge. Une porte peut s'ouvrir maintenant.",
+    contre:"On se sent emporté, sans levier. Les événements décident à votre place.",
+    conseil:"Saisissez une occasion concrète cette semaine. Une seule. Tenez-la.",
+    issue:"Le cycle continuera. Mieux vaut en être l'axe que le jouet."},
+  {n:11,r:"XI",name:"La Force",see:"Une femme ouvre sans violence la gueule d'un lion. Rien n'est brisé. Tout est tenu.",
+    mean:"C'est le courage calme. Dompter n'est pas écraser. C'est rester présent quand ça gronde.",
+    up:"On tient. On allie douceur et fermeté.",
+    rv:"On force trop, ou on n'a plus de ressort. Le lion reprend la pièce.",
+    pour:"Il y a en vous une réserve de courage que vous n'utilisez pas assez.",
+    contre:"La lutte intérieure use. On exige de soi ce qu'on n'exigerait pas d'un ami.",
+    conseil:"Tenez — sans serrer les dents. La constance suffit. La tension, non.",
+    issue:"Soit une victoire intérieure discrète, soit une lutte qui vous laisse à terre."},
+  {n:12,r:"XII",name:"Le Pendu",see:"Un homme suspendu par un pied, le visage paisible. Le monde est à l'envers, et il regarde.",
+    mean:"C'est l'arrêt volontaire. Voir autrement. Lâcher ce qu'on forçait. Parfois le seul geste juste est de ne plus bouger.",
+    up:"La pause est féconde. Un autre angle apparaît.",
+    rv:"On est coincé. On dépend. On attend que quelqu'un détache la corde.",
+    pour:"Vous savez suspendre l'action pour mieux voir. C'est rare, et c'est précieux.",
+    contre:"L'attente n'est plus choisie. On subit l'immobilité.",
+    conseil:"Changez d'angle avant de forcer la porte. Ce n'est pas de la passivité : c'est de la visée.",
+    issue:"Un temps suspendu. Utile s'il est choisi. Lourd s'il est subi."},
+  {n:13,r:"XIII",name:"La Mort",see:"Un squelette avance. Ce qui est fini est fauché. Dessous, quelque chose déjà pousse.",
+    mean:"Ce n'est pas la catastrophe. C'est la fin d'un cycle. On ne peut pas emporter l'ancien monde dans le nouveau.",
+    up:"On coupe. On tourne la page. Le terreau est noir, et fertile.",
+    rv:"On n'arrive pas à laisser partir. Le deuil s'éternise, ou on le refuse.",
+    pour:"Vous avez en vous la force de rompre ce qui est déjà mort.",
+    contre:"Vous restez attaché à ce qui ne vous nourrit plus.",
+    conseil:"Nommez une seule chose à laisser derrière vous. Une. Puis laissez-la.",
+    issue:"Soit un vrai passage, soit un entre-deux qui pourrit doucement."},
+  {n:14,r:"XIV",name:"Tempérance",see:"Un ange verse d'une coupe dans l'autre. L'eau circule. Rien ne se perd, rien ne déborde.",
+    mean:"C'est l'art de doser. Relier deux exigences au lieu d'en sacrifier une. Guérir par le mélange juste.",
+    up:"On apaise, on relie, on trouve le milieu vivant.",
+    rv:"On dilue tout. On n'a plus d'avis. Les autres versent à votre place.",
+    pour:"Vous savez calmer le jeu et faire circuler ce qui était bloqué.",
+    contre:"Trop de mesure tue le mouvement. Plus aucune position.",
+    conseil:"Mélangez deux besoins au lieu d'en honorer un seul. Le juste milieu n'est pas la tiédeur.",
+    issue:"Soit un apaisement vrai, soit une eau qui ne coule plus."},
+  {n:15,r:"XV",name:"Le Diable",see:"Une figure cornue, un couple aux chaînes lâches. On pourrait partir. On reste.",
+    mean:"C'est le désir, l'attachement, ce qu'on ne s'avoue pas. La chaîne est souvent plus souple qu'on ne croit.",
+    up:"On dit le désir. On cesse de faire le sage contre soi-même.",
+    rv:"On est tenu. Habitude, emprise, peur, ou plaisir qui coûte trop.",
+    pour:"Une flamme vraie. Une lucidité sur ce qui vous lie pour de bon.",
+    contre:"Un nœud. Ce n'est pas le mal : c'est ce que vous n'avez pas encore nommé.",
+    conseil:"Dites le désir sans lui livrer les clés de la maison.",
+    issue:"Soit une délivrance, soit une chaîne plus familière encore demain."},
+  {n:16,r:"XVI",name:"La Maison Dieu",see:"La foudre ouvre la tour. Deux figures chutent. Ce qui était trop haut ne tient plus.",
+    mean:"C'est la vérité qui arrive trop vite. Une structure craque. Après la poussière, on voit le ciel.",
+    up:"Quelque chose s'écroule, et c'est juste. Une idée neuve prend la place.",
+    rv:"On a peur que ça tombe. On étaye une tour qu'on sait fausse.",
+    pour:"Vous pouvez cesser de soutenir l'insoutenable. Ce souffle est une chance.",
+    contre:"Le choc, ou la terreur du choc. On vit déjà dans les décombres par anticipation.",
+    conseil:"Laissez tomber ce qui craque. On reconstruit plus bas, plus vrai.",
+    issue:"Soit une rupture qui libère, soit une tension qui n'éclate pas et vous use."},
+  {n:17,r:"XVII",name:"L'Étoile",see:"Une femme verse l'eau sous un ciel d'étoiles. Elle n'a rien à cacher. Elle répare.",
+    mean:"C'est l'espoir lucide. Pas le miracle : le geste fidèle, la vision qui reste quand le reste a brûlé.",
+    up:"On se rattache à l'essentiel. On soigne. On croit juste assez pour agir.",
+    rv:"On attend que le ciel travaille à notre place. Ou l'on se vide pour les autres.",
+    pour:"Une vision douce vous oriente encore. Ne la traitez pas de naïveté.",
+    contre:"L'espoir sans geste. Ou le don jusqu'à plus soi.",
+    conseil:"Un petit geste fidèle à ce qui compte, chaque jour. Petit. Fidèle.",
+    issue:"Soit une consolation qui remet en route, soit un rêve qui dispense d'avancer."},
+  {n:18,r:"XVIII",name:"La Lune",see:"Un chemin entre deux tours, l'eau, une écrevisse, des chiens. On n'y voit pas net, et pourtant on avance.",
+    mean:"C'est l'intuition, et la peur qui porte le même manteau. Le clair-obscur. Ce qu'on sent sans pouvoir le prouver.",
+    up:"L'imaginaire informe. Les rêves parlent juste.",
+    rv:"Le brouillard. On confond l'intuition et l'inquiétude.",
+    pour:"Votre sensibilité sait des choses que la raison n'a pas encore formulées.",
+    contre:"Les scénarios nocturnes occupent toute la pièce. On doute de tout, y compris de soi.",
+    conseil:"Notez ce que vous sentez. Puis vérifiez-le au jour, avec un fait, un seul.",
+    issue:"Soit une intuition qui guide, soit une brume qui retient pour des semaines."},
+  {n:19,r:"XIX",name:"Le Soleil",see:"Une clarté sans ombre, deux êtres sous le grand astre. On est vu. On peut se montrer.",
+    mean:"C'est la joie qui n'a pas besoin de se justifier. La place juste. La chaleur d'être reconnu.",
+    up:"On rayonne sans jouer un rôle. On est à sa place.",
+    rv:"La joie est là, mais voilée. On performe, ou on n'ose plus se montrer.",
+    pour:"Il y a une lumière déjà là : un talent, un élan, le droit d'être vu.",
+    contre:"On se brûle à trop briller, ou on se cache par crainte du regard.",
+    conseil:"Montrez-vous simplement. Sans démonstration. La chaleur suffit.",
+    issue:"Soit un vrai rayonnement, soit la fatigue de tenir le rôle du soleil."},
+  {n:20,r:"XX",name:"Le Jugement",see:"Une trompette au-dessus de figures qui se lèvent. Quelque chose d'ancien entend son nom.",
+    mean:"C'est l'appel. Se réveiller à une vie qu'on avait remise à plus tard. Pas le tribunal : le relèvement.",
+    up:"Une nouvelle arrive. On pardonne. On se lève.",
+    rv:"On se juge, ou l'on attend d'être absous. L'appel passe, on fait le sourd.",
+    pour:"Quelque chose en vous est déjà debout, avant même que vous l'ayez décidé.",
+    contre:"La culpabilité occupe la place de l'action. On reste dans le cercueil par habitude.",
+    conseil:"Répondez à l'appel par un acte visible, même petit. Le ciel n'a pas besoin d'un discours.",
+    issue:"Soit une renaissance discrète, soit un vieux dossier qui ne se ferme pas."},
+  {n:21,r:"XXI",name:"Le Monde",see:"Une figure danse au centre d'une couronne. Les quatre coins du vivant tiennent leur place.",
+    mean:"C'est l'accomplissement. Fermer la boucle. Être à sa place dans un ensemble plus large que soi.",
+    up:"Ça s'achève bien. On peut célébrer.",
+    rv:"On n'arrive pas à conclure. Ou l'on reste dans sa bulle, hors du monde.",
+    pour:"Des fruits sont mûrs. Un aboutissement est possible, maintenant.",
+    contre:"Le sentiment de n'être pas à sa place — trop exposé, ou trop à l'écart.",
+    conseil:"Fermez une boucle. Célébrez. Puis seulement ouvrez la suivante.",
+    issue:"Soit une réussite ronde, soit un seuil qu'on contemple sans le franchir."}
 ];
 
 const POS = [
-  {id:1, key:"pour", title:"Le Pour", hint:"Celle-ci, c’est ce qui travaille avec vous. Les forces, les appuis — même sous-estimés."},
-  {id:2, key:"contre", title:"Le Contre", hint:"Celle-ci nomme ce qui freine ou demande attention. Ce n’est pas le mal. C’est l’information utile."},
-  {id:3, key:"conseil", title:"Le Conseil", hint:"Celle-ci dit comment vous tenir. Moins le « quoi » que l’attitude."},
-  {id:4, key:"issue", title:"L’Issue", hint:"Celle-ci montre la pente si le cours actuel continue. Une tendance. Jamais une sentence."}
+  {id:1, title:"Le Pour", hint:"Celle-ci, c'est ce qui travaille avec vous. Les forces, les appuis — même sous-estimés."},
+  {id:2, title:"Le Contre", hint:"Celle-ci nomme ce qui freine ou demande attention. Ce n'est pas le mal. C'est l'information utile."},
+  {id:3, title:"Le Conseil", hint:"Celle-ci dit comment vous tenir. Moins le « quoi » que l'attitude."},
+  {id:4, title:"L'Issue", hint:"Celle-ci montre la pente si le cours actuel continue. Une tendance. Jamais une sentence."}
 ];
 
 const S = {
@@ -419,29 +422,41 @@ const S = {
   order:[], drawn:[], synth:null
 };
 
-function $(id){return document.getElementById(id)}
-function show(n){
-  for(let i=0;i<=5;i++) $("step"+i).classList.toggle("hidden", i!==n);
-  S.step=n; window.scrollTo({top:0,behavior:"smooth"});
+function $(id){ return document.getElementById(id); }
+function T(v){
+  if (v === undefined || v === null || v === "undefined") return "";
+  return String(v);
 }
+function cardOf(n){
+  const k = Number(n);
+  const a = ARCANA.find(x => x.n === k);
+  if (a) return a;
+  return {n:k,r:"?",name:"Une lame",see:"",mean:"",up:"",rv:"",pour:"",contre:"",conseil:"",issue:""};
+}
+function show(n){
+  for (let i=0;i<=5;i++) $("step"+i).classList.toggle("hidden", i!==n);
+  S.step=n;
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
 document.querySelectorAll("#genre button, #age button, #motif button").forEach(b=>{
   b.addEventListener("click",()=>{
     b.parentElement.querySelectorAll("button").forEach(x=>x.classList.remove("on"));
     b.classList.add("on");
     const id=b.parentElement.id;
-    if(id==="genre") S.genre=b.dataset.v;
-    if(id==="age") S.age=b.dataset.v;
-    if(id==="motif") S.motif=b.dataset.v;
+    if(id==="genre") S.genre=b.dataset.v||"n";
+    if(id==="age") S.age=b.dataset.v||"";
+    if(id==="motif") S.motif=b.dataset.v||"";
   });
 });
 document.querySelectorAll(".chip[data-q]").forEach(b=>{
-  b.addEventListener("click",()=> $("question").value=b.dataset.q);
+  b.addEventListener("click",()=> $("question").value=b.dataset.q||"");
 });
 $("go1").onclick=()=>show(1);
 $("go2").onclick=()=>{
-  S.prenom=($("prenom").value||"vous").trim();
-  S.sit=$("sit").value.trim();
-  S.question=$("question").value.trim();
+  S.prenom=($("prenom").value||"").trim();
+  S.sit=($("sit").value||"").trim();
+  S.question=($("question").value||"").trim();
   if(!S.question){ $("question").focus(); return; }
   $("qEcho").textContent="« "+S.question+" »";
   show(2);
@@ -450,24 +465,31 @@ $("go3").onclick=()=>{ buildDeck(); renderCross("cross"); show(3); };
 $("go5").onclick=()=>{ renderCross("cross3"); $("lecture").innerHTML=reading(); show(5); };
 $("restart").onclick=()=>{ S.drawn=[]; S.synth=null; show(0); };
 
-function shuffle(a){const b=a.slice(); for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [b[i],b[j]]=[b[j],b[i]];} return b;}
+function shuffle(a){
+  const b=a.slice();
+  for(let i=b.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    const t=b[i]; b[i]=b[j]; b[j]=t;
+  }
+  return b;
+}
 function buildDeck(){
   S.order=shuffle(ARCANA.map(c=>c.n));
   const deck=$("deck"); deck.innerHTML="";
   S.order.forEach(n=>{
     const d=document.createElement("button");
-    d.className="mini"; d.type="button"; d.dataset.n=n; d.setAttribute("aria-label","Carte face cachée");
-    d.onclick=()=>pick(n,d);
+    d.className="mini"; d.type="button";
+    d.setAttribute("aria-label","Carte face cachée");
+    d.onclick=()=>pick(Number(n), d);
     deck.appendChild(d);
   });
   updatePrompt();
 }
-function pick(n,el){
+function pick(n, el){
   if(S.drawn.length>=4) return;
   if(S.drawn.some(c=>c.n===n)) return;
   const pos=POS[S.drawn.length];
-  const rev=Math.random()<0.5;
-  S.drawn.push({n, rev, pos:pos.id});
+  S.drawn.push({n:Number(n), rev: Math.random()<0.5, pos:pos.id});
   el.classList.add("gone");
   renderCross("cross");
   if(S.drawn.length===4) finish();
@@ -476,105 +498,184 @@ function pick(n,el){
 function updatePrompt(){
   const p=POS[S.drawn.length];
   $("promptPose").textContent=p.hint;
-  $("counter").textContent=`Carte ${S.drawn.length+1} sur 4 — ${p.title}`;
+  $("counter").textContent="Carte "+(S.drawn.length+1)+" sur 4 — "+p.title;
 }
 function reduce(sum){
   const steps=[sum];
-  while(sum>22){ sum=String(sum).split("").reduce((a,b)=>a+Number(b),0); steps.push(sum); }
+  while(sum>22){
+    sum=String(sum).split("").reduce((a,b)=>a+Number(b),0);
+    steps.push(sum);
+  }
   if(sum===22) sum=21;
   return {num:sum, steps};
 }
 function finish(){
-  const sum=S.drawn.reduce((a,c)=>a+c.n,0);
+  const sum=S.drawn.reduce((a,c)=>a+Number(c.n),0);
   const r=reduce(sum);
   S.synth={n:r.num, rev:false, pos:5, steps:r.steps};
-  const names=S.drawn.map(c=>c.n).join(" + ");
+  const names=S.drawn.map(c=>Number(c.n)).join(" + ");
   const red=r.steps.length>1 ? " → "+r.steps.slice(1).join(" → ") : "";
-  $("calcLine").innerHTML=`${names} = ${r.steps[0]}${red}<br><strong>${ARCANA[r.num].name}</strong> au centre` +
-    (S.drawn.some(c=>c.n===r.num) ? " — ce thème insiste, il est déjà sur la table." : ".");
+  const syn=cardOf(r.num);
+  const deja=S.drawn.some(c=>Number(c.n)===r.num)
+    ? " — cette lame est déjà sur la table : le thème insiste."
+    : ".";
+  $("calcLine").innerHTML=T(names)+" = "+T(r.steps[0])+T(red)+"<br><strong>"+T(syn.name)+"</strong> au centre"+deja;
   renderCross("cross2");
   show(4);
 }
 function cardEl(c){
-  const a=ARCANA[c.n];
-  return `<div class="face-card${c.rev?" rev":""}"><div class="num">${a.r}</div><div class="nm">${a.name}</div></div>`;
+  if(!c) return '<div class="place">·</div>';
+  const a=cardOf(c.n);
+  return '<div class="face-card'+(c.rev?" rev":"")+'"><div class="num">'+T(a.r)+'</div><div class="nm">'+T(a.name)+'</div></div>';
 }
 function renderCross(id){
   const find=p=> p===5 ? S.synth : S.drawn.find(c=>c.pos===p);
   const cell=(p,title)=>{
     const c=find(p);
-    return `<div class="slot s${p}"><div class="lab">${title}</div>${c?cardEl(c):`<div class="place">·</div>`}</div>`;
+    return '<div class="slot s'+p+'"><div class="lab">'+title+'</div>'+(c?cardEl(c):'<div class="place">·</div>')+'</div>';
   };
   $(id).innerHTML=cell(3,"Conseil")+cell(1,"Pour")+cell(5,"Synthèse")+cell(2,"Contre")+cell(4,"Issue");
 }
-function orient(c){return c.rev?"à l’envers":"à l’endroit";}
-function you(){return S.prenom && S.prenom.toLowerCase()!=="vous" ? S.prenom : "vous";}
+
+function esc(s){
+  return T(s).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+}
+function who(){
+  const n=T(S.prenom).trim();
+  if(!n || n.toLowerCase()==="vous") return "vous";
+  return n;
+}
+function field(a, key){
+  return T(a && a[key]);
+}
+function face(drawn, a){
+  if(drawn.rev){
+    return "Elle est arrivée à l'envers : "+field(a,"rv")+" Ce n'est pas un mauvais présage — seulement une énergie qui demande un accès plus intérieur, plus patient.";
+  }
+  return "Elle est à l'endroit : "+field(a,"up");
+}
+function aboutQuestion(){
+  const q=T(S.question);
+  const m=T(S.motif);
+  if(m.indexOf("relation")>=0) return "dans ce lien que vous interrogez";
+  if(m.indexOf("professionnel")>=0) return "dans ce passage professionnel";
+  if(m.indexOf("décision")>=0) return "devant cette décision";
+  if(m.indexOf("intérieur")>=0) return "dans ce climat intérieur";
+  if(q) return "face à ce que vous venez de déposer";
+  return "dans ce que vous vivez";
+}
 function reading(){
-  const P=S.drawn[0], C=S.drawn[1], D=S.drawn[2], I=S.drawn[3], Y=S.synth;
-  const p=ARCANA[P.n], c=ARCANA[C.n], d=ARCANA[D.n], i=ARCANA[I.n], y=ARCANA[Y.n];
-  const nom=you();
-  const who = S.genre==="f" ? "consultante" : S.genre==="m" ? "consultant" : "personne qui consulte";
-  const cadre=[
-    S.motif?`Motif : ${S.motif}.`:"",
-    S.sit?`Situation : ${S.sit}.`:"",
-    S.age && S.age!=="—" ? `Cadre d’âge : ${S.age}.`:""
-  ].filter(Boolean).join(" ");
-  const nuance=x=> x.rev? x.rv : x.up;
-  return `
-    <p>Je m’adresse à ${nom}, ${who}. ${cadre}</p>
-    <p class="qbox">Question tenue : « ${S.question} »</p>
-    <h2>Ce que je fais</h2>
-    <p>Je regarde d’abord le terrain : gauche et droite — ce qui aide, ce qui freine. Puis la verticale : l’attitude et la pente. Enfin le centre, qui donne le titre du chapitre.</p>
+  const P=S.drawn[0], C=S.drawn[1], Co=S.drawn[2], I=S.drawn[3], Y=S.synth;
+  const p=cardOf(P&&P.n), c=cardOf(C&&C.n), co=cardOf(Co&&Co.n), i=cardOf(I&&I.n), y=cardOf(Y&&Y.n);
+  const nom=who();
+  const q=esc(S.question);
+  const sit=T(S.sit);
+  const m=T(S.motif);
+  const steps=(Y && Y.steps && Y.steps.length) ? Y.steps.join(" → ") : T(Y&&Y.n);
+  const deja=S.drawn.some(z=>Number(z.n)===Number(Y&&Y.n));
+  const mois=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+  const jours=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  const now=new Date();
+  const quand=jours[now.getDay()]+" "+now.getDate()+" "+mois[now.getMonth()];
+  const heures=("0"+now.getHours()).slice(-2)+"h"+("0"+now.getMinutes()).slice(-2);
+  const adresse = nom==="vous" ? "" : ", "+esc(nom);
 
-    <h2>Le Pour — ${p.name} (${orient(P)})</h2>
-    <p>${p.gen}</p>
-    <p>Dans cette position, c’est l’appui. ${p.pour} ${nuance(P)}</p>
+  const TITRES = {
+    0:"Le seuil sans carte", 1:"Les outils sur la table", 2:"Ce qui mûrit à l'abri",
+    3:"La forme qui vient", 4:"Les piliers", 5:"La parole qui engage",
+    6:"Le choix du cœur", 7:"Tenir les rênes", 8:"Le juste poids",
+    9:"La petite lanterne", 10:"Quand la roue tourne", 11:"La douceur qui tient",
+    12:"Voir à l'envers", 13:"Ce qui doit partir", 14:"L'eau qui circule",
+    15:"Nommer le désir", 16:"Après la foudre", 17:"L'eau sous les étoiles",
+    18:"Le chemin dans la brume", 19:"La place au soleil", 20:"L'appel",
+    21:"Fermer la couronne"
+  };
+  const titre = TITRES[Number(Y&&Y.n)] || T(y.name);
 
-    <h2>Le Contre — ${c.name} (${orient(C)})</h2>
-    <p>${c.gen}</p>
-    <p>Ici, le frein. ${c.contre} ${nuance(C)}</p>
-    <h3>Pour ↔ Contre</h3>
-    <p>D’un côté ${p.name} ouvre ${P.rev?"en sourdine":"franchement"} ; de l’autre ${c.name} ${C.rev?"retient de l’intérieur":"fait obstacle au grand jour"}. Ce n’est pas à choisir l’un contre l’autre : c’est le terrain même de votre question.</p>
+  function rev(d){ return d && d.rev; }
+  function pair(a,b){ return field(a,"name")+" et "+field(b,"name"); }
 
-    <h2>Le Conseil — ${d.name} (${orient(D)})</h2>
-    <p>${d.gen}</p>
-    <p>L’attitude à tenir : ${d.conseil} ${nuance(D)}</p>
+  let domaine = "ce que vous vivez en ce moment";
+  if(m.indexOf("relation")>=0) domaine="ce lien";
+  else if(m.indexOf("professionnel")>=0) domaine="cette question de place et de travail";
+  else if(m.indexOf("décision")>=0) domaine="cette décision qui attend";
+  else if(m.indexOf("intérieur")>=0) domaine="ce climat intérieur";
 
-    <h2>L’Issue — ${i.name} (${orient(I)})</h2>
-    <p>${i.gen}</p>
-    <p>${i.issue} ${nuance(I)}</p>
-    <p><em>L’Issue n’est pas une porte fermée : c’est le chemin si l’on n’écoute pas le Conseil.</em></p>
-    <h3>Conseil ↔ Issue</h3>
-    <p>Si vous adoptez ${d.name}, vous corrigez la pente de ${i.name}. Si vous n’en faites rien, ${i.name} décrit ce vers quoi ça penche déjà.</p>
+  const pourSens = rev(P)
+    ? "Cette force est bien là, mais elle s'exprime en sourdine. On la sent plus qu'on ne la montre."
+    : "Elle est disponible, presque offerte. Encore faut-il accepter de s'y adosser.";
+  const contreSens = rev(C)
+    ? "Le frein travaille surtout à l'intérieur : une habitude de pensée, une peur familière, un nœud qu'on n'a pas encore dit."
+    : "Le frein se voit. Il a un visage, une situation, parfois une personne.";
 
-    <h2>La Synthèse — ${y.name}</h2>
-    <p>Calcul : ${Y.steps.join(" → ")} → ${y.name}${S.drawn.some(z=>z.n===Y.n)?" (déjà présent dans la croix : le thème insiste)":""}.</p>
-    <p>${y.gen}</p>
-    <div class="key"><strong>Phrase-clé.</strong> Le chapitre s’intitule ${y.name} : ni seulement l’appui de ${p.name}, ni seulement le frein de ${c.name} — le vrai sujet est là, au centre, et il colore chaque pôle.</div>
+  const oeilCarte = co; // conseil as attitude lens
+  let oeilDomaine = "la vie quotidienne";
+  let oeilTexte = field(co,"conseil");
+  if(m.indexOf("relation")>=0){
+    oeilDomaine = "le cœur";
+    oeilTexte = "Dans le lien, "+field(c,"name")+" rappelle ce qui accroche, et "+field(p,"name")+" ce qui peut encore porter. "+field(co,"conseil");
+  } else if(m.indexOf("professionnel")>=0){
+    oeilDomaine = "le travail";
+    oeilTexte = "Du côté de l'ouvrage, "+field(i,"name")+" décrit la pente si l'on ne change rien. "+field(co,"conseil");
+  } else if(m.indexOf("décision")>=0){
+    oeilDomaine = "le choix";
+    oeilTexte = "Trancher n'est pas frapper. "+field(co,"conseil")+" "+field(y,"mean");
+  } else {
+    oeilTexte = field(y,"mean")+" "+field(co,"conseil");
+  }
 
-    <h2>Restitution</h2>
-    <p>Vous avez ${p.name} pour vous soutenir${P.rev?" — encore un peu en retrait":""}. ${c.name} nomme ce qui complique${C.rev?", davantage à l’intérieur qu’au-dehors":""}. ${d.name} vous conseille une attitude. Sans elle, ${i.name} indique la tendance. Au milieu, ${y.name} relie le tout à votre question : « ${S.question} ».</p>
+  return [
+    '<p class="byline">Lecture d\'Hélène Belmont · '+quand+' · '+heures+'</p>',
+    '<p class="spread-title">'+esc(titre)+'</p>',
+    '<p>Je vous retrouve'+adresse+(sit?' — « '+esc(sit)+' »':'')+'. Vous avez posé ceci :</p>',
+    '<p class="qbox">« '+q+' »</p>',
+    '<p>Cinq lames seulement. Quatre que vous avez touchées, une que le jeu a calculée. Je les lis comme on lit une pièce : d\'abord les deux personnages face à face, puis ce qu\'il faudrait faire, puis vers où ça penche si l\'on n\'écoute pas — et enfin le titre, au centre.</p>',
 
-    <h2>Trois points à emporter</h2>
-    <p>1. Ce qui soutient : ${p.name} — ${p.pour}</p>
-    <p>2. Ce qu’il faut regarder : ${c.name} — ${c.contre}</p>
-    <p>3. L’attitude de cette semaine : ${d.conseil}</p>
-  `;
+    '<h2>Ce qui vous habite</h2>',
+    '<p class="sstitle">'+esc(pair(p,c))+'</p>',
+    '<p>'+field(p,"see")+' Voilà '+field(p,"name")+', à gauche, du côté de ce qui vous aide. '+field(p,"mean")+' '+pourSens+' '+field(p,"pour")+'</p>',
+    '<p>En face, '+field(c,"name")+' — '+field(c,"see")+' '+field(c,"mean")+' '+contreSens+' '+field(c,"contre")+'</p>',
+    '<p>Ensemble, ces deux lames dessinent votre terrain, '+domaine+'. On n\'élimine pas '+field(c,"name")+' pour ne garder que '+field(p,"name")+'. On s\'appuie sur l\'un sans nier l\'autre. C\'est déjà une façon d\'avancer.</p>',
+
+    '<h2>L\'attitude, et la pente</h2>',
+    '<p class="sstitle">'+esc(pair(co,i))+'</p>',
+    '<p>En haut, '+field(co,"name")+'. '+field(co,"see")+' '+field(co,"mean")+' '+(rev(Co)?"À l'envers, cette attitude demande d'être tenue de l'intérieur, sans démonstration.":"À l'endroit, elle peut se vivre tout de suite, dans un geste simple.")+' '+field(co,"conseil")+'</p>',
+    '<p>En bas, '+field(i,"name")+' montre ce qui s\'installe si le cours actuel continue. '+field(i,"see")+' '+field(i,"issue")+' Ce n\'est pas une porte fermée. C\'est le chemin <em>si l\'on n\'écoute pas</em> '+field(co,"name")+'. Dès que l\'attitude du haut est vraiment tenue, la pente bouge.</p>',
+
+    '<h2>La synthèse</h2>',
+    '<p class="sstitle">'+esc(field(y,"name"))+(deja?" — déjà présent dans la croix":"")+'</p>',
+    '<p>Les quatre numéros s\'additionnent'+(Y&&Y.steps&&Y.steps.length>1?" puis se réduisent":"")+' : '+T(steps)+'. Le centre s\'appelle <strong>'+field(y,"name")+'</strong>'+(deja?". Quand une lame revient ainsi, le thème frappe à la porte une seconde fois.":".")+'</p>',
+    '<p>'+field(y,"see")+' '+field(y,"mean")+' Lu pour votre question, cela veut dire que le vrai sujet n\'est ni seulement l\'appui, ni seulement le frein. C\'est '+field(y,"name")+' — le fil qui relie les quatre autres.</p>',
+    '<div class="key">Si je ne devais garder qu\'une phrase : '+domaine+', tout passe en ce moment par '+field(y,"name")+'. Le reste s\'ordonne autour.</div>',
+
+    '<h2>L\'œil d\'Hélène</h2>',
+    '<p class="sstitle">'+esc(oeilDomaine)+' · '+esc(field(oeilCarte,"name"))+'</p>',
+    '<p>'+oeilTexte+' Les cartes n\'enferment pas les semaines qui viennent. Elles montrent une pente, et une manière de la corriger. À vous le geste.</p>',
+
+    '<h2>Ce que je vous laisse</h2>',
+    '<p>Gardez '+field(p,"name")+' près de vous. Regardez '+field(c,"name")+' sans en faire un ennemi. Tenez-vous comme '+field(co,"name")+' pendant quelques jours — assez longtemps pour que '+field(i,"name")+' cesse d\'être une fatalité. Et souvenez-vous du nom du chapitre : '+field(y,"name")+'.</p>'
+  ].join("");
 }
 
 (function sky(){
   const c=$("sky"), x=c.getContext("2d");
   let w,h,stars;
-  function resize(){w=c.width=innerWidth;h=c.height=innerHeight;
-    stars=Array.from({length:120},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2,a:Math.random()}));
+  function resize(){
+    w=c.width=innerWidth; h=c.height=innerHeight;
+    stars=Array.from({length:90},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2,a:Math.random()}));
   }
   function tick(){
     x.clearRect(0,0,w,h);
-    stars.forEach(s=>{s.a+=0.01; x.fillStyle=`rgba(232,224,205,${0.25+0.5*Math.abs(Math.sin(s.a))})`; x.beginPath(); x.arc(s.x,s.y,s.r,0,7); x.fill();});
+    stars.forEach(s=>{
+      s.a+=0.01;
+      x.fillStyle="rgba(232,224,205,"+(0.25+0.5*Math.abs(Math.sin(s.a)))+")";
+      x.beginPath(); x.arc(s.x,s.y,s.r,0,7); x.fill();
+    });
     requestAnimationFrame(tick);
   }
   addEventListener("resize",resize); resize(); tick();
 })();
+
 </script>
 </body>
 </html>
