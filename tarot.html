@@ -203,10 +203,10 @@
   <section id="step0">
     <p class="eyebrow">La voie des cartes</p>
     <h1>Tirage en croix</h1>
-    <p class="lead">Vingt-deux arcanes majeurs. Vous tirez. Hélène dispose. Le centre, le jeu le calcule.</p>
+    <p class="lead">Vingt-deux arcanes majeurs. Vous tirez quatre cartes. Hélène les dispose en croix.</p>
     <div class="panel voice">
       <p>Ici, seulement le Tarot de Marseille, dans sa langue claire. Le tirage n’enferme pas un destin. Il éclaire ce qui soutient, ce qui freine, l’attitude à tenir, la pente actuelle, et le fil qui relie le tout.</p>
-      <p>Quatre cartes pour les quatre pôles. La cinquième n’est pas un choix : on additionne les numéros — Le Mat compte pour zéro — et l’on réduit si besoin.</p>
+      <p>Quatre cartes pour les quatre pôles. La cinquième n’est pas choisie, mais calculée suivant la méthode traditionnelle.</p>
       <div class="center"><button class="btn" id="go1">S’asseoir à la table</button></div>
     </div>
   </section>
@@ -249,7 +249,7 @@
 
       <label for="question">Votre question</label>
       <textarea id="question" placeholder="Une question ouverte, ancrée dans le présent ou le proche avenir."></textarea>
-      <p class="hint">Préférez les questions ouvertes (exemples), évitez les questions fermées (oui/non sec), les questions sur un tiers absent, et « dites-moi tout sur ma vie ».</p>
+      <p class="hint">Préférez les questions ouvertes (ci dessous), évitez les questions fermées (oui/non sec), les questions sur un tiers absent, et « dites-moi tout sur ma vie ».</p>
       <div class="choices" style="margin-top:10px">
         <button type="button" class="chip" data-q="Qu’est-ce qui m’aiderait à avancer dans cette situation professionnelle ?">exemple pro</button>
         <button type="button" class="chip" data-q="Quelle dynamique traverse actuellement cette relation ?">exemple relation</button>
@@ -261,10 +261,10 @@
 
   <section id="step2" class="hidden">
     <p class="eyebrow">Souffle</p>
-    <h1>Quatre cartes, puis le centre</h1>
+    <h1>Quatre cartes</h1>
     <div class="panel voice">
       <p id="qEcho" class="qbox"></p>
-      <p>Respirez. Gardez la question, sans la serrer. Vous allez toucher quatre cartes, une pour chaque pôle de la croix.</p>
+      <p>Respirez. Choisissez quatre cartes, une pour chaque pôle de la croix.</p>
       <p>Une carte peut se poser à l’envers. Ce n’est pas un mauvais présage. L’énergie est là ; elle demande un autre accès — plus intérieur, plus patient, plus conscient.</p>
       <div class="center"><button class="btn" id="go3">Mélanger le jeu</button></div>
     </div>
@@ -273,7 +273,7 @@
   <section id="step3" class="hidden">
     <div class="tray" id="tray">
       <p class="eyebrow">Le tapis</p>
-      <h1>Touchez une carte</h1>
+      <h1>Choisissez une carte</h1>
       <p class="lead" id="promptPose">Celle-ci, c’est ce qui travaille avec vous. Les forces, les appuis.</p>
       <div class="cross-wrap"><div class="cross" id="cross"></div></div>
       <p class="status" id="counter">Carte 1 sur 4 — Le Pour</p>
@@ -920,7 +920,7 @@ function reading(){
     '<div class="key">Une phrase. « '+q+' » passe, aujourd\'hui, par '+field(y,"name")+'. '+field(p,"name")+' aide. '+field(c,"name")+' retient. '+field(co,"name")+' montre comment se tenir. '+field(i,"name")+' montre la pente si l\'on ne fait rien.</div>',
 
     '<h2>Ce que je vous laisse</h2>',
-    '<p>Repartez avec la question intacte — pas avec un verdict. Servez-vous de '+field(p,"name")+', regardez '+field(c,"name")+', tenez '+field(co,"name")+' quelques jours. Puis relisez « '+q+' ». Si la phrase a changé de poids, le tirage a travaillé.</p>'
+    '<p>Ceci n\'est qu\'une analyse au moment t — pas avec un verdict. Servez-vous de '+field(p,"name")+', regardez '+field(c,"name")+', tenez '+field(co,"name")+' quelques jours. Puis relisez « '+q+' ». Si la phrase a changé de poids, le tirage a travaillé.</p>'
   ].join("");
 }
 
