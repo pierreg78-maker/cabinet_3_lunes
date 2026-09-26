@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La voie des cartes · Hélène Belmont · Cabinet des Trois Lunes</title>
-<meta name="description" content="Tirage en croix du Tarot de Marseille avec Hélène Belmont, au Cabinet des Trois Lunes.">
+<title>S’exercer au Tarot de Marseille · Hélène Belmont · Trois Lunes</title>
+<meta name="description" content="Atelier de lecture du Tarot de Marseille : poser une croix, exercer l’œil, puis entendre la leçon d’Hélène Belmont.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0a0f'/%3E%3Ccircle cx='8' cy='16' r='5' fill='%23c9a15f'/%3E%3Ccircle cx='10.5' cy='16' r='4.3' fill='%230c0a0f'/%3E%3Ccircle cx='16' cy='16' r='4.4' fill='none' stroke='%23c9a15f' stroke-width='1.4'/%3E%3Ccircle cx='24' cy='16' r='5' fill='%23c9a15f'/%3E%3Ccircle cx='21.5' cy='16' r='4.3' fill='%230c0a0f'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -191,10 +191,10 @@
     padding:14px 2px 40px;
     min-height:180px;
   }
-  #step4 .cross, #step5 .cross{
+  #step4 .cross, #step5 .cross, #stepEye .cross{
     --slot-w:92px; --slot-h:138px;
   }
-  #step4 .slot, #step5 .slot{width:var(--slot-w)}
+  #step4 .slot, #step5 .slot, #stepEye .slot{width:var(--slot-w)}
   .s1{grid-column:1;grid-row:2} .s2{grid-column:3;grid-row:2}
   .s3{grid-column:2;grid-row:1} .s5{grid-column:2;grid-row:2} .s4{grid-column:2;grid-row:3}
 
@@ -224,22 +224,22 @@
 <div class="grain"></div>
 <main>
   <div class="top">
-    <a class="brand" href="./index.html">← Cabinet des Trois Lunes</a>
+    <a class="brand" href="./index.html">← Trois Lunes</a>
     <span class="brand">Hélène Belmont</span>
   </div>
 
   <section id="step0">
-    <p class="eyebrow">La voie des cartes</p>
-    <h1>Tirage en croix</h1>
-    <p class="lead">Vingt-deux arcanes majeurs. Vous tirez. Hélène dispose. Le centre, le jeu le calcule.</p>
+    <p class="eyebrow">Atelier des cartes</p>
+    <h1>Apprendre la croix</h1>
+    <p class="lead">Vingt-deux arcanes majeurs. Vous posez. Vous dites ce que vous voyez. Hélène reprend ensuite.</p>
     <div class="panel voice">
-      <p>Ici, seulement le Tarot de Marseille, dans sa langue claire. Le tirage n’enferme pas un destin. Il éclaire ce qui soutient, ce qui freine, l’attitude à tenir, la pente actuelle, et le fil qui relie le tout.</p>
-      <p>Quatre cartes pour les quatre pôles. La cinquième n’est pas un choix : on additionne les numéros — Le Mat compte pour zéro — et l’on réduit si besoin.</p>
-      <div class="center"><button class="btn" id="go1">S’asseoir à la table</button></div>
+      <p>Ceci n’est pas une consultation. C’est une table d’étude : le Tarot de Marseille, sa langue claire, et l’habitude de lire une croix sans en faire un destin.</p>
+      <p>Quatre cartes pour les quatre pôles — Pour, Contre, Conseil, Issue. La cinquième n’est pas un choix : on additionne les numéros — Le Mat compte pour zéro — et l’on réduit si besoin. D’abord votre œil. Ensuite la leçon.</p>
+      <div class="center"><button class="btn" id="go1">Commencer un exercice</button></div>
     </div>
     <div class="panel" id="samplesPanel">
       <p class="eyebrow" style="margin-bottom:10px">Sept croix déjà posées</p>
-      <p class="hint" style="margin:0 0 14px">Pour relire les séries de travail : la croix s’affiche, le centre se calcule, la lecture s’écrit. Cartes à l’endroit.</p>
+      <p class="hint" style="margin:0 0 14px">Démonstrations : la croix s’affiche, le centre se calcule, la leçon s’écrit. Cartes à l’endroit. Pour s’entraîner l’œil sur un corrigé.</p>
       <div class="choices" id="samples"></div>
     </div>
   </section>
@@ -271,7 +271,7 @@
       <label for="sit">Situation, en une phrase</label>
       <input id="sit" type="text" placeholder="métier, études, pause, création…">
 
-      <label>Motif de la consultation</label>
+      <label>Sujet de l’exercice</label>
       <div class="choices" id="motif">
         <button type="button" data-v="une relation">relation</button>
         <button type="button" data-v="un choix professionnel">choix professionnel</button>
@@ -280,9 +280,9 @@
         <button type="button" data-v="une autre question">autre</button>
       </div>
 
-      <label for="question">Votre question</label>
-      <textarea id="question" placeholder="Une question ouverte, ancrée dans le présent ou le proche avenir."></textarea>
-      <p class="hint">Évitez le oui/non sec, les questions sur un tiers absent, et « dites-moi tout sur ma vie ».</p>
+      <label for="question">Question d’étude</label>
+      <textarea id="question" placeholder="Une question ouverte, assez précise pour lire une croix — pas toute une vie."></textarea>
+      <p class="hint">On s’exerce sur une question réelle. Évitez le oui/non sec, les questions sur un tiers absent, et « dites-moi tout ».</p>
       <div class="choices" style="margin-top:10px">
         <button type="button" class="chip" data-q="Qu’est-ce qui m’aiderait à avancer dans cette situation professionnelle ?">exemple pro</button>
         <button type="button" class="chip" data-q="Quelle dynamique traverse actuellement cette relation ?">exemple relation</button>
@@ -322,14 +322,38 @@
     <div class="panel voice center">
       <p id="calcLine"></p>
       <div class="cross-wrap"><div class="cross" id="cross2"></div></div>
-      <p>Le centre est posé. On lit d’abord la structure, ensuite chaque image, ensuite leurs rencontres.</p>
-      <button class="btn" id="go5">Écouter la lecture</button>
+      <p>Le centre est posé. Avant la leçon : une phrase par pôle, avec votre seul œil.</p>
+      <button class="btn" id="goEye">D’abord mon œil</button>
+    </div>
+  </section>
+
+  <section id="stepEye" class="hidden">
+    <p class="eyebrow">Votre œil</p>
+    <h1>Dites ce que vous voyez</h1>
+    <p class="lead">Une phrase suffit. Ce n’est pas la bonne réponse. C’est votre premier regard.</p>
+    <div class="cross-wrap"><div class="cross" id="crossEye"></div></div>
+    <div class="panel">
+      <label for="eyePour">Pour — ce qui aide</label>
+      <textarea id="eyePour" placeholder="Ce que cette lame vous dit, ici."></textarea>
+      <label for="eyeContre">Contre — ce qui freine</label>
+      <textarea id="eyeContre" placeholder="Ce que cette lame vous dit, ici."></textarea>
+      <label for="eyeConseil">Conseil — l’attitude</label>
+      <textarea id="eyeConseil" placeholder="Ce que cette lame vous dit, ici."></textarea>
+      <label for="eyeIssue">Issue — la pente</label>
+      <textarea id="eyeIssue" placeholder="Ce que cette lame vous dit, ici."></textarea>
+      <label for="eyeCentre">Centre — le nom de la question</label>
+      <textarea id="eyeCentre" placeholder="Ce que le centre rassemble, pour vous."></textarea>
+      <p class="hint">Vous pouvez laisser des cases vides. L’exercice, c’est d’oser une phrase, pas de tout couvrir.</p>
+      <div class="center">
+        <button class="btn" id="go5">Ouvrir la leçon</button>
+        <button class="btn ghost" id="skipEye" type="button">Passer</button>
+      </div>
     </div>
   </section>
 
   <section id="step5" class="hidden">
-    <p class="eyebrow">Lecture</p>
-    <h1>Ce que les cartes disent</h1>
+    <p class="eyebrow">Leçon</p>
+    <h1>Ce que Hélène reprend</h1>
     <div class="cross-wrap"><div class="cross" id="cross3"></div></div>
     <div class="speak-bar" id="speakBar">
       <button class="btn" id="speakPlay" type="button">Lire à voix haute</button>
@@ -343,11 +367,11 @@
     </div>
     <article id="lecture"></article>
     <div class="center" style="margin-top:28px">
-      <button class="btn ghost" id="restart">Recommencer un tirage</button>
+      <button class="btn ghost" id="restart">Nouvel exercice</button>
     </div>
   </section>
 
-  <footer>Cabinet des Trois Lunes · Hélène Belmont · éclairage, jamais verdict</footer>
+  <footer>Trois Lunes · atelier de lecture · Hélène Belmont</footer>
 </main>
 <div id="cardZoom" aria-hidden="true"><div class="zoom-card"><img alt=""></div></div>
 
@@ -541,7 +565,8 @@ const POS = [
 const S = {
   step:0, genre:"n", age:"", motif:"",
   prenom:"", sit:"", question:"",
-  order:[], drawn:[], synth:null
+  order:[], drawn:[], synth:null,
+  eye:{pour:"",contre:"",conseil:"",issue:"",centre:""}
 };
 
 function $(id){ return document.getElementById(id); }
@@ -556,7 +581,12 @@ function cardOf(n){
   return {n:k,r:"?",name:"Une lame",see:"",mean:"",up:"",rv:"",pour:"",contre:"",conseil:"",issue:""};
 }
 function show(n){
-  for (let i=0;i<=5;i++) $("step"+i).classList.toggle("hidden", i!==n);
+  for (let i=0;i<=5;i++){
+    const el=$("step"+i);
+    if(el) el.classList.toggle("hidden", i!==n);
+  }
+  const eye=$("stepEye");
+  if(eye) eye.classList.toggle("hidden", n!=="eye");
   S.step=n;
   document.body.classList.toggle("drawing", n===3);
   window.scrollTo({top:0,behavior:"smooth"});
@@ -652,8 +682,31 @@ $("go2").onclick=()=>{
   show(2);
 };
 $("go3").onclick=()=>{ buildDeck(); renderCross("cross"); show(3); };
-$("go5").onclick=()=>{ stopSpeak(); renderCross("cross3"); $("lecture").innerHTML=reading(); show(5); };
-$("restart").onclick=()=>{ stopSpeak(); S.drawn=[]; S.synth=null; try{ history.replaceState(null,"",location.pathname); }catch(e){} show(0); };
+function saveEye(){
+  S.eye={
+    pour:($("eyePour")&&$("eyePour").value||"").trim(),
+    contre:($("eyeContre")&&$("eyeContre").value||"").trim(),
+    conseil:($("eyeConseil")&&$("eyeConseil").value||"").trim(),
+    issue:($("eyeIssue")&&$("eyeIssue").value||"").trim(),
+    centre:($("eyeCentre")&&$("eyeCentre").value||"").trim()
+  };
+}
+function openLesson(){
+  saveEye();
+  stopSpeak();
+  renderCross("cross3");
+  $("lecture").innerHTML=reading();
+  show(5);
+}
+$("goEye").onclick=()=>{
+  ["eyePour","eyeContre","eyeConseil","eyeIssue","eyeCentre"].forEach(id=>{ const el=$(id); if(el) el.value=""; });
+  S.eye={pour:"",contre:"",conseil:"",issue:"",centre:""};
+  renderCross("crossEye");
+  show("eye");
+};
+$("go5").onclick=openLesson;
+$("skipEye").onclick=()=>{ S.eye={pour:"",contre:"",conseil:"",issue:"",centre:""}; openLesson(); };
+$("restart").onclick=()=>{ stopSpeak(); S.drawn=[]; S.synth=null; S.eye={pour:"",contre:"",conseil:"",issue:"",centre:""}; try{ history.replaceState(null,"",location.pathname); }catch(e){} show(0); };
 
 function lectureText(){
   const root=$("lecture");
@@ -1185,11 +1238,24 @@ function reading(){
     ? "Le frein travaille surtout à l'intérieur : une habitude de pensée, une peur familière, un nœud qu'on n'a pas encore dit."
     : "Le frein se voit. Il a un visage, une situation, parfois une personne.";
 
+  const eye=S.eye||{};
+  const hasEye=[eye.pour,eye.contre,eye.conseil,eye.issue,eye.centre].some(t=>T(t));
+  const eyeBlock = hasEye ? [
+    '<h2>Votre premier regard</h2>',
+    eye.pour?'<p><em>Pour.</em> '+esc(eye.pour)+'</p>':'',
+    eye.contre?'<p><em>Contre.</em> '+esc(eye.contre)+'</p>':'',
+    eye.conseil?'<p><em>Conseil.</em> '+esc(eye.conseil)+'</p>':'',
+    eye.issue?'<p><em>Issue.</em> '+esc(eye.issue)+'</p>':'',
+    eye.centre?'<p><em>Centre.</em> '+esc(eye.centre)+'</p>':'',
+    '<p>On garde ces phrases à côté. La leçon ne les corrige pas comme une copie : elle les précise, ou les déplace.</p>'
+  ].join("") : "";
+
   return [
-    '<p class="byline">Lecture d\'Hélène Belmont · '+quand+' · '+heures+'</p>',
+    '<p class="byline">Leçon d\'Hélène Belmont · '+quand+' · '+heures+'</p>',
     '<p class="spread-title">'+esc(titre)+'</p>',
     '<p>Je vous retrouve'+adresse+(sit?' — « '+esc(sit)+' »':'')+'. Tout ce qui suit se lit à la lumière de cette question, et d\'elle seule :</p>',
     '<p class="qbox">« '+q+' »</p>',
+    eyeBlock,
     '<p>Je ne commente pas les lames « en général ». Je les fais parler pour '+domaine+'.</p>',
 
     '<h2>Ce qui vous aide, pour cette question</h2>',
