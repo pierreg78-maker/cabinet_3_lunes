@@ -89,7 +89,7 @@
   }
   .cross-wrap,.cross{overflow:visible}
   .slot{width:var(--slot-w); text-align:center; position:relative; z-index:1; overflow:visible}
-  .slot:hover, .slot:has(.face-card.zoomed), .slot:has(.face-card:focus){z-index:60}
+  .s1,.s2,.s3,.s4,.s5{z-index:1}
   .slot .lab{font-family:Cinzel,serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
   .place{
     width:var(--slot-w);height:var(--slot-h);border-radius:6px;border:1px dashed rgba(201,161,95,.35);
@@ -102,17 +102,10 @@
   }
   .face-card{
     width:var(--slot-w);height:var(--slot-h);border-radius:6px; background:#1a1518; color:var(--ink);
-    overflow:hidden; position:relative; cursor:zoom-in;
+    overflow:hidden; position:relative; cursor:zoom-in; z-index:1;
     box-shadow:0 8px 20px -12px #000, 0 0 0 1px rgba(201,161,95,.35);
-    transform-origin:center center;
-    transition:transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .28s, z-index 0s;
     -webkit-tap-highlight-color:transparent;
   }
-  .s1 .face-card{transform-origin:right center}
-  .s2 .face-card{transform-origin:left center}
-  .s3 .face-card{transform-origin:center bottom}
-  .s4 .face-card{transform-origin:center top}
-  .s5 .face-card{transform-origin:center center}
   .face-card img{
     width:100%; height:100%; object-fit:cover; display:block;
   }
@@ -120,19 +113,22 @@
   .face-card .cap{
     display:none;
   }
-  @media (hover:hover) and (pointer:fine){
-    .face-card:hover{
-      transform:scale(3);
-      z-index:80;
-      box-shadow:0 18px 48px -10px #000, 0 0 0 1px rgba(201,161,95,.55);
-    }
+  #cardZoom{
+    position:fixed; inset:0; z-index:120; display:none; place-items:center;
+    background:transparent; pointer-events:none;
   }
-  .face-card.zoomed, .face-card:focus-visible{
-    transform:scale(3);
-    z-index:80;
-    outline:none;
-    box-shadow:0 18px 48px -10px #000, 0 0 0 1px rgba(201,161,95,.55);
+  #cardZoom.on{display:grid}
+  #cardZoom.locked{
+    background:rgba(8,6,10,.45); pointer-events:auto; cursor:zoom-out;
   }
+  #cardZoom .zoom-card{
+    width:calc(var(--slot-w) * 3); height:calc(var(--slot-h) * 3);
+    max-width:min(92vw, 420px); max-height:min(88svh, 630px);
+    border-radius:10px; overflow:hidden; background:#1a1518;
+    box-shadow:0 24px 60px -12px #000, 0 0 0 1px rgba(201,161,95,.55);
+  }
+  #cardZoom .zoom-card img{width:100%;height:100%;object-fit:cover;display:block}
+  #cardZoom .zoom-card.rev img{transform:rotate(180deg)}
   @keyframes breathe{
     0%,100%{box-shadow:0 0 0 1px rgba(201,161,95,.28), 0 0 10px -8px rgba(201,161,95,.2)}
     50%{box-shadow:0 0 0 2px rgba(201,161,95,.55), 0 0 18px -4px rgba(201,161,95,.7)}
@@ -237,7 +233,7 @@
     <h1>Tirage en croix</h1>
     <p class="lead">Vingt-deux arcanes majeurs. Vous tirez. Hélène dispose. Le centre, le jeu le calcule.</p>
     <div class="panel voice">
-      <p>Ici, seulement le Tarot de Marseille, dans sa langue claire. Le tirage n’enferme pas un destin. Il éclaire ce qui soutient et ce qui freine, l’attitude à tenir, la pente actuelle, et enfin le fil qui relie le tout.</p>
+      <p>Ici, seulement le Tarot de Marseille, dans sa langue claire. Le tirage n’enferme pas un destin. Il éclaire ce qui soutient, ce qui freine, l’attitude à tenir, la pente actuelle, et le fil qui relie le tout.</p>
       <p>Quatre cartes pour les quatre pôles. La cinquième n’est pas un choix : on additionne les numéros — Le Mat compte pour zéro — et l’on réduit si besoin.</p>
       <div class="center"><button class="btn" id="go1">S’asseoir à la table</button></div>
     </div>
@@ -353,6 +349,7 @@
 
   <footer>Cabinet des Trois Lunes · Hélène Belmont · éclairage, jamais verdict</footer>
 </main>
+<div id="cardZoom" aria-hidden="true"><div class="zoom-card"><img alt=""></div></div>
 
 <script>
 const ARCANA = [
@@ -952,22 +949,53 @@ function cardEl(c){
   return '<div class="face-card'+(c.rev?" rev":"")+'" tabindex="0" title="'+T(a.name)+(c.rev?" (renversée)":"")+'"><img src="'+cardSrc(c.n)+'" alt="'+T(a.name)+'"></div>';
 }
 (function zoomPlacedCards(){
-  function clearZoom(except){
-    document.querySelectorAll(".face-card.zoomed").forEach(el=>{
-      if(el!==except) el.classList.remove("zoomed");
-    });
+  const layer=$("cardZoom");
+  const frame=layer.querySelector(".zoom-card");
+  const img=frame.querySelector("img");
+  let locked=false;
+  function hide(){
+    locked=false;
+    layer.classList.remove("on","locked");
+    layer.setAttribute("aria-hidden","true");
   }
+  function show(card, pin){
+    if(!card || !layer) return;
+    const src=card.querySelector("img");
+    if(!src) return;
+    img.src=src.src;
+    img.alt=src.alt||"";
+    frame.classList.toggle("rev", card.classList.contains("rev"));
+    const host=card.closest(".cross")||document.documentElement;
+    const cs=getComputedStyle(host);
+    const w=parseFloat(cs.getPropertyValue("--slot-w"))||92;
+    const h=parseFloat(cs.getPropertyValue("--slot-h"))||138;
+    frame.style.width=(w*3)+"px";
+    frame.style.height=(h*3)+"px";
+    locked=!!pin;
+    layer.classList.toggle("locked", locked);
+    layer.classList.add("on");
+    layer.setAttribute("aria-hidden","false");
+  }
+  document.addEventListener("pointerenter", e=>{
+    const card=e.target.closest && e.target.closest(".face-card");
+    if(card && !locked && e.pointerType==="mouse") show(card, false);
+  }, true);
+  document.addEventListener("pointerleave", e=>{
+    const card=e.target.closest && e.target.closest(".face-card");
+    if(card && !locked && e.pointerType==="mouse") hide();
+  }, true);
   document.addEventListener("pointerdown", e=>{
+    if(e.target.closest && e.target.closest("#cardZoom")){ hide(); return; }
     const card=e.target.closest && e.target.closest(".face-card");
     if(card){
-      if(card.classList.contains("zoomed")) card.classList.remove("zoomed");
-      else { clearZoom(card); card.classList.add("zoomed"); }
+      if(locked && layer.classList.contains("on")) hide();
+      else show(card, true);
     } else {
-      clearZoom();
+      hide();
     }
   });
   document.addEventListener("keydown", e=>{
-    if(e.key==="Escape") clearZoom();
+    if(e.key==="Escape") hide();
   });
 })();
 function renderCross(id, landedPos){
