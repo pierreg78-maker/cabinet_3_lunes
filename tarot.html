@@ -205,6 +205,12 @@
   #lecture .byline{font-size:15px;color:var(--muted);font-style:italic;text-align:center;margin:0 0 8px}
   #lecture .spread-title{font-family:Cinzel,serif;text-align:center;letter-spacing:.12em;text-transform:uppercase;font-size:1.05rem;color:var(--gold-hi);margin:4px 0 18px}
   #lecture .sstitle{font-style:italic;color:#cfc4ad;margin:0 0 16px}
+  #lecture .sstitle a, .fiche-link{
+    color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(201,161,95,.45);
+    font-family:Cinzel,serif; font-size:10px; letter-spacing:.12em; text-transform:uppercase;
+  }
+  #lecture .sstitle a{font-style:normal;margin-left:8px;font-size:10px}
+  .fiche-link{display:inline-block;margin-top:6px}
   .speak-bar{
     max-width:760px;margin:8px auto 18px;padding:14px 16px;
     display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;
@@ -235,7 +241,10 @@
     <div class="panel voice">
       <p>Ceci n’est pas une consultation. C’est une table d’étude : le Tarot de Marseille, sa langue claire, et l’habitude de lire une croix sans en faire un destin.</p>
       <p>Quatre cartes pour les quatre pôles — Pour, Contre, Conseil, Issue. La cinquième n’est pas un choix : on additionne les numéros — Le Mat compte pour zéro — et l’on réduit si besoin. D’abord votre œil. Ensuite la leçon.</p>
-      <div class="center"><button class="btn" id="go1">Commencer un exercice</button></div>
+      <div class="center">
+        <button class="btn" id="go1">Commencer un exercice</button>
+        <a class="btn ghost" href="./fiches.html" style="display:inline-flex;text-decoration:none;margin-top:22px">Fiches des 22 lames</a>
+      </div>
     </div>
     <div class="panel" id="samplesPanel">
       <p class="eyebrow" style="margin-bottom:10px">Sept croix déjà posées</p>
@@ -288,7 +297,7 @@
         <button type="button" class="chip" data-q="Quelle dynamique traverse actuellement cette relation ?">exemple relation</button>
         <button type="button" class="chip" data-q="Que dois-je clarifier avant de prendre cette décision ?">exemple décision</button>
       </div>
-      <div class="center"><button class="btn" id="go2">Poser cette question</button></div>
+      <div class="center"><button class="btn" id="go2">Tenir cette question</button></div>
     </div>
   </section>
 
@@ -297,7 +306,7 @@
     <h1>Quatre cartes, puis le centre</h1>
     <div class="panel voice">
       <p id="qEcho" class="qbox"></p>
-      <p>Respirez consciemment pendant 5 à 10 secondes. Veuillez choisir quatre cartes, une pour chaque pôle de la croix.</p>
+      <p>Respirez. Gardez la question, sans la serrer. Vous allez toucher quatre cartes, une pour chaque pôle de la croix.</p>
       <p>Une carte peut se poser à l’envers. Ce n’est pas un mauvais présage. L’énergie est là ; elle demande un autre accès — plus intérieur, plus patient, plus conscient.</p>
       <div class="center"><button class="btn" id="go3">Mélanger le jeu</button></div>
     </div>
@@ -306,7 +315,7 @@
   <section id="step3" class="hidden">
     <div class="tray" id="tray">
       <p class="eyebrow">Le tapis</p>
-      <h1>Choisissez une carte</h1>
+      <h1>Touchez une carte</h1>
       <p class="lead" id="promptPose">Celle-ci, c’est ce qui travaille avec vous. Les forces, les appuis.</p>
       <div class="cross-wrap"><div class="cross" id="cross"></div></div>
       <p class="status" id="counter">Carte 1 sur 4 — Le Pour</p>
@@ -996,6 +1005,12 @@ function revealSynth(){
   }, 1800);
   setTimeout(()=>{ flyer.remove(); dest.style.opacity="1"; }, 2620);
 }
+function ficheHref(n){ return "fiches.html#a"+Number(n); }
+function ficheA(n, label){
+  const a=cardOf(n);
+  const t=label || ("Fiche · "+T(a.name));
+  return '<a class="fiche-link" href="'+ficheHref(n)+'">'+t+'</a>';
+}
 function cardEl(c){
   if(!c) return '<div class="place">·</div>';
   const a=cardOf(c.n);
@@ -1039,6 +1054,7 @@ function cardEl(c){
   }, true);
   document.addEventListener("pointerdown", e=>{
     if(e.target.closest && e.target.closest("#cardZoom")){ hide(); return; }
+    if(e.target.closest && e.target.closest("a.fiche-link")) return;
     const card=e.target.closest && e.target.closest(".face-card");
     if(card){
       if(locked && layer.classList.contains("on")) hide();
@@ -1057,7 +1073,8 @@ function renderCross(id, landedPos){
   const cell=(p,title)=>{
     const c=find(p);
     const empty = !c ? '<div class="place'+(p===nextPos?" next":"")+'">·</div>' : cardEl(c);
-    return '<div class="slot s'+p+'"><div class="lab">'+title+'</div>'+empty+'</div>';
+    const fiche = (c && id!=="cross") ? ficheA(c.n, "fiche") : "";
+    return '<div class="slot s'+p+'"><div class="lab">'+title+'</div>'+empty+fiche+'</div>';
   };
   $(id).innerHTML=cell(3,"Conseil")+cell(1,"Pour")+cell(5,"Synthèse")+cell(2,"Contre")+cell(4,"Issue");
 }
@@ -1259,13 +1276,13 @@ function reading(){
     '<p>Je ne commente pas les lames « en général ». Je les fais parler pour '+domaine+'.</p>',
 
     '<h2>Ce qui vous aide, pour cette question</h2>',
-    '<p class="sstitle">'+esc(field(p,"name"))+' · le Pour</p>',
+    '<p class="sstitle">'+esc(field(p,"name"))+' · le Pour · '+ficheA(P&&P.n, "fiche")+'</p>',
     '<p>'+field(p,"see")+' '+field(p,"mean")+' '+pourSens+'</p>',
     '<p>'+field(p,"pour")+'</p>',
     '<p><em>Lien avec votre question.</em> « '+q+' » — '+liens(th,"pour")+' '+field(p,"name")+' n\'est pas un décor autour de la question. C\'est déjà une réponse partielle : voici par où ça peut tenir.</p>',
 
     '<h2>Ce qui freine, pour cette question</h2>',
-    '<p class="sstitle">'+esc(field(c,"name"))+' · le Contre</p>',
+    '<p class="sstitle">'+esc(field(c,"name"))+' · le Contre · '+ficheA(C&&C.n, "fiche")+'</p>',
     '<p>'+field(c,"see")+' '+field(c,"mean")+' '+contreSens+'</p>',
     '<p>'+field(c,"contre")+'</p>',
     '<p><em>Lien avec votre question.</em> « '+q+' » — '+liens(th,"contre")+' Tant que '+field(c,"name")+' n\'est pas regardé en face, la question tourne en rond.</p>',
@@ -1273,18 +1290,18 @@ function reading(){
     '<p>Les deux ensemble : '+field(p,"name")+' et '+field(c,"name")+' ne s\'annulent pas. Pour « '+q+' », le travail est de s\'appuyer sur l\'un sans nier l\'autre.</p>',
 
     '<h2>Comment vous tenir, face à cette question</h2>',
-    '<p class="sstitle">'+esc(field(co,"name"))+' · le Conseil</p>',
+    '<p class="sstitle">'+esc(field(co,"name"))+' · le Conseil · '+ficheA(Co&&Co.n, "fiche")+'</p>',
     '<p>'+field(co,"see")+' '+field(co,"mean")+' '+(rev(Co)?"À l'envers, cette attitude se tient de l'intérieur, sans démonstration.":"À l'endroit, elle peut se vivre tout de suite, dans un geste simple.")+'</p>',
     '<p>'+field(co,"conseil")+'</p>',
     '<p><em>Lien avec votre question.</em> '+liens(th,"conseil")+' Ce n\'est pas « que faire de votre vie ». C\'est comment vous tenir <em>pendant que</em> « '+q+' » reste ouvert.</p>',
 
     '<h2>Si rien ne change dans cette question</h2>',
-    '<p class="sstitle">'+esc(field(i,"name"))+' · l\'Issue</p>',
+    '<p class="sstitle">'+esc(field(i,"name"))+' · l\'Issue · '+ficheA(I&&I.n, "fiche")+'</p>',
     '<p>'+field(i,"see")+' '+field(i,"issue")+'</p>',
     '<p><em>Lien avec votre question.</em> '+liens(th,"issue")+' L\'issue n\'est pas le destin de « '+q+' ». C\'est le chemin <em>si l\'on n\'écoute pas</em> '+field(co,"name")+'. L\'attitude du haut corrige la pente du bas.</p>',
 
     '<h2>Le nom de votre question</h2>',
-    '<p class="sstitle">'+esc(field(y,"name"))+(deja?" — déjà présent dans la croix":"")+' · synthèse</p>',
+    '<p class="sstitle">'+esc(field(y,"name"))+(deja?" — déjà présent dans la croix":"")+' · synthèse · '+ficheA(Y&&Y.n, "fiche")+'</p>',
     '<p>Les quatre numéros s\'additionnent'+(Y&&Y.steps&&Y.steps.length>1?" puis se réduisent":"")+' : '+T(steps)+'. Le centre s\'appelle <strong>'+field(y,"name")+'</strong>'+(deja?". Quand une lame revient ainsi, le thème de votre question frappe une seconde fois.":".")+'</p>',
     '<p>'+field(y,"see")+' '+field(y,"mean")+'</p>',
     '<p><em>Lien avec votre question.</em> '+liens(th,"synth")+' Relu pour « '+q+' », '+field(y,"name")+' dit : voilà le vrai sujet, sous les mots que vous avez choisis.</p>',
