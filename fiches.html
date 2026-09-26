@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiches des 22 arcanes · Atelier Hélène Belmont</title>
+<meta name="description" content="Fiches d’étude des 22 arcanes majeurs du Tarot de Marseille : cinq choses à savoir, pour mémoriser.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0a0f'/%3E%3Ccircle cx='8' cy='16' r='5' fill='%23c9a15f'/%3E%3Ccircle cx='10.5' cy='16' r='4.3' fill='%230c0a0f'/%3E%3Ccircle cx='16' cy='16' r='4.4' fill='none' stroke='%23c9a15f' stroke-width='1.4'/%3E%3Ccircle cx='24' cy='16' r='5' fill='%23c9a15f'/%3E%3Ccircle cx='21.5' cy='16' r='4.3' fill='%230c0a0f'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{--night:#0c0a0f;--ivory:#e8e0cd;--muted:#9d8f7c;--gold:#c9a15f;--gold-hi:#e6c98c;--cream:#ece1cb;--ink:#241b20}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:radial-gradient(120% 90% at 50% 6%, #151019 0%, #0d0a10 48%, #070509 100%) fixed;color:var(--ivory);font-family:"Cormorant Garamond",Georgia,serif;font-size:18px;line-height:1.65}
+  main{max-width:820px;margin:0 auto;padding:28px 22px 80px}
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}
+  .brand{font-family:Cinzel,serif;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);text-decoration:none}
+  .eyebrow{font-family:Cinzel,serif;font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);text-align:center}
+  h1{font-family:Cinzel,serif;font-weight:600;text-align:center;letter-spacing:.1em;font-size:clamp(1.6rem,4vw,2.3rem);margin:12px 0 8px}
+  .lead{text-align:center;font-style:italic;color:#cfc4ad;max-width:640px;margin:0 auto 22px;font-size:1.12rem}
+  .panel{background:rgba(18,16,22,.72);border:1px solid rgba(201,161,95,.28);border-radius:4px;padding:22px 22px 18px;margin:0 auto 22px}
+  .hint{font-size:15px;color:var(--muted);font-style:italic}
+  .toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0 28px}
+  .toc a{color:var(--gold-hi);text-decoration:none;border:1px solid rgba(201,161,95,.35);padding:6px 10px;font-family:Cinzel,serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+  .fiche{border:1px solid rgba(201,161,95,.28);background:rgba(18,16,22,.55);margin:0 0 16px;padding:0}
+  .fiche summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:center;padding:12px 14px}
+  .fiche summary::-webkit-details-marker{display:none}
+  .fiche[open]{border-color:var(--gold)}
+  .fiche img.mini{width:72px;height:108px;object-fit:cover;border-radius:6px;display:block;box-shadow:0 0 0 1px rgba(201,161,95,.35)}
+  .fiche h2{font-family:Cinzel,serif;font-size:1.05rem;letter-spacing:.08em;color:var(--gold-hi);font-weight:600}
+  .fiche .kw{color:var(--muted);font-style:italic;font-size:15px}
+  .body{padding:4px 18px 20px 18px}
+  .body ol{margin:8px 0 12px 1.15em}
+  .body li{margin:0 0 10px}
+  .body li strong{font-family:Cinzel,serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px;font-weight:600}
+  .note{font-size:15px;color:#cfc4ad;border-left:1px solid var(--gold);padding-left:12px;margin:10px 0}
+  footer{text-align:center;margin-top:36px;color:#6d6355;font-size:14px}
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <a class="brand" href="./tarot.html">← Atelier</a>
+    <span class="brand">Hélène Belmont</span>
+  </div>
+  <p class="eyebrow">Mémoriser les lames</p>
+  <h1>Vingt-deux fiches</h1>
+  <p class="lead">Cinq choses à savoir par arcane. Assez pour tenir une lame en tête ; pas assez pour s’en faire un destin.</p>
+  <div class="panel">
+    <p>Ces fiches n’existaient pas encore sous cette forme. Le fichier <em>signification arcanes majeurs.txt</em> est un texte long, de facture magazine. Ici : une grille unique, faite pour l’atelier.</p>
+    <p class="hint" style="margin-top:10px">Trois sources distinctes, synthétisées sans les fondre en une seule vérité :<br>
+    1. Mots-clés de Philippe Camoin (reconstitution Camoin–Jodorowsky du Tarot de Marseille).<br>
+    2. Lecture structurelle contemporaine (série pédagogique Tarot Nova).<br>
+    3. Tradition de lecture française usuelle (Clés du Tarot, et le ton déjà tenu dans l’atelier).<br>
+    Quand les sources divergent, la fiche le dit. L’endroit n’est pas « bon » ; l’envers n’est pas « mauvais » : l’énergie est active, ou retenue.</p>
+  </div>
+  <nav class="toc" aria-label="Les 22 lames">
+    <a href="#a0">0 Mat</a><a href="#a1">I</a><a href="#a2">II</a><a href="#a3">III</a><a href="#a4">IV</a><a href="#a5">V</a><a href="#a6">VI</a><a href="#a7">VII</a><a href="#a8">VIII</a><a href="#a9">IX</a><a href="#a10">X</a><a href="#a11">XI</a><a href="#a12">XII</a><a href="#a13">XIII</a><a href="#a14">XIV</a><a href="#a15">XV</a><a href="#a16">XVI</a><a href="#a17">XVII</a><a href="#a18">XVIII</a><a href="#a19">XIX</a><a href="#a20">XX</a><a href="#a21">XXI</a>
+  </nav>
+
+<article class="fiche" id="a0"><details><summary><img class="mini" src="arcanes/0.jpg" alt="Le Mat"><div><h2>Le Mat</h2><p class="kw">sans numéro · liberté, seuil, pèlerinage</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Un marcheur au sac, le chien aux talons, le pas déjà hors du cadre. Pas de chiffre sur la lame : il n’appartient pas à la série comme les autres.</li>
+<li><strong>Noyau</strong> Partir sans tout maîtriser. Camoin : pèlerin en quête, pas « fou ». Nova : élan hors cadre. Tradition usuelle : liberté, ailleurs — ou fuite.</li>
+<li><strong>Dans une question</strong> Qu’est-ce qui demande de quitter le connu ? Le Mat ouvre une route ; il ne promet pas l’arrivée.</li>
+<li><strong>Endroit / envers</strong> Actif : le pas se fait. Retenu : on tourne autour du départ, ou on fuit en appelant cela voyager.</li>
+<li><strong>Piège</strong> Le confondre avec Le Bateleur (commencer avec des outils) ou avec La Maison Dieu (le cadre qui cède). Le Mat n’a pas de table. Il a un chemin.</li>
+</ol>
+<p class="note">Écart : Camoin refuse le mot folie à l’endroit ; la tradition populaire le garde en ombre. À l’atelier, la folie n’est pas la lame — c’est le pas sans regard.</p>
+</div></details></article>
+
+<article class="fiche" id="a1"><details><summary><img class="mini" src="arcanes/1.jpg" alt="Le Bateleur"><div><h2>I · Le Bateleur</h2><p class="kw">commencement, outils, essai</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Jeune figure derrière une table : denier, coupe, épée, bâton. Les quatre germes des mineurs sont déjà là. Rien n’est encore joué.</li>
+<li><strong>Noyau</strong> Commencer. Camoin insiste sur le travail et le cycle qui démarre sans savoir où il mène. Nova : potentiel, mise en action. Tradition : vitalité, entrée dans la vie adulte — impatience si on s’éparpille.</li>
+<li><strong>Dans une question</strong> Avec quels moyens puis-je commencer, aujourd’hui, un seul geste ?</li>
+<li><strong>Endroit / envers</strong> Actif : on essaie. Retenu : on touche à tout pour ne pas finir.</li>
+<li><strong>Piège</strong> Croire que le Bateleur « réussit ». Il inaugure. Le Monde accomplit. Le Chariot avance.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a2"><details><summary><img class="mini" src="arcanes/2.jpg" alt="La Papesse"><div><h2>II · La Papesse</h2><p class="kw">savoir retenu, gestation, silence</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Femme assise entre deux colonnes, livre ouvert, voile. Elle lit plus qu’elle ne parle.</li>
+<li><strong>Noyau</strong> Ce qui mûrit à l’abri. Camoin : réceptivité, études, accumulation d’un savoir venu d’ailleurs. Nova : intériorité et temps qu’on ne force pas. Tradition : sagesse, grand-mère, méditation — rigidité si le silence se ferme.</li>
+<li><strong>Dans une question</strong> Que faut-il encore laisser se former, avant d’agir ou de dire ?</li>
+<li><strong>Endroit / envers</strong> Actif : on prépare. Retenu : on se tait trop longtemps ; la chambre n’a plus de porte.</li>
+<li><strong>Piège</strong> La prendre pour L’Hermite. La Papesse est encore dans la maison du savoir. L’Hermite marche, une lanterne à la main.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a3"><details><summary><img class="mini" src="arcanes/3.jpg" alt="L'Impératrice"><div><h2>III · L’Impératrice</h2><p class="kw">forme, parole, fécondité de l’idée</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Souveraine au sceptre et à l’écu de l’aigle. L’idée a déjà un visage.</li>
+<li><strong>Noyau</strong> Mettre en forme. Camoin : monde des idées avant la matière, créativité. Nova : intelligence qui conçoit et s’exprime. Tradition : innover, charme, mère efficace — ou manque d’assurance qui bloque la voix.</li>
+<li><strong>Dans une question</strong> Qu’est-ce qui demande à être dit, écrit, enfanté ?</li>
+<li><strong>Endroit / envers</strong> Actif : on donne figure. Retenu : on parle trop tôt, trop fort, ou plus du tout.</li>
+<li><strong>Piège</strong> La coller à L’Empereur. Elle conçoit ; il bâtît. Sans elle, le cadre est vide. Sans lui, la parole ne tient pas.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a4"><details><summary><img class="mini" src="arcanes/4.jpg" alt="L'Empereur"><div><h2>IV · L’Empereur</h2><p class="kw">cadre, construction, autorité concrète</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Homme de pierre sur un trône, jambes en 4, sceptre. Le pouvoir ici est terrestre.</li>
+<li><strong>Noyau</strong> Rendre réel. Camoin : bâtisseur qui actualise les idées de l’Impératrice, chef éclairé — tyran à l’envers. Nova : structure, responsabilité. Tradition : stabilité, dirigeant — autorité abusive.</li>
+<li><strong>Dans une question</strong> Quelle structure faut-il poser, ou cesser de subir ?</li>
+<li><strong>Endroit / envers</strong> Actif : on organise. Retenu : mur, peur d’agir, ou empire trop étroit.</li>
+<li><strong>Piège</strong> Confondre autorité et violence. La lame tient un territoire. Elle n’oblige pas à l’occuper tout entier.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a5"><details><summary><img class="mini" src="arcanes/5.jpg" alt="Le Pape"><div><h2>V · Le Pape</h2><p class="kw">transmission, bénédiction, règle vivante</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Figure coiffée d’une tiare, deux acolytes, geste qui bénit. Quelqu’un parle à quelqu’un.</li>
+<li><strong>Noyau</strong> Transmettre pour recevoir. Camoin : enseignant, père, théâtre, antenne vers plus vaste. Nova : médiation et sens. Tradition : sagesse, unions bien menées — immaturité si on refuse toute voix.</li>
+<li><strong>Dans une question</strong> De qui, de quelle éthique, ai-je besoin — ou que dois-je à mon tour transmettre ?</li>
+<li><strong>Endroit / envers</strong> Actif : un conseil vivant circule. Retenu : doctrine morte, ou refus d’apprendre.</li>
+<li><strong>Piège</strong> Le réduire à « l’Église ». C’est toute parole qui fait autorité : maître, parent, école, serment.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a6"><details><summary><img class="mini" src="arcanes/6.jpg" alt="L'Amoureux"><div><h2>VI · L’Amoureux</h2><p class="kw">choix, désir, carrefour</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Un jeune homme entre deux femmes ; au-dessus, Cupidon bande l’arc. Ce n’est pas seulement un couple : c’est une alternative.</li>
+<li><strong>Noyau</strong> Choisir avec le cœur au clair. Camoin : union sacrée et dilemme guidé. Nova : tension entre orientations. Tradition : carrefour, émotions — ne pas trop tarder.</li>
+<li><strong>Dans une question</strong> Quel appel est le mien, une fois l’hésitation nommée ?</li>
+<li><strong>Endroit / envers</strong> Actif : on s’engage. Retenu : on habite l’entre-deux jusqu’à l’user.</li>
+<li><strong>Piège</strong> Lire « romance » et s’arrêter. La lame parle aussi d’un métier, d’une fidélité, d’une voie. Waite a mis deux amants : Marseille montre un choix.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a7"><details><summary><img class="mini" src="arcanes/7.jpg" alt="Le Chariot"><div><h2>VII · Le Chariot</h2><p class="kw">direction, avancée, deux chevaux</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Un conducteur couronné, dais étoilé, deux chevaux qui ne tirent pas tout à fait d’accord.</li>
+<li><strong>Noyau</strong> Avancer en tenant les rênes. Camoin : victoire dans le monde humain, voyage, « fils ». Nova : élan assumé. Tradition : se lancer, trouver sa place — parade enfantine si on ne maîtrise rien.</li>
+<li><strong>Dans une question</strong> Quelle est la direction unique, pas les dix envies ?</li>
+<li><strong>Endroit / envers</strong> Actif : on part. Retenu : trop vite, ou pas du tout ; les chevaux se disputent.</li>
+<li><strong>Piège</strong> Le prendre pour une garantie de succès. C’est une conduite, pas une arrivée (voir Le Monde).</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a8"><details><summary><img class="mini" src="arcanes/8.jpg" alt="La Justice"><div><h2>VIII · La Justice</h2><p class="kw">mesure, tranchant, équilibre</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Femme de face, balance et glaive. D’abord on pèse. Ensuite on coupe.</li>
+<li><strong>Noyau</strong> Rendre juste. Camoin : équilibre karmique, corde du détachement. Nova : arbitrage et lucidité. Tradition : décisions claires — ou procès, exigences impossibles.</li>
+<li><strong>Dans une question</strong> Qu’est-ce qui doit être pesé une fois, puis tranché sans rouvrir le dossier ?</li>
+<li><strong>Endroit / envers</strong> Actif : on décide. Retenu : le tribunal intérieur ne lève plus.</li>
+<li><strong>Piège</strong> Dans le Tarot de Waite, Justice est XI. À Marseille elle est VIII. Ne pas importer l’ordre anglais.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a9"><details><summary><img class="mini" src="arcanes/9.jpg" alt="L'Hermite"><div><h2>IX · L’Hermite</h2><p class="kw">lanterne, temps, prudence</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Vieil homme en marche, lanterne basse, bâton. Il n’éclaire que le prochain pas.</li>
+<li><strong>Noyau</strong> Comprendre en ralentissant. Camoin : initiation, phare, crise bien tenue. Nova : recul et maturité. Tradition : solitude utile, patience — idées sombres si l’isolement se ferme.</li>
+<li><strong>Dans une question</strong> Quelle vérité n’apparaît que si je cesse de courir ?</li>
+<li><strong>Endroit / envers</strong> Actif : on cherche. Retenu : on se coupe du monde et l’on appelle cela sagesse.</li>
+<li><strong>Piège</strong> Le coller à La Papesse (savoir dans la maison) ou au Pendu (suspension). L’Hermite avance encore, lentement.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a10"><details><summary><img class="mini" src="arcanes/10.jpg" alt="La Roue de Fortune"><div><h2>X · La Roue de Fortune</h2><p class="kw">cycle, bascule, manivelle</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Une roue posée, des figures qui montent et descendent, parfois un sphinx au faîte. La manivelle n’est pas toujours tournée.</li>
+<li><strong>Noyau</strong> Un tournant dans un cycle plus vaste. Camoin : devenir maître de sa destinée, ou la subir. Nova : mutation de phase. Tradition : gain, retour au départ — ou se laisser ballotter.</li>
+<li><strong>Dans une question</strong> Est-ce que je tourne la roue, ou est-ce qu’elle me tourne ?</li>
+<li><strong>Endroit / envers</strong> Actif : on saisit le changement. Retenu : on pose trop de questions et l’on rate l’occasion.</li>
+<li><strong>Piège</strong> Y lire « chance » comme à un casino. À Marseille, la Fortune est un rythme, pas un billet.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a11"><details><summary><img class="mini" src="arcanes/11.jpg" alt="La Force"><div><h2>XI · La Force</h2><p class="kw">douceur qui tient, courage calme</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Une femme ouvre (ou ferme) la gueule d’un lion. Le chapeau en 8 rappelle le Bateleur : même infini, autre maîtrise.</li>
+<li><strong>Noyau</strong> Tenir l’instinct sans l’écraser. Camoin : miracle, santé, Soi qui dompte la personnalité. Nova : énergie contenue. Tradition : assurance, progrès — débordement si l’on force.</li>
+<li><strong>Dans une question</strong> Quelle force dois-je habiter, plutôt que contraindre ?</li>
+<li><strong>Endroit / envers</strong> Actif : on tient. Retenu : on force, ou l’on lâche trop tôt.</li>
+<li><strong>Piège</strong> Waite inverse Force et Justice. Ici Force est XI. Ce n’est pas la violence du lion : c’est la main.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a12"><details><summary><img class="mini" src="arcanes/12.jpg" alt="Le Pendu"><div><h2>XII · Le Pendu</h2><p class="kw">envers du regard, attente choisie</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Homme suspendu par un pied, tête en bas, visage souvent paisible. Les mains n’agitent rien.</li>
+<li><strong>Noyau</strong> Arrêter pour voir autrement. Camoin : immobilité bien tenue, ou paresse / chômage. Nova : suspension et autre point de vue. Tradition : pause décidée ou imposée — blocage long si on la subit.</li>
+<li><strong>Dans une question</strong> Qu’est-ce qui mûrit seulement si je ne pousse plus ?</li>
+<li><strong>Endroit / envers</strong> Actif : on consent à l’attente. Retenu : impuissance, dépendance, dépression du non-geste.</li>
+<li><strong>Piège</strong> Le lire comme La Mort. Le Pendu ne fauche pas. Il retourne le monde le temps d’une saison.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a13"><details><summary><img class="mini" src="arcanes/13.jpg" alt="L'Arcane sans nom"><div><h2>XIII · L’Arcane sans nom</h2><p class="kw">coupe, passage, terreau</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Un squelette à la faux, membres et têtes dans la terre noire. La carte, à Marseille, n’écrit pas « Mort ».</li>
+<li><strong>Noyau</strong> Faire table rase de ce qui est fini. Camoin : transformation bien vécue, et aussi peur, castration, inconscient. Nova : mutation profonde. Tradition : grand nettoyage, vie nouvelle — rupture douloureuse même salutaire.</li>
+<li><strong>Dans une question</strong> Qu’est-ce qui doit partir pour que autre chose pousse ?</li>
+<li><strong>Endroit / envers</strong> Actif : on coupe juste. Retenu : on refuse le deuil, ou l’on fauche trop large.</li>
+<li><strong>Piège</strong> Annoncer une mort physique. Les trois sources parlent d’abord d’un cycle qui se termine. Rester honnête : la lame fait peur, et cette peur fait partie de sa leçon.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a14"><details><summary><img class="mini" src="arcanes/14.jpg" alt="Tempérance"><div><h2>XIV · Tempérance</h2><p class="kw">circulation, mesure, alliage</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Ange qui verse d’une cruche dans l’autre. L’eau va et vient. Rien n’est perdu.</li>
+<li><strong>Noyau</strong> Faire circuler sans gaspillager. Camoin : soin, voyage invisible, patience d’ange. Nova : ajustement vivant. Tradition : équilibre, protection — exaltation aveugle à l’ombre.</li>
+<li><strong>Dans une question</strong> Quels deux besoins puis-je allier, au lieu d’en sacrifier un ?</li>
+<li><strong>Endroit / envers</strong> Actif : ça coule. Retenu : tiédeur, indécision, refus d’aide.</li>
+<li><strong>Piège</strong> La confondre avec La Justice (qui tranche) ou L’Étoile (qui verse à terre). Tempérance verse d’un vase à l’autre : elle recycle.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a15"><details><summary><img class="mini" src="arcanes/15.jpg" alt="Le Diable"><div><h2>XV · Le Diable</h2><p class="kw">désir, nœud, lucidité sombre</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Figure ailée, torchère, deux diablotins liés. Le lien est visible. On peut le nommer.</li>
+<li><strong>Noyau</strong> Ce qui attache et ce qui allume. Camoin : illusion mentale, animalité, « grand gardien » avant la Maison Dieu. Nova : intensité, emprise. Tradition : passions, sens, gain — ou dépendance, personne malfaisante.</li>
+<li><strong>Dans une question</strong> Quel désir n’a pas encore été dit sans lui livrer la maison ?</li>
+<li><strong>Endroit / envers</strong> Actif : on voit le nœud. Retenu : on le nie, ou on s’y installe.</li>
+<li><strong>Piège</strong> Moraliser. Ce n’est pas « le Mal ». C’est l’énergie qui n’a pas de langage. Sans langage, elle enchaîne.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a16"><details><summary><img class="mini" src="arcanes/16.jpg" alt="La Maison Dieu"><div><h2>XVI · La Maison Dieu</h2><p class="kw">choc, ouverture, don qui tombe</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Tour couronnée que le feu ouvre ; deux corps chus ; boules dans l’air. On discute encore : foudre, ou pièces qui tombent du ciel ?</li>
+<li><strong>Noyau</strong> Un cadre qui ne tient plus. Camoin (écart net) : abondance et « oui » à ce qui vient d’en haut, pas une carte noire. Nova et tradition usuelle : rupture, révélation, chamboulement — déception à l’ombre, ou joie d’un nouveau sol.</li>
+<li><strong>Dans une question</strong> Qu’est-ce qui craque, et qu’est-ce qui, déjà, peut se reconstruire plus vrai ?</li>
+<li><strong>Endroit / envers</strong> Actif : on laisse tomber l’insoutenable. Retenu : terreur du choc, orgueil de la tour.</li>
+<li><strong>Piège</strong> N’en garder qu’une lecture. Dire les deux : catastrophe pour beaucoup de lecteurs français ; aubaine selon Camoin. Dans l’atelier, on tient les deux bords : le toit part, et quelque chose arrive.</li>
+</ol>
+<p class="note">C’est la lame où les sources se séparent le plus. Ne pas choisir trop tôt. Relire l’image.</p>
+</div></details></article>
+
+<article class="fiche" id="a17"><details><summary><img class="mini" src="arcanes/17.jpg" alt="L'Étoile"><div><h2>XVII · L’Étoile</h2><p class="kw">eau offerte, humilité, fidélité petite</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Femme nue qui verse, étoile au-dessus, oiseau, terre ouverte. Rien n’est habillé.</li>
+<li><strong>Noyau</strong> Se fier à une source simple. Camoin : humilité, fertilité, s’agenouiller pour recevoir. Nova : confiance et vérité nue. Tradition : bonne étoile, amante, paix — nostalgie qui égare.</li>
+<li><strong>Dans une question</strong> Quel petit geste fidèle, chaque jour, sans théâtre ?</li>
+<li><strong>Endroit / envers</strong> Actif : on verse. Retenu : espoir sans geste, ou don jusqu’à plus soi.</li>
+<li><strong>Piège</strong> La prendre pour Tempérance (circulation interne) ou pour Le Soleil (évidence sociale). L’Étoile est plus pauvre, plus exacte.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a18"><details><summary><img class="mini" src="arcanes/18.jpg" alt="La Lune"><div><h2>XVIII · La Lune</h2><p class="kw">brume, chien et loup, seuil de l’eau</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Lune au visage, gouttes, deux tours, écrevisse, chien et loup. Le chemin n’est pas droit.</li>
+<li><strong>Noyau</strong> Ce que la raison n’a pas encore formulé. Les trois sources s’accordent sur l’imaginaire, la peur, l’intuition. Tradition usuelle y ajoute le trouble et les cycles. Camoin, plus occultisant, y voit aussi les épreuves de l’âme avant le jour.</li>
+<li><strong>Dans une question</strong> Quelle intuition dois-je noter, puis vérifier à un seul fait ?</li>
+<li><strong>Endroit / envers</strong> Actif : la sensibilité guide. Retenu : les scénarios occupent toute la pièce.</li>
+<li><strong>Piège</strong> « Mensonge » comme seul mot. La Lune ment parfois ; plus souvent, elle montre trop, trop tôt, trop mêlé.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a19"><details><summary><img class="mini" src="arcanes/19.jpg" alt="Le Soleil"><div><h2>XIX · Le Soleil</h2><p class="kw">clarté, partage, chaleur visible</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Deux figures sous un soleil à visage humain, mur, fleurs. On est vu, ensemble.</li>
+<li><strong>Noyau</strong> Ce qui éclaire et réchauffe sans reste. Camoin : fraternité, personnalité et Soi réunis. Nova : évidence, joie. Tradition : réussites, protection, âme sœur — séduction trompeuse à l’ombre.</li>
+<li><strong>Dans une question</strong> Où ai-je le droit d’être simplement visible ?</li>
+<li><strong>Endroit / envers</strong> Actif : on rayonne. Retenu : on se brûle au rôle, ou on se cache.</li>
+<li><strong>Piège</strong> En faire la « meilleure carte ». Trop de soleil fatigue. Le Chariot et Le Monde disent d’autres victoires.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a20"><details><summary><img class="mini" src="arcanes/20.jpg" alt="Le Jugement"><div><h2>XX · Le Jugement</h2><p class="kw">appel, réveil, sortie du tombeau</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Ange à la trompette, cercueils ouverts, figures qui se lèvent. Quelqu’un appelle ; des corps répondent.</li>
+<li><strong>Noyau</strong> Un réveil, pas un tribunal mondain. Camoin : résurrection, mission. Nova : appel et relèvement. Tradition : récolte d’un mûrissement, réconciliation — poids du passé s’il n’est pas entendu.</li>
+<li><strong>Dans une question</strong> À quel appel petit, visible, puis-je répondre dès aujourd’hui ?</li>
+<li><strong>Endroit / envers</strong> Actif : on se lève. Retenu : la culpabilité tient lieu d’acte.</li>
+<li><strong>Piège</strong> Le lire comme La Justice. Justice pèse. Jugement réveille. Ce n’est pas la même heure.</li>
+</ol>
+</div></details></article>
+
+<article class="fiche" id="a21"><details><summary><img class="mini" src="arcanes/21.jpg" alt="Le Monde"><div><h2>XXI · Le Monde</h2><p class="kw">couronne, totalité, boucle fermée</p></div></summary><div class="body">
+<ol>
+<li><strong>Voir</strong> Une figure dans une mandorle, quatre vivants aux coins (taureau, lion, aigle, ange). La danse est ronde.</li>
+<li><strong>Noyau</strong> Ce qui s’accomplit et s’intègre. Les trois sources s’accordent : aboutissement, allégresse, totalité. Tradition : réussite haute — ou sentiment d’enfermement si la couronne n’est pas encore portée.</li>
+<li><strong>Dans une question</strong> Quelle boucle puis-je fermer, célébrer, avant d’en ouvrir une autre ?</li>
+<li><strong>Endroit / envers</strong> Actif : c’est mûr. Retenu : on contemple le seuil sans le franchir.</li>
+<li><strong>Piège</strong> Croire que Le Monde « termine la vie ». Il termine un cycle. Le Mat, souvent, recommence juste à côté.</li>
+</ol>
+</div></details></article>
+
+  <footer>Trois Lunes · atelier de lecture · cinq choses, pas un dogme</footer>
+</main>
+<script>
+function openHash(){
+  const id=(location.hash||"").replace(/^#/,"");
+  if(!id) return;
+  const art=document.getElementById(id);
+  if(!art) return;
+  const d=art.querySelector("details");
+  if(d) d.open=true;
+  art.scrollIntoView({behavior:"smooth",block:"start"});
+}
+openHash();
+addEventListener("hashchange", openHash);
+</script>
+</body>
+</html>
