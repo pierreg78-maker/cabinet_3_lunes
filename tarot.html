@@ -58,6 +58,15 @@
     color:var(--night); background:var(--gold); border:0;
   }
   .btn.ghost{background:transparent;color:var(--gold);border:1px solid rgba(201,161,95,.45)}
+  .pill{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:8px 16px; border-radius:999px;
+    border:1.5px solid var(--gold); color:#1a1410;
+    text-decoration:none; font-family:Cinzel,serif; font-size:11px; letter-spacing:.08em; font-weight:600;
+    background:linear-gradient(180deg,#f3ead6 0%,#e6d8bb 100%);
+    box-shadow:0 0 0 1px rgba(201,161,95,.28), inset 0 1px 0 rgba(255,248,230,.55);
+  }
+  .pill:hover{border-color:var(--gold-hi)}
   .btn:disabled{opacity:.4;cursor:not-allowed}
   .center{text-align:center}
   .hidden{display:none !important}
@@ -235,7 +244,7 @@
   </div>
 
   <section id="step0">
-    <p class="eyebrow">Atelier Tarot</p>
+    <p class="eyebrow">Atelier des cartes</p>
     <h1>Apprendre la croix</h1>
     <p class="lead">Vingt-deux arcanes majeurs. Vous posez. Vous dites ce que vous voyez. Hélène reprend ensuite.</p>
     <div class="panel voice">
@@ -243,7 +252,10 @@
       <p>Quatre cartes pour les quatre pôles — Pour, Contre, Conseil, Issue. La cinquième n’est pas un choix : on additionne les numéros — Le Mat compte pour zéro — et l’on réduit si besoin. D’abord votre œil. Ensuite la leçon.</p>
       <div class="center">
         <button class="btn" id="go1">Commencer un exercice</button>
-        <a class="btn ghost" href="./fiches.html" style="display:inline-flex;text-decoration:none;margin-top:22px">Fiches des 22 lames</a>
+        <div class="center" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:18px">
+          <a class="pill" href="./fiches.html">Fiches des 22 lames</a>
+          <a class="pill" href="./couples.html">Couples d’arcanes</a>
+        </div>
       </div>
     </div>
     <div class="panel" id="samplesPanel">
@@ -297,7 +309,7 @@
         <button type="button" class="chip" data-q="Quelle dynamique traverse actuellement cette relation ?">exemple relation</button>
         <button type="button" class="chip" data-q="Que dois-je clarifier avant de prendre cette décision ?">exemple décision</button>
       </div>
-      <div class="center"><button class="btn" id="go2">Tenir cette question</button></div>
+      <div class="center"><button class="btn" id="go2">Poser cette question</button></div>
     </div>
   </section>
 
@@ -306,7 +318,7 @@
     <h1>Quatre cartes, puis le centre</h1>
     <div class="panel voice">
       <p id="qEcho" class="qbox"></p>
-      <p>Respirez. Gardez la question, sans la serrer. Vous allez toucher quatre cartes, une pour chaque pôle de la croix.</p>
+      <p>Respirez consciemment, gardez la question en tête. Vous allez choisir quatre cartes, une pour chaque pôle de la croix.</p>
       <p>Une carte peut se poser à l’envers. Ce n’est pas un mauvais présage. L’énergie est là ; elle demande un autre accès — plus intérieur, plus patient, plus conscient.</p>
       <div class="center"><button class="btn" id="go3">Mélanger le jeu</button></div>
     </div>
@@ -315,7 +327,7 @@
   <section id="step3" class="hidden">
     <div class="tray" id="tray">
       <p class="eyebrow">Le tapis</p>
-      <h1>Touchez une carte</h1>
+      <h1>Choisissez une carte</h1>
       <p class="lead" id="promptPose">Celle-ci, c’est ce qui travaille avec vous. Les forces, les appuis.</p>
       <div class="cross-wrap"><div class="cross" id="cross"></div></div>
       <p class="status" id="counter">Carte 1 sur 4 — Le Pour</p>
@@ -339,18 +351,18 @@
   <section id="stepEye" class="hidden">
     <p class="eyebrow">Votre œil</p>
     <h1>Dites ce que vous voyez</h1>
-    <p class="lead">Une phrase suffit. Ce n’est pas la bonne réponse. C’est votre premier regard.</p>
+    <p class="lead">Une phrase suffit. C’est votre premier regard.</p>
     <div class="cross-wrap"><div class="cross" id="crossEye"></div></div>
     <div class="panel">
-      <label for="eyePour">Pour — ce qui aide</label>
+      <label for="eyePour">Pour - ce qui aide</label>
       <textarea id="eyePour" placeholder="Ce que cette lame vous dit, ici."></textarea>
-      <label for="eyeContre">Contre — ce qui freine</label>
+      <label for="eyeContre">Contre - ce qui freine</label>
       <textarea id="eyeContre" placeholder="Ce que cette lame vous dit, ici."></textarea>
-      <label for="eyeConseil">Conseil — l’attitude</label>
+      <label for="eyeConseil">Conseil - l’attitude</label>
       <textarea id="eyeConseil" placeholder="Ce que cette lame vous dit, ici."></textarea>
-      <label for="eyeIssue">Issue — la pente</label>
+      <label for="eyeIssue">Issue - la pente</label>
       <textarea id="eyeIssue" placeholder="Ce que cette lame vous dit, ici."></textarea>
-      <label for="eyeCentre">Centre — le nom de la question</label>
+      <label for="eyeCentre">Centre - le nom de la question</label>
       <textarea id="eyeCentre" placeholder="Ce que le centre rassemble, pour vous."></textarea>
       <p class="hint">Vous pouvez laisser des cases vides. L’exercice, c’est d’oser une phrase, pas de tout couvrir.</p>
       <div class="center">
@@ -727,6 +739,21 @@ function lectureText(){
   });
   return bits.join(". ").replace(/\.\s*\./g,".");
 }
+function lectureChunks(){
+  const raw=lectureText();
+  if(!raw) return [];
+  const parts=raw.replace(/([\.\!\?…])\s+/g,"$1\n").split("\n");
+  const out=[];
+  let buf="";
+  parts.forEach(p=>{
+    if((buf+" "+p).trim().length>220){
+      if(buf) out.push(buf.trim());
+      buf=p;
+    } else buf=(buf?buf+" ":"")+p;
+  });
+  if(buf.trim()) out.push(buf.trim());
+  return out.length?out:[raw];
+}
 const FEMALE_RE=/female|femme|woman|am[eé]lie|audrey|aur[eé]lie|c[eé]line|denise|hortense|julie|l[eé]a|marie|virginie|flo\b|google fran[cç]ais(?!.*masc)/i;
 const MALE_RE=/male|homme|masculin|\bman\b|thomas|paul|henri|nicolas|claude|jacques|antoine|george|daniel|pierre|franck/i;
 function voiceKey(v){ return (v.voiceURI||"")+"|"+(v.name||"")+"|"+(v.lang||""); }
@@ -788,32 +815,56 @@ function fillVoices(){
   if(preferred) sel.value=voiceKey(preferred);
 }
 let speakUtt=null;
+let speakQueue=[];
+let speakIdx=0;
+let speakWanted=false;
 function setSpeakStatus(t){ const el=$("speakStatus"); if(el) el.textContent=t; }
 function stopSpeak(){
+  speakWanted=false;
   speakUtt=null;
+  speakQueue=[];
+  speakIdx=0;
   try{ if(window.speechSynthesis) speechSynthesis.cancel(); }catch(e){}
   setSpeakStatus("Voix féminine française, si votre téléphone en propose une.");
+}
+function speakNext(){
+  if(!speakWanted) return;
+  if(speakIdx>=speakQueue.length){
+    setSpeakStatus("Fin de la lecture.");
+    speakWanted=false;
+    return;
+  }
+  const v=pickVoice();
+  const u=new SpeechSynthesisUtterance(speakQueue[speakIdx]);
+  u.lang="fr-FR";
+  u.rate=parseFloat(($("speakRate")&&$("speakRate").value)||"0.92")||0.92;
+  u.pitch=(v && MALE_RE.test(v.name||""))?1.08:1.02;
+  if(v) u.voice=v;
+  u.onstart=()=>setSpeakStatus((v?("Voix : "+v.name+" · "):"")+ (speakIdx+1)+" / "+speakQueue.length);
+  u.onend=()=>{ speakIdx+=1; setTimeout(speakNext, 40); };
+  u.onerror=ev=>{
+    if(!speakWanted) return;
+    if(ev && ev.error==="interrupted") return;
+    speakIdx+=1;
+    setTimeout(speakNext, 80);
+  };
+  speakUtt=u;
+  try{ speechSynthesis.speak(u); }catch(e){ setSpeakStatus("La voix n’a pas pu démarrer."); }
 }
 function startSpeak(){
   if(!window.speechSynthesis){
     setSpeakStatus("Votre navigateur ne propose pas de voix de synthèse.");
     return;
   }
-  const text=lectureText();
-  if(!text){ setSpeakStatus("La lecture n’est pas encore prête."); return; }
+  const chunks=lectureChunks();
+  if(!chunks.length){ setSpeakStatus("La lecture n’est pas encore prête."); return; }
   fillVoices();
-  speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(text);
-  u.lang="fr-FR";
-  u.rate=parseFloat(($("speakRate")&&$("speakRate").value)||"0.92")||0.92;
-  const v=pickVoice();
-  u.pitch = (v && MALE_RE.test(v.name||"")) ? 1.08 : 1.02;
-  if(v) u.voice=v;
-  u.onstart=()=>setSpeakStatus(v?"Voix : "+v.name:"Lecture en cours…");
-  u.onend=()=>{ if(speakUtt===u) setSpeakStatus("Fin de la lecture."); };
-  u.onerror=()=>setSpeakStatus("La voix s’est interrompue.");
-  speakUtt=u;
-  speechSynthesis.speak(u);
+  speakWanted=true;
+  speakQueue=chunks;
+  speakIdx=0;
+  try{ speechSynthesis.cancel(); }catch(e){}
+  setSpeakStatus("Lecture en cours…");
+  setTimeout(speakNext, 80);
 }
 if(window.speechSynthesis){
   fillVoices();
@@ -821,7 +872,7 @@ if(window.speechSynthesis){
 }
 $("speakPlay").onclick=()=>{
   if(window.speechSynthesis && speechSynthesis.paused && speechSynthesis.speaking){
-    speechSynthesis.resume();
+    try{ speechSynthesis.resume(); }catch(e){}
     setSpeakStatus("Lecture reprise.");
     return;
   }
@@ -830,20 +881,20 @@ $("speakPlay").onclick=()=>{
 $("speakPause").onclick=()=>{
   if(!window.speechSynthesis) return;
   if(speechSynthesis.speaking && !speechSynthesis.paused){
-    speechSynthesis.pause();
-    setSpeakStatus("En pause.");
+    try{ speechSynthesis.pause(); }catch(e){}
+    setSpeakStatus("En pause. Sur téléphone, reprenez avec Lire.");
   } else if(speechSynthesis.paused){
-    speechSynthesis.resume();
+    try{ speechSynthesis.resume(); }catch(e){}
     setSpeakStatus("Lecture reprise.");
   }
 };
 $("speakStop").onclick=stopSpeak;
 $("speakRate").onchange=()=>{
-  if(window.speechSynthesis && speechSynthesis.speaking) startSpeak();
+  if(speakWanted) startSpeak();
 };
 $("speakVoice").onchange=()=>{
   try{ localStorage.setItem("voixHelene", $("speakVoice").value||""); }catch(e){}
-  if(window.speechSynthesis && speechSynthesis.speaking) startSpeak();
+  if(speakWanted) startSpeak();
 };
 
 function shuffle(a){
@@ -1006,6 +1057,7 @@ function revealSynth(){
   setTimeout(()=>{ flyer.remove(); dest.style.opacity="1"; }, 2620);
 }
 function ficheHref(n){ return "fiches.html#a"+Number(n); }
+function coupleHref(kind,a,b){ return "couples.html#"+kind+"-"+Number(a)+"-"+Number(b); }
 function ficheA(n, label){
   const a=cardOf(n);
   const t=label || ("Fiche · "+T(a.name));
@@ -1279,7 +1331,7 @@ function reading(){
     '<p class="sstitle">'+esc(field(p,"name"))+' · le Pour · '+ficheA(P&&P.n, "fiche")+'</p>',
     '<p>'+field(p,"see")+' '+field(p,"mean")+' '+pourSens+'</p>',
     '<p>'+field(p,"pour")+'</p>',
-    '<p><em>Lien avec votre question.</em> « '+q+' » — '+liens(th,"pour")+' '+field(p,"name")+' n\'est pas un décor autour de la question. C\'est déjà une réponse partielle : voici par où ça peut tenir.</p>',
+    '<p><em>Lien avec votre question.</em> « '+q+' » — '+liens(th,"pour")+' '+field(p,"name")+' n\'est pas un décor autour de la question. C\'est déjà une réponse partielle.</p>',
 
     '<h2>Ce qui freine, pour cette question</h2>',
     '<p class="sstitle">'+esc(field(c,"name"))+' · le Contre · '+ficheA(C&&C.n, "fiche")+'</p>',
@@ -1287,7 +1339,7 @@ function reading(){
     '<p>'+field(c,"contre")+'</p>',
     '<p><em>Lien avec votre question.</em> « '+q+' » — '+liens(th,"contre")+' Tant que '+field(c,"name")+' n\'est pas regardé en face, la question tourne en rond.</p>',
 
-    '<p>Les deux ensemble : '+field(p,"name")+' et '+field(c,"name")+' ne s\'annulent pas. Pour « '+q+' », le travail est de s\'appuyer sur l\'un sans nier l\'autre.</p>',
+    '<p>Les deux ensemble : '+field(p,"name")+' et '+field(c,"name")+' ne s\'annulent pas. Pour « '+q+' », le travail est de s\'appuyer sur l\'un sans nier l\'autre. <a class="fiche-link" href="'+coupleHref("pc",P&&P.n,C&&C.n)+'">couple Pour × Contre</a></p>',
 
     '<h2>Comment vous tenir, face à cette question</h2>',
     '<p class="sstitle">'+esc(field(co,"name"))+' · le Conseil · '+ficheA(Co&&Co.n, "fiche")+'</p>',
@@ -1298,7 +1350,7 @@ function reading(){
     '<h2>Si rien ne change dans cette question</h2>',
     '<p class="sstitle">'+esc(field(i,"name"))+' · l\'Issue · '+ficheA(I&&I.n, "fiche")+'</p>',
     '<p>'+field(i,"see")+' '+field(i,"issue")+'</p>',
-    '<p><em>Lien avec votre question.</em> '+liens(th,"issue")+' L\'issue n\'est pas le destin de « '+q+' ». C\'est le chemin <em>si l\'on n\'écoute pas</em> '+field(co,"name")+'. L\'attitude du haut corrige la pente du bas.</p>',
+    '<p><em>Lien avec votre question.</em> '+liens(th,"issue")+' L\'issue n\'est pas le destin de « '+q+' ». C\'est le chemin <em>si l\'on n\'écoute pas</em> '+field(co,"name")+'. L\'attitude du haut corrige la pente du bas. <a class="fiche-link" href="'+coupleHref("ci",Co&&Co.n,I&&I.n)+'">couple Conseil × Issue</a></p>',
 
     '<h2>Le nom de votre question</h2>',
     '<p class="sstitle">'+esc(field(y,"name"))+(deja?" — déjà présent dans la croix":"")+' · synthèse · '+ficheA(Y&&Y.n, "fiche")+'</p>',
