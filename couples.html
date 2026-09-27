@@ -17,12 +17,24 @@
   .lead{text-align:center;font-style:italic;color:#cfc4ad;max-width:640px;margin:0 auto 22px}
   .panel{background:rgba(18,16,22,.72);border:1px solid rgba(201,161,95,.28);padding:18px 20px;margin-bottom:18px}
   .hint{font-size:15px;color:var(--muted);font-style:italic}
-  .tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:0 0 16px}
-  .tabs button,.pick{background:transparent;color:var(--ivory);border:1px solid rgba(201,161,95,.4);padding:8px 12px;font-family:Cinzel,serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
-  .tabs button.on{background:rgba(201,161,95,.18);border-color:var(--gold);color:var(--gold-hi)}
-  .grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0 18px}
+  .tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:0 0 16px}
+  .tabs button,.grid button,.pill{
+    background:linear-gradient(180deg,#f3ead6 0%,#e6d8bb 100%);
+    color:#1a1410;
+    border:1.5px solid var(--gold);
+    border-radius:999px;
+    padding:8px 14px;
+    font-family:Cinzel,serif;font-size:11px;letter-spacing:.06em;font-weight:600;
+    text-transform:none;cursor:pointer;text-decoration:none;
+    box-shadow:0 0 0 1px rgba(201,161,95,.28), inset 0 1px 0 rgba(255,248,230,.55);
+  }
+  .tabs button.on,.grid button.on{
+    background:linear-gradient(180deg,#e6c98c 0%,#c9a15f 100%);
+    border-color:var(--gold-hi);
+    color:#1a1410;
+  }
+  .grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:10px 0 18px}
   .grid button{width:auto}
-  .grid button.on{border-color:var(--gold);color:var(--gold-hi)}
   .pair{display:flex;align-items:center;justify-content:center;gap:16px;margin:18px 0;flex-wrap:wrap}
   .pair figure{text-align:center}
   .pair img{width:92px;height:138px;object-fit:cover;border-radius:6px;box-shadow:0 0 0 1px rgba(201,161,95,.35);display:block}
@@ -39,7 +51,7 @@
 <main>
   <div class="top">
     <a class="brand" href="./tarot.html">← Atelier</a>
-    <a class="brand" href="./fiches.html">Fiches</a>
+    <a class="pill" href="./fiches.html">Fiches des 22 lames</a>
   </div>
   <p class="eyebrow">Lire à deux</p>
   <h1>Couples d’arcanes</h1>
