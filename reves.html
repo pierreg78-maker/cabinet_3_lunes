@@ -1,1 +1,251 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interprétation des rêves · Léon Savignac · Cabinet des Trois Lunes</title>
+<meta name="description" content="Interprétation des rêves avec Léon Savignac, selon les principes freudiens : contenu manifeste, latent, condensation, déplacement, réalisation de désir.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0a0f'/%3E%3Ccircle cx='8' cy='16' r='5' fill='%23c9a15f'/%3E%3Ccircle cx='10.5' cy='16' r='4.3' fill='%230c0a0f'/%3E%3Ccircle cx='16' cy='16' r='4.4' fill='none' stroke='%23c9a15f' stroke-width='1.4'/%3E%3Ccircle cx='24' cy='16' r='5' fill='%23c9a15f'/%3E%3Ccircle cx='21.5' cy='16' r='4.3' fill='%230c0a0f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0c0a0f; --ivory:#e8e0cd; --muted:#9d8f7c; --gold:#c9a15f;
+    --gold-hi:#e6c98c; --gold-ink:#8a6f3c; --cream:#ece1cb; --ink:#241b20;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:radial-gradient(120% 90% at 50% 6%, #151019 0%, #0d0a10 48%, #070509 100%) fixed;
+    color:var(--ivory); font-family:"Cormorant Garamond",Georgia,serif;
+    font-size:18px; line-height:1.65; min-height:100svh;
+  }
+  #sky{position:fixed;inset:0;z-index:0}
+  .grain{
+    position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+  }
+  main{position:relative;z-index:2;max-width:980px;margin:0 auto;padding:28px 22px 80px}
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}
+  .brand{font-family:Cinzel,serif;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);text-decoration:none}
+  .eyebrow{font-family:Cinzel,serif;font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);text-align:center}
+  h1{font-family:Cinzel,serif;font-weight:600;text-align:center;letter-spacing:.1em;font-size:clamp(1.6rem,4vw,2.4rem);margin:12px 0 8px}
+  .lead{text-align:center;font-style:italic;color:#cfc4ad;max-width:640px;margin:0 auto 28px;font-size:1.15rem}
+  .panel{background:rgba(18,16,22,.72); border:1px solid rgba(201,161,95,.28);border-radius:4px; padding:28px 26px 26px; margin:0 auto 22px; max-width:720px}
+  label{display:block;font-family:Cinzel,serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:16px 0 8px}
+  input[type=text], textarea{width:100%; background:#171219; color:var(--ivory); border:1px solid rgba(201,161,95,.35);border-radius:2px; padding:10px 12px; font-family:inherit; font-size:1.05rem}
+  textarea{min-height:120px;resize:vertical}
+  .choices{display:flex;flex-wrap:wrap;gap:8px}
+  .choices button{background:transparent;color:var(--ivory);border:1px solid rgba(201,161,95,.4);padding:7px 12px;font-family:Cinzel,serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+  .choices button.on{background:rgba(201,161,95,.18);border-color:var(--gold);color:var(--gold-hi)}
+  .hint{font-size:15px;color:var(--muted);margin-top:8px;font-style:italic}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:22px; padding:12px 22px; cursor:pointer;font-family:Cinzel,serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--night); background:var(--gold); border:0}
+  .btn.ghost{background:transparent;color:var(--gold);border:1px solid rgba(201,161,95,.45)}
+  .center{text-align:center}
+  .hidden{display:none !important}
+  .voice{font-size:1.12rem;color:#d7ccb6}
+  .voice p+p{margin-top:12px}
+  footer{text-align:center;margin-top:40px;color:#6d6355;font-size:14px}
+  #analyse{max-width:760px;margin:10px auto 0}
+  #analyse h2{font-family:Cinzel,serif;font-size:1.15rem;letter-spacing:.08em;color:var(--gold-hi);margin:32px 0 6px}
+  #analyse p{margin:0 0 14px}
+  .qbox{font-style:italic;color:#cfc4ad;border-left:1px solid var(--gold);padding-left:14px;margin:16px 0;white-space:pre-wrap}
+  .key{background:rgba(201,161,95,.1);border:1px solid rgba(201,161,95,.28);padding:16px 18px;margin:16px 0}
+  #illustration{text-align:center;margin:8px 0 24px}
+  #illustration svg{max-width:100%;height:auto}
+  .illus-caption{font-size:14px;color:var(--muted);margin-top:6px;font-style:italic}
+  .motif{display:inline-block;margin:4px 8px;padding:6px 12px;border:1px solid rgba(201,161,95,.4);border-radius:20px;font-size:13px;letter-spacing:.04em;color:var(--gold-hi)}
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="grain"></div>
+<main>
+  <div class="top">
+    <a class="brand" href="./index.html">← Trois Lunes</a>
+    <span class="brand">Léon Savignac</span>
+  </div>
+
+  <section id="step0">
+    <p class="eyebrow">Interprétation des rêves</p>
+    <h1>Le langage des songes</h1>
+    <p class="lead">Quelques questions, puis une lecture freudienne de votre rêve.</p>
+    <div class="panel voice">
+      <p>Ceci n’est pas une consultation complète. C’est une première écoute : le récit du rêve tel qu’il vous revient, quelques éléments de contexte, puis une interprétation selon les principes de Freud — contenu manifeste et latent, condensation, déplacement, réalisation de désir.</p>
+      <p>Le rêve est la voie royale vers l’inconscient. On ne force pas le sens ; on le laisse émerger.</p>
+      <div class="center">
+        <button class="btn" id="go1">Commencer</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="step1" class="hidden">
+    <p class="eyebrow">Découverte</p>
+    <h1>Votre rêve</h1>
+    <div class="panel">
+      <label for="prenom">Comment puis-je vous appeler ?</label>
+      <input id="prenom" type="text" autocomplete="name" placeholder="Votre prénom">
+
+      <label>Vous préférez que je vous parle…</label>
+      <div class="choices" id="genre">
+        <button type="button" data-v="m">au masculin</button>
+        <button type="button" data-v="f">au féminin</button>
+        <button type="button" data-v="n" class="on">de façon neutre</button>
+      </div>
+
+      <label for="reve">Racontez le rêve, aussi précisément que possible</label>
+      <textarea id="reve" placeholder="Le récit tel qu’il vous revient — images, sensations, mots, fin…"></textarea>
+      <p class="hint">Plus le récit est fidèle au rêve (même les détails qui semblent absurdes), plus la lecture peut être fine.</p>
+
+      <label for="contexte">Contexte de la veille ou des jours précédents (facultatif)</label>
+      <textarea id="contexte" placeholder="Événements, émotions, relations, soucis… qui pourraient éclairer le rêve."></textarea>
+
+      <label>Émotion dominante au réveil</label>
+      <div class="choices" id="emotion">
+        <button type="button" data-v="anxiété ou peur">anxiété / peur</button>
+        <button type="button" data-v="tristesse ou nostalgie">tristesse / nostalgie</button>
+        <button type="button" data-v="joie ou soulagement">joie / soulagement</button>
+        <button type="button" data-v="confusion">confusion</button>
+        <button type="button" data-v="excitation ou désir">excitation / désir</button>
+        <button type="button" data-v="neutre">neutre</button>
+      </div>
+
+      <div class="center">
+        <button class="btn" id="goAnalyse">Interpréter le rêve</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="step2" class="hidden">
+    <p class="eyebrow">Lecture freudienne</p>
+    <h1 id="titreAnalyse">Votre rêve</h1>
+    <div id="illustration" class="panel" style="padding:16px">
+      <!-- Illustration symbolique injectée -->
+    </div>
+    <div id="analyse" class="panel voice">
+      <!-- Contenu généré -->
+    </div>
+    <div class="center">
+      <button class="btn ghost" id="reset">Recommencer</button>
+    </div>
+  </section>
+</main>
+<footer>Cabinet des Trois Lunes · Léon Savignac</footer>
+
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const $$ = s => document.querySelectorAll(s);
+
+  let data = {prenom:'', genre:'n', reve:'', contexte:'', emotion:''};
+
+  const SYMBOLS = ['☾','✦','☁','⚡','👁','🗝','🌙','💧','🔥','🌀','🪞','🕊','🐍','🌳','⭐'];
+
+  function extractKeywords(text){
+    if (!text) return [];
+    const stop = new Set(['le','la','les','un','une','des','de','du','et','ou','à','au','en','dans','sur','par','pour','avec','qui','que','quoi','dont','où','ce','cette','ces','son','sa','ses','mon','ma','mes','ton','ta','tes','il','elle','ils','elles','je','tu','nous','vous','on','ne','pas','plus','moins','très','aussi','alors','puis','donc','car','mais','or','ni','comme','si','quand','comment','pourquoi']);
+    const words = text.toLowerCase().replace(/[^\wàâäéèêëïîôùûüç\s]/g,' ').split(/\s+/).filter(w => w.length > 3 && !stop.has(w));
+    const freq = {};
+    words.forEach(w => freq[w] = (freq[w]||0)+1);
+    return Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([w])=>w);
+  }
+
+  $$('.choices button').forEach(b => {
+    b.addEventListener('click', () => {
+      const parent = b.parentElement;
+      parent.querySelectorAll('button').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      if (parent.id === 'genre') data.genre = b.dataset.v;
+      if (parent.id === 'emotion') data.emotion = b.dataset.v;
+    });
+  });
+
+  $('#go1').addEventListener('click', () => {
+    $('#step0').classList.add('hidden');
+    $('#step1').classList.remove('hidden');
+  });
+
+  $('#goAnalyse').addEventListener('click', () => {
+    data.prenom = $('#prenom').value.trim() || 'vous';
+    data.reve = $('#reve').value.trim();
+    data.contexte = $('#contexte').value.trim();
+    const emo = $('#emotion .on');
+    data.emotion = emo ? emo.dataset.v : '';
+
+    if (!data.reve) {
+      alert('Le récit du rêve est nécessaire pour proposer une lecture.');
+      return;
+    }
+
+    $('#step1').classList.add('hidden');
+    $('#step2').classList.remove('hidden');
+    renderIllustration();
+    renderAnalyse();
+  });
+
+  $('#reset').addEventListener('click', () => location.reload());
+
+  function renderIllustration(){
+    const keys = extractKeywords(data.reve + ' ' + (data.contexte||''));
+    const motifs = keys.length ? keys : ['songe','ombre','désir','seuil'];
+    const chips = motifs.map(m => `<span class="motif">${m}</span>`).join('');
+
+    // Real image generation via Pollinations (anonymous, no key)
+    const promptParts = motifs.slice(0,5).join(', ');
+    const prompt = `dreamlike surreal illustration of ${promptParts}, Freudian symbolism, dark mystical atmosphere, gold and night tones, soft ethereal light, no text`;
+    const encoded = encodeURIComponent(prompt);
+    const seed = Math.floor(Math.random()*100000);
+    const imgUrl = `https://image.pollinations.ai/prompt/${encoded}?width=640&height=400&nologo=true&seed=${seed}&model=flux`;
+
+    const imgHtml = `<img src="${imgUrl}" alt="Illustration onirique générée à partir des motifs du rêve" style="max-width:100%;border-radius:6px;border:1px solid rgba(201,161,95,.35);margin-bottom:8px" loading="lazy" onerror="this.style.display='none'">`;
+
+    $('#illustration').innerHTML = imgHtml + `<p class="illus-caption">Illustration générée à partir des motifs cités dans le rêve</p><div style="margin-top:10px">${chips}</div>`;
+  }
+
+  function renderAnalyse() {
+    const nom = data.prenom;
+    const reveBox = `<div class="qbox">« ${data.reve.replace(/\n/g,'<br>')} »</div>`;
+    const ctx = data.contexte ? `<p><em>Contexte évoqué (résidu diurne possible) :</em> ${data.contexte}</p>` : '';
+    const emo = data.emotion ? `<p>Affect au réveil : ${data.emotion}.</p>` : '';
+    const keys = extractKeywords(data.reve);
+
+    let html = `
+      <p class="lead" style="margin-bottom:18px">Lecture pour ${nom}.</p>
+      ${reveBox}
+      ${ctx}
+      ${emo}
+
+      <h2>1. Contenu manifeste</h2>
+      <p>Le récit livré est le contenu manifeste : l’image que le rêve présente à la conscience. Il n’est pas le sens, mais le résultat déjà transformé du travail du rêve. Les mots qui reviennent (${keys.slice(0,4).join(', ') || 'les images centrales'}) sont souvent les points de condensation.</p>
+
+      <h2>2. Résidu diurne</h2>
+      <p>${data.contexte ? 'Le contexte que vous évoquez fournit un résidu diurne : des éléments de la veille qui servent de point d’appui au désir latent.' : 'Aucun contexte diurne n’a été précisé. Le rêve s’appuie alors davantage sur des résidus plus anciens ou purement inconscients.'}</p>
+
+      <h2>3. Condensation</h2>
+      <p>Plusieurs figures, lieux ou affects se superposent souvent en un seul élément. Un personnage peut condenser plusieurs personnes réelles ; un lieu peut fusionner des espaces distincts. Les répétitions dans le récit signalent fréquemment ces points de condensation.</p>
+
+      <h2>4. Déplacement</h2>
+      <p>L’intensité affective glisse d’un objet important vers un détail apparemment secondaire. Ce qui semble anodin dans le récit porte souvent la charge émotionnelle réelle. L’affect au réveil (${data.emotion || 'non précisé'}) aide à repérer où le déplacement a opéré.</p>
+
+      <h2>5. Figuration et symbolisation</h2>
+      <p>Le rêve figure des pensées en images. Certains motifs (seuils, eaux, feux, miroirs, animaux…) fonctionnent comme des symboles relativement stables, tout en restant surdéterminés par l’histoire personnelle.</p>
+
+      <h2>6. Contenu latent et désir</h2>
+      <p>Derrière le manifeste se tient un désir inconscient, souvent infantile ou refoulé, qui trouve dans le sommeil une voie d’expression déguisée. Même un rêve d’angoisse peut être lu comme la réalisation déguisée d’un désir — la censure ayant échoué à le masquer complètement.</p>
+
+      <h2>7. Censure et déguisement</h2>
+      <p>La censure veille : elle déforme, inverse, rend absurde. Ce qui paraît le plus étrange ou le plus « idiot » dans le rêve est souvent ce qui a été le plus travaillé pour passer.</p>
+
+      <div class="key">
+        <p><strong>Note de Léon</strong> — Cette grille freudienne structure le récit sans le clore. Une interprétation plus fine croiserait associations libres, rêves répétés et histoire personnelle. Le sens émerge à l’écoute ; on ne le force jamais. L’illustration ci-dessus est générée à partir des motifs cités dans votre rêve.</p>
+      </div>
+      <p>Si vous souhaitez approfondir un motif précis, une association ou un affect, précisez-le lors d’une prochaine rencontre.</p>
+    `;
+    $('#analyse').innerHTML = html;
+    $('#titreAnalyse').textContent = `Rêve de ${nom}`;
+  }
+})();
+</script>
+</body>
+</html>
